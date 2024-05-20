@@ -22,9 +22,7 @@ To configure and install the Banking App project, follow these steps:
     git clone https://github.com/phamduyben/Android-App-Banking.git
     ```
 
--Install jdk 17+ [install jdk](https://www.oracle.com/java/technologies/downloads/#java21)
-
--Install maven 3.5+[install maven](https://maven.apache.org/download.cgi)
+-Install android studio[install android studio](https://developer.android.com/studio/install#mac)
 
 If you encounter any issues during the installation process, refer to the project's documentation or seek help from the project's community.
 
