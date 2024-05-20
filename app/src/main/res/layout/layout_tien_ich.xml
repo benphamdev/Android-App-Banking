@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="3"
+        android:orientation="horizontal">
+
+        <!-- First Column -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageButton
+                android:layout_marginRight="9dp"
+                android:id="@+id/img_quan_ly_nhom"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/btn_bo_img_chuyen_tien"
+                android:src="@drawable/quanlynhom"
+                android:scaleType="centerInside"
+                android:contentDescription="Quản lý nhóm" />
+
+            <TextView
+                android:id="@+id/tv_quan_ly_nhom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:text="Quản lý nhóm" />
+        </LinearLayout>
+
+        <!-- Second Column -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/img_tra_soat_truc_tuyen"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/btn_bo_img_chuyen_tien"
+                android:src="@drawable/trasoattructuyen"
+                android:scaleType="centerInside"
+                android:contentDescription="Tra soát trực tuyến" />
+
+            <TextView
+                android:id="@+id/tv_tra_soat_truc_tuyen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:text="Tra soát trực
+                tuyến" />
+        </LinearLayout>
+
+        <!-- Third Column -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/img_kich_hoat_smart_otp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="6dp"
+                android:background="@drawable/btn_bo_img_chuyen_tien"
+                android:src="@drawable/kichhoatsmartotp"
+                android:scaleType="centerInside"
+                android:contentDescription="Kích hoạt Smart OTP" />
+
+            <TextView
+                android:id="@+id/tv_kich_hoat_smart_otp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:text="Kích hoạt Smart OTP" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <!-- Hạn mức chuyển tiền -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/img_han_muc_chuyen_tien"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="@drawable/btn_bo_img_chuyen_tien"
+                app:srcCompat="@drawable/hanmucchuyentien"
+                android:scaleType="centerInside"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/tv_han_muc_chuyen_tien"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:text="Hạn mức chuyển tiền" />
+        </LinearLayout>
+
+        <!-- VCB Rewards -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="20dp"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/img_vcb_rewards"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="@drawable/btn_bo_img_chuyen_tien"
+                app:srcCompat="@drawable/reward"
+                android:scaleType="centerInside"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/tv_vcb_rewards"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:text="VCB Rewards" />
+        </LinearLayout>
+
+        <!-- Ưu đãi -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="20dp"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/img_uu_dai"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="@drawable/btn_bo_img_chuyen_tien"
+                app:srcCompat="@drawable/uudai"
+                android:scaleType="centerInside"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/tv_uu_dai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:text="Ưu đãi" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <!-- Giới thiệu bạn bè -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/img_gioi_thieu_ban_be"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="@drawable/btn_bo_img_chuyen_tien"
+                app:srcCompat="@drawable/gioithieubanbe"
+                android:scaleType="centerInside"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/tv_gioi_thieu_ban_be"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:text="  Giới thiệu bạn bè" />
+        </LinearLayout>
+
+        <!-- VCB Family -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="20dp"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/img_vcb_family"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="@drawable/btn_bo_img_chuyen_tien"
+                app:srcCompat="@drawable/vcbfamily"
+                android:scaleType="centerInside"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/tv_vcb_family"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:text="VCB Family" />
+        </LinearLayout>
+
+        <!-- Đặt nickname tài khoản -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="20dp"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/img_dat_nickname_tai_khoan"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="@drawable/btn_bo_img_chuyen_tien"
+                app:srcCompat="@drawable/datnicknametaikhoan"
+                android:scaleType="centerInside"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/tv_dat_nickname_tai_khoan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:text="Đặt nickname tài khoản" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <!-- Đặt lịch hẹn với VCB -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/img_dat_lich_hen_voi_vcb"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="@drawable/btn_bo_img_chuyen_tien"
+                app:srcCompat="@drawable/datlichhenvoivcb"
+                android:scaleType="centerInside"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/tv_dat_lich_hen_voi_vcb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:text="Đặt lịch hẹn với VCB" />
+        </LinearLayout>
+
+        <!-- Convert -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="20dp"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/img_convert"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="@drawable/btn_bo_img_chuyen_tien"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/setting"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/tv_cai_dat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:text="Convert" />
+        </LinearLayout>
+
+        <!-- Tiện ích khác -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="20dp"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/img_tien_ich_khac"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="@drawable/btn_bo_img_chuyen_tien"
+                app:srcCompat="@drawable/dichvukhac"
+                android:scaleType="centerInside"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/tv_cac_dich_vu_khac"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:text="Tiện ích khác" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

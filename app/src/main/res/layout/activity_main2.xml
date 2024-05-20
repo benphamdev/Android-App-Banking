@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Activities.QRActivity">
+
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tool_bar_quet_qr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#7CC34A">
+
+        <ImageView
+                android:id="@+id/toolbar_back_quet_qr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/quayhome"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:clickable="true"
+                android:focusable="true" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quét mã QR"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_gravity="center" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Quét mã QR để thanh toán, chuyển tiền và rút tiền mặt tại hệ thống ATM"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginTop="150dp"
+            android:gravity="center" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/layout_result"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_gravity="center">
+
+        <ImageView
+                android:layout_width="300dp"
+                android:layout_height="300dp" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textResult"
+                android:layout_marginTop="15dp"
+                android:text=""
+                android:textSize="24sp"
+                android:textStyle="bold" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            app:layout_anchor="@+id/layout_result"
+            app:layout_anchorGravity="center">
+
+        <Button
+                android:id="@+id/btn_scanqr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:text="Quét QR"
+                android:textSize="16sp" />
+
+        <Button
+                android:id="@+id/btn_scangallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:text="Ảnh có sẵn"
+                android:textSize="16sp" />
+
+        <Button
+                android:id="@+id/btn_taoqr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:text="Tạo QR"
+                android:textSize="16sp" />
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

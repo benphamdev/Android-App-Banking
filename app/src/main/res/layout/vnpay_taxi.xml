@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+    <ImageView
+            android:id="@+id/img_view_taxi"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/vnpaytaxi"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            android:contentDescription="@null"
+            android:layout_gravity="center" />
+
+    <TextView
+            android:id="@+id/tv_alert_taxi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="VNPAY Taxi"
+            android:textSize="20sp"
+            android:textColor="#229E27"
+            android:gravity="center" />
+
+    <TextView
+            android:id="@+id/tv_alert_taxi1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="VNPAY Taxi là dịch vụ do Công ty Cổ phần Giải pháp thanh toán Việt Nam(VNPAY) cung cấp. Mọi vấn  liên quan đến hàng hóa dịch vụ sẽ do VNPAY chịu trách nhiệm. VCB đóng vai trò cung cấp giải pháp thanh toán. Trường hợp cần hỗ trợ về dịch vụ này, Quý khách vui lòng liên hệ tổng đài 1900 5555 20"
+            android:textSize="20dp"
+            android:gravity="center" />
+</LinearLayout>

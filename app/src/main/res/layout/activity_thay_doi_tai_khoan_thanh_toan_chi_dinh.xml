@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@android:color/darker_gray"
+        tools:context=".Activities.ThanhToanHoaDon.ThayDoiTaiKhoanThanhToanChiDinh">
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/tool_bar_thay_doi_thanh_toan_chi_dinh"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#7CC34A">
+
+                <ImageView
+                        android:id="@+id/toolbar_back_thay_doi_thanh_toan_chi_dinh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/quayhome"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:clickable="true"
+                        android:focusable="true" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Thay đổi tài khoản thanh toán chỉ định"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:layout_gravity="center" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textAlignment="textStart"
+                    android:paddingStart="10dp"
+                    android:background="@drawable/bo_img_btn_chuyentien"
+                    android:drawablePadding="10dp"
+                    android:drawableEnd="@drawable/muiten"
+                    android:text="Số thẻ"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    android:textColor="@color/tropical_green"
+                    android:minHeight="48dp"
+                    android:paddingEnd="3dp" />
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:background="@drawable/bo_so_tai_khoan"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="10dp">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="16sp"
+                        android:hint="Số tài khoản hiện tại"
+                        android:padding="10dp" />
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="1027675658"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:padding="10dp" />
+            </LinearLayout>
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textAlignment="textStart"
+                    android:paddingStart="10dp"
+                    android:background="@drawable/bo_img_btn_chuyentien"
+                    android:drawablePadding="10dp"
+                    android:drawableEnd="@drawable/muiten"
+                    android:hint="Chọn số tài khoản mới"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    android:textColor="@color/tropical_green"
+                    android:minHeight="48dp"
+                    android:paddingEnd="3dp" />
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_above="@id/btn_tiep_tuc_nap_tien_vi_dien_tu"
+            android:orientation="horizontal">
+
+        <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tôi đã đọc, hiểu rõ, đồng ý và cam kết tuân thủ các điều khoản, điều kiện sử dụng và các hướng dẫn sử dụng dịch vụ Ngân hàng điện tử của Ngân hàng TCMP Ngoại thương Việt Nam(Vietcombank)." />
+    </LinearLayout>
+
+    <Button
+            android:id="@+id/btn_tiep_tuc_nap_tien_vi_dien_tu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bo_img_btn_chuyentien1"
+            android:text="Tiếp tục"
+            android:textColor="@color/white"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_alignParentBottom="true" />
+</RelativeLayout>

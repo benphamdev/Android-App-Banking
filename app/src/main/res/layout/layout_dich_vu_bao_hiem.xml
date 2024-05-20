@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="10dp"
+    android:gravity="center"
+    android:weightSum="3">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginStart="20dp">
+
+        <ImageButton
+            android:id="@+id/img_phi_bao_hiem"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/btn_bo_img_chuyen_tien"
+            app:srcCompat="@drawable/phibaohiem"
+            android:scaleType="centerInside"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/tv_phi_bao_hiem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phí
+                        bảo hiểm"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginStart="20dp">
+
+        <ImageButton
+            android:id="@+id/img_mua_bao_hiem"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/btn_bo_img_chuyen_tien"
+            app:srcCompat="@drawable/muabaohiem"
+            android:scaleType="centerInside"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/tv_mua_bao_hiem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mua
+                    bảo hiểm"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginStart="20dp">
+
+        <ImageButton
+            android:id="@+id/img_quan_ly_hop_dong_bao_hiem"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/btn_bo_img_chuyen_tien"
+            app:srcCompat="@drawable/quanlyhopdongbaohiem"
+            android:scaleType="centerInside"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/tv_quan_ly_hop_dong_bao_hiem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="Quản lý
+                bảo hiểm"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circleImageViewProfile"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:padding="5dp"
+                android:src="@drawable/daidien"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="60dp"
+                android:padding="5dp"
+                android:src="@drawable/buttt"
+                app:layout_constraintEnd_toEndOf="@+id/circleImageViewProfile"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/circleImageViewProfile"
+                app:layout_constraintTop_toTopOf="@+id/circleImageViewProfile" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TÀI KHOẢN THANH TOÁN"
+                android:id="@+id/tv_thanh_toan"
+                android:layout_marginStart="10dp"
+                android:padding="5dp" />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1027675658"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:id="@+id/tv_so_tai_khoan"
+                    android:padding="5dp" />
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/copy"
+                    android:id="@+id/img_copy"
+                    android:layout_marginStart="5dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Số dư"
+                    android:id="@+id/tv_so_du"
+                    android:padding="5dp" />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="******"
+                    android:id="@+id/tv_tien_tai_khoan"
+                    android:padding="5dp" />
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/eye"
+                    android:id="@+id/imv_on_off"
+                    android:layout_marginStart="5dp"
+                    android:padding="5dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

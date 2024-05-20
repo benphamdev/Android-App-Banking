@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@android:color/darker_gray"
+        tools:context=".Activities.TienIch.GioiThieuBan">
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/tool_bar_gioi_thieu_ban"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#7CC34A">
+
+                <ImageView
+                        android:id="@+id/toolbar_back_gioi_thieu_ban"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/quayhome"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:clickable="true"
+                        android:focusable="true" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Giới thiệu bạn"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:layout_gravity="center" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/back3" />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="VCB - Ngân hàng của mọi nhà."
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:layout_gravity="center" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bo_img_btn_chuyentien"
+                    android:drawableEnd="@drawable/copy"
+                    android:drawablePadding="10dp"
+                    android:text="Link giới thiệu"
+                    android:textColor="#4CAF50"
+                    android:textAlignment="textStart"
+                    android:paddingStart="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    android:paddingEnd="3dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bo_img_btn_chuyentien"
+                    android:drawableEnd="@drawable/share"
+                    android:drawablePadding="10dp"
+                    android:text="QR giới thiệu"
+                    android:textColor="#4CAF50"
+                    android:textAlignment="textStart"
+                    android:paddingStart="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    android:paddingEnd="3dp" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

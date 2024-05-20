@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".Activities.ChuyenTien.TrangThaiChuyenTien">
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/tool_bar_trang_thai_chuyen_tien"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#7CC34A">
+
+                <ImageView
+                        android:id="@+id/toolbar_back_trang_thai_chuyen_tien"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:src="@drawable/quayhome" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Trạng thái chuyển tiền"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+            </androidx.appcompat.widget.Toolbar>
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/bo_img_btn_chuyentien"
+                    android:drawableEnd="@drawable/muiten"
+                    android:drawablePadding="10dp"
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="3dp"
+                    android:text="Chuyển tiền định kỳ trong VCB"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/tropical_green"
+                    android:textSize="16sp" />
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/bo_img_btn_chuyentien"
+                    android:drawableEnd="@drawable/muiten"
+                    android:drawablePadding="10dp"
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="3dp"
+                    android:text="Theo trạng thái chuyển tiền"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/tropical_green"
+                    android:textSize="16sp" />
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/bo_img_btn_chuyentien"
+                    android:drawableEnd="@drawable/muiten"
+                    android:drawablePadding="10dp"
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="3dp"
+                    android:text="Chờ xử lý"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/tropical_green"
+                    android:textSize="16sp" />
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="Lưu ý: Tra cứu trạng thái thông tin giao dịch chuyển tiền định kỳ hoặc chuyển tiền ngày tương lai"
+                    android:textSize="16sp" />
+
+            <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/bo_img_btn_chuyentien1"
+                    android:text="Tìm kiếm"
+                    android:textColor="@color/white" />
+
+            <TextView
+                    android:id="@+id/tv_trang_thai_chuyen_tien"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:text=""
+                    android:textSize="18sp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

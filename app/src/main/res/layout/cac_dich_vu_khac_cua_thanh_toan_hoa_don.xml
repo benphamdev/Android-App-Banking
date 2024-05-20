@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bo_img_btn_chuyentien"
+
+
+        >
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bo_chuyen_tien_nuoc_ngoai"
+
+            android:weightSum="2">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Các dịch vụ khác"
+                android:padding="5dp"
+                android:textColor="@color/white"
+                android:layout_marginStart="10dp"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:id="@+id/tv_cac_dich_vu_khac_hoa_don"
+                android:layout_weight="1" />
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#8BC34A"
+                android:text="Đóng"
+                android:id="@+id/btn_dong_hoa_don"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+    </LinearLayout>
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:id="@+id/tv_cuoc_dien_thoai_co_dinh"
+            android:text="Cước điện thoại cố định"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp" />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:id="@+id/tv_cuoc_truyen_hinh_cap"
+            android:text="Cước truyền hình cáp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp" />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:id="@+id/tv_cuoc_vien_thong_VNPT"
+            android:text="Cước viễn thông VNPT"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp" />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:id="@+id/tv_phi_dich_vu_chung_cu"
+            android:text="Phí dịch vụ chung cư"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp" />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:id="@+id/tv_thanh_toan_khoan_vay_tai_chinh"
+            android:text="Thanh toán khoản vay tài chính"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp" />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:id="@+id/tv_thanh_toan_ve_may_bay"
+            android:text="Thanh toán vé máy bay"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp" />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:id="@+id/tv_tien_thue_phi_dich_vu_khac"
+            android:text="Thanh toán tiền thuê/Phí dịch vụ khác"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp" />
+
+</LinearLayout>

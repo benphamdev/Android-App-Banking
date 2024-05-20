@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@android:color/darker_gray"
+        tools:context=".Activities.DichVuThe.DangKyPhatHanhTheGhiNo">
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/tool_bar_dang_ky_phat_hanh_the_ghi_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#7CC34A">
+
+                <ImageView
+                        android:id="@+id/toolbar_back_dang_ky_phat_hanh_the_ghi_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/quayhome"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:clickable="true"
+                        android:focusable="true" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Đăng ký phát hành thẻ ghi nợ"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:layout_gravity="center" />
+
+            </androidx.appcompat.widget.Toolbar>
+            />
+
+            <TextView
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thông tin người giới thiệu"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:padding="5dp"
+                    android:gravity="center" />
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textAlignment="textStart"
+                    android:paddingStart="10dp"
+                    android:background="@drawable/bo_img_btn_chuyentien"
+                    android:drawablePadding="10dp"
+                    android:hint="Nhập số điện thoại của người giới thiệu (nếu có)"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    android:textColor="@color/tropical_green"
+                    android:minHeight="48dp"
+                    android:paddingEnd="3dp" />
+
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/tienmat"
+                        android:layout_marginStart="10dp"
+                        android:padding="5dp" />
+
+                <TextView
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Thông tin thẻ"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center" />
+
+
+            </LinearLayout>
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textAlignment="textStart"
+                    android:paddingStart="10dp"
+                    android:background="@drawable/bo_img_btn_chuyentien"
+                    android:drawablePadding="10dp"
+                    android:drawableEnd="@drawable/muiten"
+                    android:text="Thẻ ghi nợ quốc tế"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    android:textColor="@color/tropical_green"
+                    android:minHeight="48dp"
+                    android:paddingEnd="3dp" />
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textAlignment="textStart"
+                    android:paddingStart="10dp"
+                    android:background="@drawable/bo_img_btn_chuyentien"
+                    android:drawablePadding="10dp"
+                    android:drawableEnd="@drawable/muiten"
+                    android:text="Thẻ Vietcombank..."
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    android:textColor="@color/tropical_green"
+                    android:minHeight="48dp"
+                    android:paddingEnd="3dp" />
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textAlignment="textStart"
+                    android:paddingStart="10dp"
+                    android:background="@drawable/bo_img_btn_chuyentien"
+                    android:drawablePadding="10dp"
+                    android:drawableEnd="@drawable/muiten"
+                    android:hint="Chọn hình thức phát hành thẻ"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    android:textColor="@color/tropical_green"
+                    android:minHeight="48dp"
+                    android:paddingEnd="3dp" />
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#4CAF50"
+                    android:text="Thông tin sản phẩm"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textSize="15sp"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    android:textAlignment="textEnd" />
+
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

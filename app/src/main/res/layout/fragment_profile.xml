@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/che_gif_profile"
+    tools:context=".Fragments.ProfileFragment">
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/my_profile_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:src="@drawable/che_gif_profile"
+        app:layout_constraintBottom_toTopOf="@+id/doi_mat_khau"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.403" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/animate_outside_avatar"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@drawable/circle_animate_gif"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.559"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.033" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_view_user_avt"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/bg_profile"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.544"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.11" />
+
+    <TextView
+        android:id="@+id/txt_view_user_name_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="user"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/animate_outside_avatar"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/doi_mat_khau"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="36dp"
+        android:background="@drawable/bo_img_btn_chuyentien"
+        android:backgroundTint="@color/tropical_green"
+        android:drawableEnd="@drawable/lock"
+        android:drawablePadding="10dp"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="3dp"
+        android:text="Đổi mật khẩu"
+        android:textAlignment="center"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toTopOf="@id/dang_xuat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/dang_xuat"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="44dp"
+        android:background="@drawable/bo_img_btn_chuyentien"
+        android:backgroundTint="@color/tropical_green"
+        android:drawableEnd="@drawable/baseline_logout_24"
+        android:drawablePadding="10dp"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="3dp"
+        android:text="Đăng xuất"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+

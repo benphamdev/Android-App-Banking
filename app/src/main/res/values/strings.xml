@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">demoApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cancel">Cancel</string>
+    <string name="OTP">OTP Verification</string>
+    <string name="OTP_sent">Enter the OTP sent to</string>
+    <string name="receive_the_OTP">Did not receive the OTP?</string>
+    <string name="resend_OTP">RESEND OTP</string>
+    <string name="we_will_send">We will send you an One Times Password on this mpbile number</string>
+    <string name="enter_mobile_number">Enter mobile number</string>
+</resources>

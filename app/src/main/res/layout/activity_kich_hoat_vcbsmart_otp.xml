@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        tools:context=".Activities.TienIch.KichHoatVCBSmartOTP">
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/tool_bar_kich_hoat_vcb_smart_otp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#7CC34A">
+
+                <ImageView
+                        android:id="@+id/toolbar_back_kich_hoat_vcb_smart_otp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/quayhome"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:clickable="true"
+                        android:focusable="true" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kích hoạt VCB-Smart OTP"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:layout_gravity="center" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kích hoạt VCB-Smart OTP trên ứng dụng VCB Digibank"
+                    android:textSize="25dp"
+                    android:textColor="@color/black" />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="VCB-Smart OTP là phương thức xác thực được tích hợp sẵn trên ưn dụng VCB Digibank để xác thực giao dịch trên các kênh APP, WEB nhanh chóng, thuận tiện với độ an toàn cao. Quý khách tự tạo mã PIN VCB-Smart OTP để xác thực các giao dịch tài chính bằng phương thức VCB-Smart OTP." />
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Đã kích hoạt"
+                        android:textColor="#248F28"
+                        android:textSize="20dp" />
+
+                <Button
+                        android:layout_width="90dp"
+                        android:layout_height="40dp"
+                        android:text="Hủy"
+                        android:background="@drawable/bo_img_btn_chuyentien"
+                        android:layout_marginStart="200dp"
+                        android:backgroundTint="#248F28" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

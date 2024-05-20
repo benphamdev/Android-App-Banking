@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@android:color/darker_gray"
+        tools:context=".Activities.TienIch.LapYeuCauTraSoat">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/tool_bar_lap_yeu_tra_soat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#7CC34A">
+
+                <ImageView
+                    android:id="@+id/toolbar_back_lap_yeu_cau_tra_soat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:src="@drawable/quayhome" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Lập yêu cầu tra soát"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+<!--            <androidx.appcompat.widget.AppCompatButton-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                android:background="@drawable/bo_img_btn_chuyentien"-->
+<!--                android:drawableEnd="@drawable/muiten"-->
+<!--                android:drawablePadding="10dp"-->
+<!--                android:hint="Chọn hình thức giao dịch"-->
+<!--                android:inputType="text"-->
+<!--                android:minHeight="48dp"-->
+<!--                android:paddingStart="10dp"-->
+<!--                android:paddingEnd="3dp"-->
+<!--                android:textAlignment="textStart"-->
+<!--                android:textColor="#4CAF50" />-->
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/bo_img_btn_chuyentien"
+                android:drawableEnd="@drawable/muiten"
+                android:drawablePadding="10dp"
+                android:hint="Chọn tài khoản/ Số thẻ"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="3dp"
+                android:textAlignment="textStart" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/bo_img_btn_chuyentien"
+                android:drawableEnd="@drawable/calendar"
+                android:drawablePadding="10dp"
+                android:hint="Start date"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="3dp"
+                android:id="@+id/app_ngay1"
+                android:textAlignment="textStart"
+                android:textColor="#4CAF50" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/bo_img_btn_chuyentien"
+                android:drawableEnd="@drawable/calendar"
+                android:drawablePadding="10dp"
+                android:hint="End date"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:id="@+id/app_ngay2"
+                android:paddingStart="10dp"
+                android:paddingEnd="3dp"
+                android:textAlignment="textStart"
+                android:textColor="#4CAF50" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcv_notification_balance"
+                android:layout_width="match_parent"
+                android:layout_marginTop="15dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:background="@android:color/darker_gray" />
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    <Button
+            android:id="@+id/btn_tra_cuu_lap_yeu_tra_soat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bo_img_btn_chuyentien1"
+            android:text="Tra cứu"
+            android:textColor="@color/white"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_alignParentBottom="true" />
+</RelativeLayout>

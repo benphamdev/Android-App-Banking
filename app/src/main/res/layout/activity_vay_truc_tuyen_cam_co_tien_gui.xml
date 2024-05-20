@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@android:color/darker_gray"
+        tools:context=".Activities.TinDung.VayTrucTuyenCamCoTienGui">
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/tool_bar_vay_truc_tuyen_cam_co_tien_gui"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#7CC34A">
+
+                <ImageView
+                        android:id="@+id/toolbar_back_vay_truc_tuyen_cam_co_tien_gui"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/quayhome"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:clickable="true"
+                        android:focusable="true" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Vay trực tuyến cầm cố tiền gửi"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:layout_gravity="center" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/tindung"
+                        android:layout_marginStart="10dp"
+                        android:padding="5dp" />
+
+                <TextView
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Thông tin nguồn trả nợ"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textAlignment="textStart"
+                    android:paddingStart="10dp"
+                    android:background="@drawable/bo_img_btn_chuyentien"
+                    android:drawableEnd="@drawable/muiten"
+                    android:drawablePadding="10dp"
+                    android:text="Tài khoản thanh toán"
+                    android:textColor="#4CAF50"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    android:paddingEnd="3dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textAlignment="textStart"
+                    android:paddingStart="10dp"
+                    android:background="@drawable/bo_img_btn_chuyentien"
+                    android:drawableEnd="@drawable/muiten"
+                    android:drawablePadding="10dp"
+                    android:text="Số tài khoản"
+                    android:textColor="#4CAF50"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    android:paddingEnd="3dp" />
+
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Số dư khả dụng"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@android:color/black" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Số dư"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:textColor="@android:color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/tindung"
+                        android:layout_marginStart="10dp"
+                        android:padding="5dp" />
+
+                <TextView
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Thông tin khoản vay"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bo_img_btn_chuyentien"
+                    android:drawableEnd="@drawable/muiten"
+                    android:drawablePadding="10dp"
+                    android:textAlignment="textStart"
+                    android:paddingStart="10dp"
+                    android:text="Tất cả hợp đồng"
+                    android:textColor="#4CAF50"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    android:paddingEnd="3dp" />
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tài khoản vay"
+                    android:textSize="16sp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="10dp"
+                    android:padding="5dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bo_img_btn_chuyentien"
+                    android:drawableEnd="@drawable/muiten"
+                    android:drawablePadding="10dp"
+                    android:textAlignment="textStart"
+                    android:paddingStart="10dp"
+                    android:hint="Tài khoản vay"
+                    android:textColor="#4CAF50"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    android:paddingEnd="3dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bo_img_btn_chuyentien1"
+            android:text="Tiếp tục"
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/white"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp" />
+</RelativeLayout>

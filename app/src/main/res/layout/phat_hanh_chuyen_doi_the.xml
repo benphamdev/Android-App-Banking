@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bo_img_btn_chuyentien"
+
+
+        >
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bo_chuyen_tien_nuoc_ngoai"
+
+            android:weightSum="2">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phát hành/Chuyển đổi thẻ"
+                android:padding="5dp"
+                android:textColor="@color/white"
+                android:layout_marginStart="10dp"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:id="@+id/tv_nap_tien_tu_dong"
+                android:layout_weight="1" />
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#8BC34A"
+                android:text="Đóng"
+                android:id="@+id/btn_dong_phat_hanh_chuyen_doi"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+    </LinearLayout>
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:id="@+id/tv_phat_hanh_the_ghi_no"
+            android:text="Đăng ký phát hành thẻ ghi nợ"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp" />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:id="@+id/tv_dang_ky_chuyen_doi_cong_nghe"
+            android:text="Đăng ký chuyển đổi thẻ ghi nợ"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp" />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:id="@+id/tv_phat_hanh_the_tin_dung"
+            android:text="Đăng ký phát hành thẻ tín dụng"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp" />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:id="@+id/tv_phat_hanh_the_phu_the_ghi_no"
+            android:text="Đăng ký phát hành thẻ phụ thẻ ghi nợ"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp" />
+
+
+</LinearLayout>

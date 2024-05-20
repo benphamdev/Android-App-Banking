@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/home"
+        android:title="Home" />
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/chat_icon"
+        android:title="Chat" />
+    <item
+        android:id="@+id/quetmaQR"
+        android:icon="@drawable/quetmaqr"
+        android:title="Scan QR" />
+    <item
+        android:id="@+id/thongbao"
+        android:icon="@drawable/bell"
+        android:title="Notification" />
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/baseline_person_outline_24"
+        android:title="Profile" />
+</menu>
