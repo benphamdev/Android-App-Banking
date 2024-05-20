@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.DemoApp"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <activity
+            android:name=".Activities.chat.SplashActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.chat.LoginUsernameActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.chat.LoginOtpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.chat.ChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.chat.SearchUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.chat.MainActivityChat"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.chat.LoginPhoneNumberActivity"
+            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".Activities.admin.post.CreatePostActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".Activities.admin.post.PostActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".Activities.admin.transactions.TransactionsActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".Activities.admin.saving.SavingActivity"-->
+<!--            android:exported="false" />-->
+
+<!--        <activity-->
+<!--            android:name=".Activities.admin.loanDisburts.LoanDisbursementActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".Activities.admin.loan.LoanDetailActivity"-->
+<!--            android:exported="false" />-->
+        <activity
+            android:name=".Activities.VerifyOTPActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DatLaiMatKhau"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.UserProfile"
+            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".Activities.admin.accounts.AccountActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".Activities.admin.branchInfo.BranchInfoActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".Activities.admin.provinces.ProvinceActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".Activities.admin.user.UserActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".Activities.admin.AdminsActivity"-->
+<!--            android:exported="false" />-->
+        <activity
+            android:name=".Activities.notification.FirebaseNotification"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.TietKiem.TatToanTietKiem"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.TietKiem.RutTienTuTietKiem"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.TietKiem.NopThemVaoTietKiem"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.TietKiem.MoTietKiem"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Notification"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DichVuThe.TraCuuSaoKeThe"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.CreateQR"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.CapLaiMatKhau"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.SignIn"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.SignUp"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.TienIch.Convert"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.TienIch.LichSuDatLichHen"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.TienIch.DatLichHen"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.TienIch.DatNickNameTaiKhoan"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.TienIch.GioiThieuBan"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.TienIch.UuDai"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.TienIch.HanMucChuyenTien"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.TienIch.KichHoatVCBSmartOTP"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.TienIch.TraCuuYeuCauTraSoat"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.TienIch.LapYeuCauTraSoat"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.TienIch.QuanLyNhom"
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".Activities.swipebar.Setting" -->
+        <!-- android:exported="false" /> -->
+        <activity
+            android:name=".Activities.ThanhToanHoaDon.ThayDoiTaiKhoanThanhToanChiDinh"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ThanhToanHoaDon.CaiDatHinhThucThanhToanSaoKe"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ThanhToanHoaDon.ThayDoiHanMucNgayCuaThe"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ThanhToanHoaDon.TaoMoiDoiMaPIN"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ThanhToanHoaDon.HuyDangKySuDungTheTaiPOSATMNuocNgoai"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ThanhToanHoaDon.DangKySuDungTheTaiPOSATMNuocNgoai"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ThanhToanHoaDon.HuyDangKySuDungTheTrenInternet"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ThanhToanHoaDon.DangKiSuDungTheTrenInternet"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ThanhToanHoaDon.KichHoatThe"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ThanhToanHoaDon.KhoaThe"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ThanhToanHoaDon.MoKhoaThe"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ThanhToanHoaDon.TienThuePhiDichVuKhac"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ThanhToanHoaDon.ThanhToanKhoanVayTaiChinh"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ThanhToanHoaDon.PhiDichVuChungCu"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ThanhToanHoaDon.HoaDonCuocVienThongVNPT"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ThanhToanHoaDon.CuocTruyenHinhCap"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ThanhToanHoaDon.CuocDienThoaiCoDinh"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.TinDung.TatToanVayKhac"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.TinDung.VayTrucTuyenCamCoTienGui"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.TinDung.VayThauChiTatToan"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DichVuThe.ThanhToanChoChuTheVCBKhac"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DichVuThe.ThanhToanTheTinDung"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DichVuThe.PhatHanhThePhuTheGhiNo"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DichVuThe.DangKyPhatHanhTheTinDung"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DichVuThe.DangKyChuyenDoiCongNgheTheGhiNo"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DichVuThe.DangKyPhatHanhTheGhiNo"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DichVuThe.DangKyGiaHanTheTinDung"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DichVuThe.DangKyGiaHanThe"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.NapTien.HuyDangKy"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.NapTien.DangKyNapTienTuDong"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ThanhToanHoaDon.NgungDichVu"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ThanhToanHoaDon.DangKyDichVu"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ChuyenTien.ChuyenTienMatTaijVNPOST"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ChuyenTien.RutTienMatTaiVNPOST"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ChuyenTien.QuanLyYeuCauChuyenTien"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ChuyenTien.LapYeuCauChuyenTien"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.TinDung.ThanhToanKhoanVay"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.NapTien.NapTienTKGiaoThong"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.NapTien.NapTienDaiLy"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.NapTien.NapTienViDienTu"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.NapTien.NapTienDienThoai"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ThanhToanHoaDon.ThanhToanPhiLogistic"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ThanhToanHoaDon.ThanhToanHocPhi"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ThanhToanHoaDon.ThanhToanVienPhi"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ThanhToanHoaDon.CuocInternetADSL"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ThanhToanHoaDon.CuocDiDongTraSau"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ThanhToanHoaDon.HoaDonTienNuoc"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ThanhToanHoaDon.HoaDonTienDien"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ChuyenTien.TrangThaiChuyenTien"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ChuyenTien.QuaTang"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ChuyenTien.ChuyenTienTuThien"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ChuyenTien.ChuyenTienMat"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ChuyenTien.ChuyenTienNgoaiVCB"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ChuyenTien.ChuyenTienNhanh24_7NgoaiVCB"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ChuyenTien.ChuyenTienTrongVCB"
+            android:exported="false" />
+
+        <activity
+            android:name=".Activities.ProfileActivity"
+            android:exported="false"
+            android:parentActivityName=".Activities.SplashScreenActivity" />
+        <activity
+            android:name=".Activities.MainActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Activities.SplashScreenActivity"
+            android:exported="true"
+            tools:ignore="ExtraText">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="fullSensor"
+            android:stateNotNeeded="true"
+            tools:replace="android:screenOrientation" />
+    </application>
+
+</manifest>

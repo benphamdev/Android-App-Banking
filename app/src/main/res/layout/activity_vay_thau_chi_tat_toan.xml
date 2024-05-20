@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"
+    android:orientation="vertical"
+    tools:context=".Activities.TinDung.VayThauChiTatToan">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/tool_bar_tat_toan_vay_khac"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#7CC34A">
+
+                <ImageView
+                    android:id="@+id/toolbar_back_tat_toan_vay_khac"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:src="@drawable/quayhome" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Tất toán vay khác"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:hint="Tài khoản nguồn" />
+
+
+            <TextView
+                android:id="@+id/tv_so_tai_khoan_vay"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/bo_img_btn_chuyentien"
+                android:drawableEnd="@drawable/muiten"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:minHeight="48dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="3dp"
+                android:text="Số tài khoản"
+                android:textColor="#4CAF50" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:text="Số dư khả dụng"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/tv_so_du_vay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:text="Số dư"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:padding="5dp"
+                    android:src="@drawable/tindung" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="Thông tin khoản vay"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/bo_img_btn_chuyentien"
+                android:drawableEnd="@drawable/muiten"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="3dp"
+                android:text="Lãi xuất 5.5%"
+                android:textColor="#4CAF50" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:padding="5dp"
+                android:text="Thông tin khoản vay"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/edt_so_tham_chieu"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/bo_img_btn_chuyentien"
+                android:drawableEnd="@drawable/muiten"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:hint="Số tham chiếu"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="3dp"
+                android:textColor="#4CAF50"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/edt_so_tien_vay"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/bo_img_btn_chuyentien"
+                android:drawableEnd="@drawable/muiten"
+                android:drawablePadding="10dp"
+                android:hint="Nhập số tiền muốn vay [6 triệu - 15 triệu]"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="3dp"
+                android:textAlignment="textStart"
+                android:textColor="#4CAF50" />
+
+            <EditText
+                android:id="@+id/edt_thoi_gian_vay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/bo_img_btn_chuyentien"
+                android:drawableEnd="@drawable/muiten"
+                android:drawablePadding="10dp"
+                android:hint="Thời gian vay [1 tháng - 60 tháng]"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="3dp"
+                android:textAlignment="textStart"
+                android:textColor="#4CAF50" />
+
+
+        </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_tiep_tuc_vay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/bo_img_btn_chuyentien1"
+        android:text="Tiếp tục"
+        android:textColor="@color/white" />
+</RelativeLayout>

@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@android:color/darker_gray"
+        tools:context=".Activities.DichVuThe.DangKyGiaHanThe">
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/tool_bar_dang_ky_gia_han_the"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#7CC34A">
+
+                <ImageView
+                        android:id="@+id/toolbar_back_dang_ky_gia_han_the"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/quayhome"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:clickable="true"
+                        android:focusable="true" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Đăng ký gia hạn thẻ"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:layout_gravity="center" />
+
+            </androidx.appcompat.widget.Toolbar>
+            />
+
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:padding="5dp"
+                        android:src="@drawable/card" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="Thông tin thẻ"
+                        android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textAlignment="textStart"
+                    android:paddingStart="10dp"
+                    android:background="@drawable/bo_img_btn_chuyentien"
+                    android:drawablePadding="10dp"
+                    android:drawableEnd="@drawable/muiten"
+                    android:hint="Chọn loại thẻ"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    android:textColor="@color/tropical_green"
+                    android:minHeight="48dp"
+                    android:paddingEnd="3dp" />
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textAlignment="textStart"
+                    android:paddingStart="10dp"
+                    android:background="@drawable/bo_img_btn_chuyentien"
+                    android:drawablePadding="10dp"
+                    android:drawableEnd="@drawable/muiten"
+                    android:hint="Số thẻ"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    android:textColor="@color/tropical_green"
+                    android:minHeight="48dp"
+                    android:paddingEnd="3dp" />
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="10dp"
+                    android:weightSum="2">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Tên sản phẩm thẻ"
+                        android:padding="5dp"
+                        android:textSize="16sp"
+                        android:layout_weight="1" />
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:text=""
+                        android:padding="5dp"
+                        android:textSize="16sp"
+                        android:layout_weight="1" />
+            </LinearLayout>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/white" />
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="10dp"
+                    android:weightSum="2">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Tên chủ thẻ"
+                        android:padding="5dp"
+                        android:textSize="16sp"
+                        android:layout_weight="1" />
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:text=""
+                        android:textSize="16sp"
+                        android:padding="5dp"
+                        android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:padding="5dp"
+                        android:src="@drawable/tienmat" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="Thông tin gia hạn"
+                        android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="10dp"
+                    android:text="Chi nhánh phát hành thẻ"
+                    android:textSize="16sp" />
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textAlignment="textStart"
+                    android:paddingStart="10dp"
+                    android:background="@drawable/bo_img_btn_chuyentien"
+                    android:drawablePadding="10dp"
+                    android:drawableEnd="@drawable/muiten"
+                    android:hint="Chi nhánh phát hành thẻ"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    android:textColor="@color/tropical_green"
+                    android:minHeight="48dp"
+                    android:paddingEnd="3dp" />
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="10dp"
+                    android:textColor="@color/white" />
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="10dp"
+                    android:text="Phương thức nhận thẻ"
+                    android:textSize="16sp" />
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textAlignment="textStart"
+                    android:paddingStart="10dp"
+                    android:background="@drawable/bo_img_btn_chuyentien"
+                    android:drawablePadding="10dp"
+                    android:drawableEnd="@drawable/muiten"
+                    android:hint="Phương thức nhận thẻ"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    android:textColor="@color/tropical_green"
+                    android:minHeight="48dp"
+                    android:paddingEnd="3dp" />
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:padding="5dp"
+                        android:text="Lưu ý: " />
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:padding="5dp"
+                        android:text=" - Thời gian nhận thẻ của quý khách dự kiến trong vòng 03-05 ngày làm việc kể từ ngày quý khách đăng ký gia hạn thẻ thành công." />
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:padding="5dp"
+                        android:text=" - Quý khách có thể theo dõi tiến trình phát hành thẻ tại mục quản lý dịch vụ thẻ trên Digibank." />
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:padding="5dp"
+                        android:text=" - Trong trường hợp không giao được thẻ thành công, thẻ sẽ được chuyển về CN phát hành" />
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_above="@id/btn_tiep_tuc_nap_tien_vi_dien_tu"
+                    android:orientation="horizontal">
+
+                <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tôi đã đọc, hiểu rõ, đồng ý và cam kết tuân thủ các điều khoản, điều kiện về Thỏa thuận sử dụng dịch vụ ngân hàng điện tử và Điều khoản, điều kiện sử dụng thẻ ghi nợ quốc tế của Ngân hàng TMCP Ngoại thương Việt Nam." />
+            </LinearLayout>
+
+            <Button
+                    android:id="@+id/btn_tiep_tuc_nap_tien_vi_dien_tu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bo_img_btn_chuyentien1"
+                    android:text="Tiếp tục"
+                    android:textColor="@color/white"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentBottom="true" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

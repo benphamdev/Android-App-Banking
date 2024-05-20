@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@android:color/darker_gray"
+        tools:context=".Activities.CreateQR">
+
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tool_bar_tao_qr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#7CC34A">
+
+        <ImageView
+                android:id="@+id/toolbar_back_tao_qr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/quayhome"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:clickable="true"
+                android:focusable="true" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tạo mã QR"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_gravity="center" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+            android:layout_marginTop="20sp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:src="@drawable/qr_scan"
+            android:id="@+id/img_qr" />
+
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textAlignment="textStart"
+            android:paddingStart="10dp"
+            android:background="@drawable/bo_img_btn_chuyentien"
+            android:drawablePadding="10dp"
+            android:drawableEnd="@drawable/muiten"
+            android:hint="Số tài khoản"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:inputType="text"
+            android:id="@+id/stk_qr"
+            android:textSize="16sp"
+            android:textColor="@color/tropical_green"
+            android:minHeight="48dp"
+            android:paddingEnd="3dp" />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Số dư khả dụng"
+                android:layout_weight="1"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@android:color/black" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Số dư"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
+
+        <ImageButton
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tienmat"
+                android:contentDescription="Enter How Much Cookies You Want"
+
+                />
+
+        <TextView
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thông tin bổ sung tạo mã QR (nếu có)"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center" />
+    </LinearLayout>
+
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textAlignment="textStart"
+            android:paddingStart="10dp"
+            android:background="@drawable/bo_img_btn_chuyentien"
+            android:drawablePadding="10dp"
+            android:drawableEnd="@drawable/muiten"
+            android:hint="Số tiền"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:inputType="text"
+            android:id="@+id/sotien_qr"
+            android:textSize="16sp"
+            android:textColor="@color/tropical_green"
+            android:minHeight="48dp"
+            android:paddingEnd="3dp" />
+
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textAlignment="textStart"
+            android:paddingStart="10dp"
+            android:background="@drawable/bo_img_btn_chuyentien"
+            android:drawablePadding="10dp"
+            android:drawableEnd="@drawable/muiten"
+            android:hint="Nội dung"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:inputType="text"
+            android:id="@+id/noidung_qr"
+            android:textSize="16sp"
+            android:textColor="@color/tropical_green"
+            android:minHeight="48dp"
+            android:paddingEnd="3dp" />
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_generate"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:text="Tạo QR" />
+
+
+</LinearLayout>

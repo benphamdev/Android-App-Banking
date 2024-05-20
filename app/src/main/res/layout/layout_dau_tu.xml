@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="10dp"
+    android:gravity="center"
+    android:weightSum="3">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginStart="20dp">
+
+        <ImageButton
+            android:id="@+id/img_chung_khoan"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/btn_bo_img_chuyen_tien"
+            app:srcCompat="@drawable/chungkhoan"
+            android:scaleType="centerInside"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/tv_chung_khoan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chứng khoán"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginStart="20dp">
+
+        <ImageButton
+            android:id="@+id/img_chung_chi_quy"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/btn_bo_img_chuyen_tien"
+            app:srcCompat="@drawable/chungchiquy"
+            android:scaleType="centerInside"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/tv_chung_chi_quy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chứng chỉ quỹ"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginStart="20dp">
+
+        <ImageButton
+            android:id="@+id/img_danh_muc_dau_tu"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/btn_bo_img_chuyen_tien"
+            app:srcCompat="@drawable/danhmucdautu"
+            android:scaleType="centerInside"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/tv_danh_muc_dau_tu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Danh mục đầu tư"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+    </LinearLayout>
+
+</LinearLayout>

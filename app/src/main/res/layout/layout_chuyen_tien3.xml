@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="10dp"
+    android:weightSum="3"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginStart="20dp">
+
+        <ImageButton
+            android:id="@+id/img_qua_tang"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/btn_bo_img_chuyen_tien"
+            app:srcCompat="@drawable/quatang"
+            android:scaleType="centerInside"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_qua_tang"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:text="Quà tặng          VCB"
+            android:layout_marginTop="5dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginStart="20dp">
+
+        <ImageButton
+            android:id="@+id/img_trang_thai"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/btn_bo_img_chuyen_tien"
+            app:srcCompat="@drawable/trangthaichuyentien"
+            android:scaleType="centerInside"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_trang_thai"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:text="Trạng thái chuyển tiền"
+            android:layout_marginTop="5dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginStart="20dp">
+
+        <ImageButton
+            android:id="@+id/img_vnpost"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/btn_bo_img_chuyen_tien"
+            app:srcCompat="@drawable/vnpost"
+            android:scaleType="centerInside"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_vnpost"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:text="Dịch vụ
+            VNPOST"
+            android:layout_marginTop="5dp" />
+    </LinearLayout>
+</LinearLayout>

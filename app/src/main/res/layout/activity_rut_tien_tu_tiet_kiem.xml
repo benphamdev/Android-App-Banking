@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@android:color/darker_gray"
+        tools:context=".Activities.TietKiem.RutTienTuTietKiem">
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/tool_bar_rut_tien_tu_tiet_kiem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#7CC34A">
+
+                <ImageView
+                        android:id="@+id/toolbar_back_rut_tien_tu_tiet_kiem"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/quayhome"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:clickable="true"
+                        android:focusable="true" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rút tiền từ tiết kiệm"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:layout_gravity="center" />
+
+            </androidx.appcompat.widget.Toolbar>
+            />
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Tài khoản tiết kiệm"
+                    android:layout_marginTop="30dp" />
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/bo_img_btn_chuyentien"
+                    android:drawableEnd="@drawable/muiten"
+                    android:drawablePadding="10dp"
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="3dp"
+                    android:hint="Tài khoản tiết kiệm"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/tropical_green"
+                    android:textSize="16sp"
+                    android:layout_marginTop="10dp" />
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Thông tin giao dịch"
+                    android:layout_marginTop="18dp"
+                    android:textStyle="bold"
+                    android:textSize="18dp"
+                    android:layout_marginStart="10dp"
+                    android:drawableLeft="@drawable/tienmat" />
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/bo_img_btn_chuyentien"
+                    android:drawableEnd="@drawable/muiten"
+                    android:drawablePadding="10dp"
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="3dp"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/tropical_green"
+                    android:textSize="16sp"
+                    android:hint="Tài khoản đích" />
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/bo_img_btn_chuyentien"
+                    android:drawablePadding="10dp"
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="3dp"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/tropical_green"
+                    android:textSize="16sp"
+                    android:hint="Số tiền rút(VND)" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bo_img_btn_chuyentien1"
+            android:text="Tiếp tục"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/white"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp" />
+</RelativeLayout>

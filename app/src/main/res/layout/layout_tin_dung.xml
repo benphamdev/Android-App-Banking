@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:weightSum="3"
+        android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginStart="20dp">
+
+        <ImageButton
+                android:id="@+id/img_khoi_tao_khoan_vay"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="@drawable/btn_bo_img_chuyen_tien"
+                app:srcCompat="@drawable/khoitaokhoanvay"
+                android:scaleType="centerInside"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <TextView
+                android:layout_width="90dp"
+                android:layout_height="60dp"
+                android:id="@+id/tv_khoi_tao_khoan_vay"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:text="Khởi tạo khoản vay" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginStart="20dp">
+
+        <ImageButton
+                android:id="@+id/img_thanh_toan_khoan_vay"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="@drawable/btn_bo_img_chuyen_tien"
+                app:srcCompat="@drawable/thanhtoankhoanvay"
+                android:scaleType="centerInside"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <TextView
+                android:layout_width="90dp"
+                android:layout_height="60dp"
+                android:id="@+id/tv_thanh_toan_khoan_vay"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:text="Thanh toán khoản vay" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginStart="20dp">
+
+        <ImageButton
+                android:id="@+id/img_tat_toan_khoan_vay"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="@drawable/btn_bo_img_chuyen_tien"
+                app:srcCompat="@drawable/tienmat"
+                android:scaleType="centerInside"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <TextView
+                android:layout_width="90dp"
+                android:layout_height="60dp"
+                android:id="@+id/tv_tat_toan_khoan_vay"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:text="Tất toán khoản vay" />
+    </LinearLayout>
+</LinearLayout>

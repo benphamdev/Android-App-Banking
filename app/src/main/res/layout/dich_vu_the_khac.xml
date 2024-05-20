@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bo_img_btn_chuyentien"
+
+
+        >
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bo_chuyen_tien_nuoc_ngoai"
+
+            android:weightSum="2">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dịch vụ thẻ khác"
+                android:padding="5dp"
+                android:textColor="@color/white"
+                android:layout_marginStart="10dp"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:id="@+id/tv_dich_vu_the_khac"
+                android:layout_weight="1" />
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#8BC34A"
+                android:text="Đóng"
+                android:id="@+id/btn_dong_dich_vu_the_khac"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+    </LinearLayout>
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:id="@+id/tv_mo_khoa_the"
+            android:text="Mở khóa thẻ"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp" />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:id="@+id/tv_khoa_the"
+            android:text="Khóa thẻ"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp" />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:id="@+id/tv_kich_hoat_the"
+            android:text="Kích hoạt thẻ"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp" />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:id="@+id/tv_dang_ky_su_dung_the_tren_internet"
+            android:text="Đăng ký sử dụng thẻ trên internet"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp" />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:id="@+id/tv_huy_dang_ky_su_dung_the_tren_internet"
+            android:text="Hủy đăng ký sử dụng thẻ trên internet"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp" />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:id="@+id/tv_dang_ky_su_dung_the_tai_pos_atm_nuoc_ngoai"
+            android:text="Đăng ký sử dụng thẻ tại POS/ATM nước ngoài"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp" />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:id="@+id/tv_huy_dang_ky_su_dung_the_tai_pos_atm_nuoc_ngoai"
+            android:text="Hủy đăng ký sử dụng thẻ tại POS/ATM nước ngoài"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp" />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:id="@+id/tv_tao_moi_doi_ma_pin"
+            android:text="Tạo mới/Đổi mã PIN"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp" />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:id="@+id/tv_thay_doi_han_muc_ngay_cua_the"
+            android:text="Thay đổi hạn mức ngày của thẻ"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp" />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:id="@+id/tv_theo_doi_hanh_trinh_phat_hanh_the"
+            android:text="Theo dõi hành trình phát hành thẻ"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp" />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:id="@+id/tv_cai_dat_hinh_thuc_thanh_toan_sao_ke"
+            android:text="Cài đặt hình thức thanh toán sao kê"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp" />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:id="@+id/tv_thay_doi_tai_khoan_thanh_toan_chi_dinh"
+            android:text="Thay đổi tài khoản thanh toán chỉ định"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp" />
+
+
+</LinearLayout>
