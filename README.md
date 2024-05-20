@@ -19,37 +19,8 @@ To configure and install the Banking App project, follow these steps:
 1. Clone the project repository from GitHub:
 
     ```bash
-    git clone https://github.com/phamduyben/BankingApp.git
+    git clone https://github.com/phamduyben/Android-App-Banking.git
     ```
-
-2. Navigate to the project directory:
-
-    ```bash
-    cd banking-app
-    ```
-
-3. Install the required dependencies using Maven:
-
-    ```bash
-    mvn install
-    ```
-
-4. Set up the database:
-
-    - Create a MySQL database named `banking_app`.
-    - Update the database configuration in the `application-dev.yml` file located in the `src/main/resources` directory. Set the `spring.datasource.url`, `spring.datasource.username`, and `spring.datasource.password` properties according to your database configuration.
-    
-5. Run the application:
-
-    ```bash
-    mvn spring-boot:run
-    ```
-
-6. Access the application:
-
-    Open your web browser and go to `http://localhost:8081` to access the Banking App.
-
-Note: Make sure you have Java and Maven installed on your system before proceeding with the installation.
 
 -Install jdk 17+ [install jdk](https://www.oracle.com/java/technologies/downloads/#java21)
 
@@ -90,10 +61,6 @@ In addition to the admin and user roles, the banking app also has the following 
 
 These functionalities make the banking app a comprehensive solution for managing personal finances securely and conveniently.
 
-## Usage
-
-After installation, you can start the application by running `mvn spring-boot:run` in the project directory. You will then be able to access the application at `http://localhost:8081`.
-
 ## Contributing
 
 | Name              | Student ID |
@@ -101,7 +68,7 @@ After installation, you can start the application by running `mvn spring-boot:ru
 | Pham Duy Chien    | 22162006   |
 | Pham Thi Truc Linh| 22162021   |
 | Truong Ai Nga     | 22162027   |
-| Le Phuong Thao    | 22162031   |
+| Le Phuong Thao    | 22162043   |
 
 If you would like to contribute to this project, please follow the [contribution guidelines](CONTRIBUTING.md).
 
