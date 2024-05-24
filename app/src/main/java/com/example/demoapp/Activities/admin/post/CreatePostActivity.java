@@ -1,12 +1,7 @@
 package com.example.demoapp.Activities.admin.post;
 
-
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+import static com.example.demoapp.Utils.PermissionConst.CAMERA_PERMISSION_REQUEST_CODE;
+import static com.example.demoapp.Utils.PermissionConst.GALLERY_PERMISSION_REQUEST_CODE;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -22,12 +17,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.example.demoapp.HttpRequest.ApiService;
 import com.example.demoapp.HttpRequest.RetrofitClient;
-import com.example.demoapp.Models.Dto.Requests.PostCreationRequest;
-import com.example.demoapp.Models.Dto.Response.BaseResponse;
-import com.example.demoapp.Models.Dto.Response.UserResponse;
-import com.example.demoapp.Models.Dto.entity.Post;
+import com.example.demoapp.Models.dto.requests.PostCreationRequest;
+import com.example.demoapp.Models.dto.response.BaseResponse;
+import com.example.demoapp.Models.entity.Post;
 import com.example.demoapp.R;
 import com.example.demoapp.Utils.RealPathUtil;
 import com.google.gson.Gson;
@@ -44,15 +45,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class CreatePostActivity extends AppCompatActivity {
-    private Uri imageUri;
-    private static final int CAMERA_PERMISSION_REQUEST_CODE = 11;
-    private static final int GALLERY_PERMISSION_REQUEST_CODE = 12;
-    private ImageView imgPost;
     ImageView imgCam, imgGallery;
     Dialog dialog;
     int id1 = 0;
-    private Button btnUp;
     ApiService apiService;
+    private Uri imageUri;
+    private ImageView imgPost;
+    private Button btnUp;
     private Button btnUpLoad, btnHuy;
     private Intent cameraIntent, galleryIntent;
     private ActivityResultLauncher<Intent> cameraLauncher, galleryLauncher;
@@ -83,7 +82,7 @@ public class CreatePostActivity extends AppCompatActivity {
                         Intent data = result.getData();
                         if (data == null) {
                             Toast.makeText(this, "Don't choose image", Toast.LENGTH_SHORT)
-                                    .show();
+                                 .show();
                             return;
                         }
                         imageUri = data.getData();
@@ -141,7 +140,7 @@ public class CreatePostActivity extends AppCompatActivity {
             } else {
                 // Permission denied, show a message or handle accordingly
                 Toast.makeText(this, "Permission deny", Toast.LENGTH_SHORT)
-                        .show();
+                     .show();
             }
         }
 
@@ -152,7 +151,7 @@ public class CreatePostActivity extends AppCompatActivity {
             } else {
                 // Permission denied, show a message or handle accordingly
                 Toast.makeText(this, "Permission deny", Toast.LENGTH_SHORT)
-                        .show();
+                     .show();
             }
         }
     }
@@ -204,7 +203,6 @@ public class CreatePostActivity extends AppCompatActivity {
         dialog.show();
     }
 
-
     public void createPost() {
         Retrofit retrofit = RetrofitClient.getRetrofit();
 
@@ -233,41 +231,45 @@ public class CreatePostActivity extends AppCompatActivity {
                 requestFile
         );
         ApiService apiService = RetrofitClient.getRetrofit()
-                .create(ApiService.class);
+                                              .create(ApiService.class);
         apiService.createPost(postBody, body)
-                .enqueue(new Callback<BaseResponse<Post>>() {
-                    @Override
-                    public void onResponse(
-                            Call<BaseResponse<Post>> call,
-                            Response<BaseResponse<Post>> response
-                    ) {
-                        if (response.isSuccessful()) {
-                            Toast.makeText(
-                                            CreatePostActivity.this,
-                                            "Upload success",
-                                            Toast.LENGTH_SHORT
-                                    )
-                                    .show();
-                        } else {
-                            Toast.makeText(
-                                            CreatePostActivity.this,
-                                            "Upload failed",
-                                            Toast.LENGTH_SHORT
-                                    )
-                                    .show();
-                            Log.e("Error2", response.message());
-                        }
-                    }
+                  .enqueue(new Callback<BaseResponse<Post>>() {
+                      @Override
+                      public void onResponse(
+                              Call<BaseResponse<Post>> call,
+                              Response<BaseResponse<Post>> response
+                      ) {
+                          if (response.isSuccessful()) {
+                              Toast.makeText(
+                                           CreatePostActivity.this,
+                                           "Upload success",
+                                           Toast.LENGTH_SHORT
+                                   )
+                                   .show();
+                          } else {
+                              Toast.makeText(
+                                           CreatePostActivity.this,
+                                           "Upload failed",
+                                           Toast.LENGTH_SHORT
+                                   )
+                                   .show();
+                              Log.e("Error2", response.message());
+                          }
+                      }
 
-                    @Override
-                    public void onFailure(
-                            Call<BaseResponse<com.example.demoapp.Models.Dto.entity.Post>> call,
-                            Throwable t
-                    ) {
-                        Toast.makeText(CreatePostActivity.this, "Upload failed", Toast.LENGTH_SHORT)
-                                .show();
-                        Log.e("Error1", t.getMessage());
-                    }
-                });
+                      @Override
+                      public void onFailure(
+                              Call<BaseResponse<Post>> call,
+                              Throwable t
+                      ) {
+                          Toast.makeText(
+                                       CreatePostActivity.this,
+                                       "Upload failed",
+                                       Toast.LENGTH_SHORT
+                               )
+                               .show();
+                          Log.e("Error1", t.getMessage());
+                      }
+                  });
     }
 }

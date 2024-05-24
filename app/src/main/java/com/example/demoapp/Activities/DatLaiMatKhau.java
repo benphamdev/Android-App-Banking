@@ -1,7 +1,5 @@
 package com.example.demoapp.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,15 +8,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.demoapp.Activities.authen.SignIn;
 import com.example.demoapp.HttpRequest.ApiService;
-import com.example.demoapp.Models.Dto.Requests.ChangePasswordRequest;
-import com.example.demoapp.Models.Dto.Response.BaseResponse;
-import com.example.demoapp.Models.Dto.sharePreferences.SharePreferencesManager;
+import com.example.demoapp.Models.dto.requests.ChangePasswordRequest;
+import com.example.demoapp.Models.dto.response.BaseResponse;
 import com.example.demoapp.R;
-
-import org.w3c.dom.Text;
+import com.example.demoapp.Utils.sharePreferences.SharePreferencesManager;
 
 import java.io.IOException;
 
@@ -52,7 +50,8 @@ public class DatLaiMatKhau extends AppCompatActivity {
     private void showResetPasswordSuccessDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Đặt lại mật khẩu thành công");
-        builder.setMessage("Mật khẩu của bạn đã được đặt lại thành công. Vui lòng đăng nhập lại với mật khẩu mới.");
+        builder.setMessage(
+                "Mật khẩu của bạn đã được đặt lại thành công. Vui lòng đăng nhập lại với mật khẩu mới.");
 
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
@@ -68,31 +67,49 @@ public class DatLaiMatKhau extends AppCompatActivity {
     }
 
     private void resetPassword() {
-        String password = tvMKCu.getText().toString();
-        String confirmPassword = tvMKCu.getText().toString();
-        ChangePasswordRequest ChangePasswordRequest = new ChangePasswordRequest(password, confirmPassword);
-        ApiService.apiService.resetPassword(email, ChangePasswordRequest).enqueue(new Callback<BaseResponse<Void>>() {
-            @Override
-            public void onResponse(Call<BaseResponse<Void>> call, Response<BaseResponse<Void>> response) {
-                if(response.isSuccessful()) {
-                    Log.d("SUCCESS", "Comment : " + response.body().toString());
-                    startActivity(new Intent(DatLaiMatKhau.this, SignIn.class));
-                } else {
-                    try {
-                        Log.d("TAG", "Comment : " + response.errorBody()
-                                .string());
+        String password = tvMKCu.getText()
+                                .toString();
+        String confirmPassword = tvMKCu.getText()
+                                       .toString();
+        ChangePasswordRequest ChangePasswordRequest = new ChangePasswordRequest(
+                password,
+                confirmPassword
+        );
+        ApiService.apiService.resetPassword(email, ChangePasswordRequest)
+                             .enqueue(new Callback<BaseResponse<Void>>() {
+                                 @Override
+                                 public void onResponse(
+                                         Call<BaseResponse<Void>> call,
+                                         Response<BaseResponse<Void>> response
+                                 ) {
+                                     if (response.isSuccessful()) {
+                                         Log.d(
+                                                 "SUCCESS",
+                                                 "Comment : " + response.body()
+                                                                        .toString()
+                                         );
+                                         startActivity(new Intent(
+                                                 DatLaiMatKhau.this,
+                                                 SignIn.class
+                                         ));
+                                     } else {
+                                         try {
+                                             Log.d("TAG", "Comment : " + response.errorBody()
+                                                                                 .string());
 
-                    } catch(IOException e) {
-                        Log.d("Catch", e.getMessage());
-                    }
-                }
-            }
+                                         } catch (IOException e) {
+                                             Log.d("Catch", e.getMessage());
+                                         }
+                                     }
+                                 }
 
-            @Override
-            public void onFailure(Call<BaseResponse<Void>> call, Throwable throwable) {
-                Log.e("E:", throwable.getMessage());
-            }
-        });
+                                 @Override
+                                 public void onFailure(
+                                         Call<BaseResponse<Void>> call, Throwable throwable
+                                 ) {
+                                     Log.e("E:", throwable.getMessage());
+                                 }
+                             });
     }
 
     private void setUpUI() {

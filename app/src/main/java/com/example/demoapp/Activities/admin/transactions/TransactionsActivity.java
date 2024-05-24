@@ -1,5 +1,10 @@
 package com.example.demoapp.Activities.admin.transactions;
 
+import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.PopupMenu;
@@ -7,15 +12,10 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-
 import com.example.demoapp.HttpRequest.ApiService;
-import com.example.demoapp.Models.Dto.Response.BaseResponse;
-import com.example.demoapp.Models.Dto.Response.PageResponse;
-import com.example.demoapp.Models.Dto.Response.UserTransaction;
+import com.example.demoapp.Models.dto.response.BaseResponse;
+import com.example.demoapp.Models.dto.response.PageResponse;
+import com.example.demoapp.Models.dto.response.UserTransaction;
 import com.example.demoapp.R;
 
 import java.io.IOException;
@@ -27,9 +27,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TransactionsActivity extends AppCompatActivity {
+    private final ArrayList<UserTransaction> transactionList = new ArrayList<>();
     private RecyclerView rcvTransaction;
     private TransactionAdapter transactionAdapter;
-    private ArrayList<UserTransaction> transactionList = new ArrayList<>();
     private AppCompatButton appCompatButton;
     private SearchView searchView;
 
@@ -63,8 +63,6 @@ public class TransactionsActivity extends AppCompatActivity {
 //                return true;
 //            }
 //        });
-
-
 
     }
 
@@ -108,33 +106,44 @@ public class TransactionsActivity extends AppCompatActivity {
 //    }
     private void getTransactionsWithSort(int pageNo, int pageSize, String sortBy) {
         ApiService.apiService.getTransactionsWithSort(pageNo, pageSize, sortBy)
-                .enqueue(new Callback<BaseResponse<PageResponse<List<UserTransaction>>>>() {
-                    @Override
-                    public void onResponse(Call<BaseResponse<PageResponse<List<UserTransaction>>>> call,
-                                           Response<BaseResponse<PageResponse<List<UserTransaction>>>> response) {
-                        if (response.isSuccessful() && response.body() != null) {
-                            BaseResponse<PageResponse<List<UserTransaction>>> baseResponse = response.body();
-                            PageResponse<List<UserTransaction>> pageResponse = baseResponse.getData();
-                            if (pageResponse != null) {
-                                List<UserTransaction> transactionList = pageResponse.getContent();
-                                updateRecyclerView(transactionList);
-                            }
-                        } else {
-                            try {
-                                Log.e("TAG", "Error: " + response.errorBody().string());
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
+                             .enqueue(new Callback<BaseResponse<PageResponse<List<UserTransaction>>>>() {
+                                 @Override
+                                 public void onResponse(
+                                         Call<BaseResponse<PageResponse<List<UserTransaction>>>> call,
+                                         Response<BaseResponse<PageResponse<List<UserTransaction>>>> response
+                                 ) {
+                                     if (response.isSuccessful() && response.body() != null) {
+                                         BaseResponse<PageResponse<List<UserTransaction>>>
+                                                 baseResponse = response.body();
+                                         PageResponse<List<UserTransaction>> pageResponse =
+                                                 baseResponse.getData();
+                                         if (pageResponse != null) {
+                                             List<UserTransaction> transactionList =
+                                                     pageResponse.getContent();
+                                             updateRecyclerView(transactionList);
+                                         }
+                                     } else {
+                                         try {
+                                             Log.e(
+                                                     "TAG",
+                                                     "Error: " + response.errorBody()
+                                                                         .string()
+                                             );
+                                         } catch (IOException e) {
+                                             e.printStackTrace();
+                                         }
+                                     }
+                                 }
 
-                    @Override
-                    public void onFailure(Call<BaseResponse<PageResponse<List<UserTransaction>>>> call, Throwable t) {
-                        Log.e("TAG", "onFailure: " + t.getMessage(), t);
-                    }
-                });
+                                 @Override
+                                 public void onFailure(
+                                         Call<BaseResponse<PageResponse<List<UserTransaction>>>> call,
+                                         Throwable t
+                                 ) {
+                                     Log.e("TAG", "onFailure: " + t.getMessage(), t);
+                                 }
+                             });
     }
-
 
     private void updateRecyclerView(List<UserTransaction> transactionList) {
         if (transactionAdapter == null) {
@@ -146,44 +155,63 @@ public class TransactionsActivity extends AppCompatActivity {
         }
     }
 
-
     private void loadNotification() {
-        ApiService.apiService.notification().enqueue(new Callback<BaseResponse<List<UserTransaction>>>() {
-            @Override
-            public void onResponse(Call<BaseResponse<List<UserTransaction>>> call, Response<BaseResponse<List<UserTransaction>>> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    Log.d("SUCCESS", response.message());
-                    List<UserTransaction> userTransactions = response.body().getData();
-                    for (UserTransaction user : userTransactions) {
-                        transactionList.add(user);
-                        transactionAdapter.notifyItemInserted(transactionList.size() - 1);
-                    }
-                } else {
-                    try {
-                        Log.e("ERROR", response.errorBody().string());
-                    } catch (IOException e) {
-                        Log.e("ERROR", "Error parsing error response", e);
-                    }
-                }
-            }
+        ApiService.apiService.notification()
+                             .enqueue(new Callback<BaseResponse<List<UserTransaction>>>() {
+                                 @Override
+                                 public void onResponse(
+                                         Call<BaseResponse<List<UserTransaction>>> call,
+                                         Response<BaseResponse<List<UserTransaction>>> response
+                                 ) {
+                                     if (response.isSuccessful() && response.body() != null) {
+                                         Log.d("SUCCESS", response.message());
+                                         List<UserTransaction> userTransactions = response.body()
+                                                                                          .getData();
+                                         for (UserTransaction user : userTransactions) {
+                                             transactionList.add(user);
+                                             transactionAdapter.notifyItemInserted(transactionList.size() - 1);
+                                         }
+                                     } else {
+                                         try {
+                                             Log.e(
+                                                     "ERROR",
+                                                     response.errorBody()
+                                                             .string()
+                                             );
+                                         } catch (IOException e) {
+                                             Log.e("ERROR", "Error parsing error response", e);
+                                         }
+                                     }
+                                 }
 
-            @Override
-            public void onFailure(Call<BaseResponse<List<UserTransaction>>> call, Throwable t) {
-                Log.e("FAILURE", "Request failed", t);
-            }
-        });
+                                 @Override
+                                 public void onFailure(
+                                         Call<BaseResponse<List<UserTransaction>>> call, Throwable t
+                                 ) {
+                                     Log.e("FAILURE", "Request failed", t);
+                                 }
+                             });
     }
 
     private String convertUserTransactionToString(UserTransaction userTransaction) {
-        StringBuilder stringBuilder = new StringBuilder();
 
-        stringBuilder.append("Transaction Type: ").append(userTransaction.getTransactionType()).append("\n");
-        stringBuilder.append("From Account: ").append(userTransaction.getFromAccount()).append("\n");
-        stringBuilder.append("To Account: ").append(userTransaction.getToAccount()).append("\n");
-        stringBuilder.append("Amount: ").append(userTransaction.getAmount()).append("\n");
-        stringBuilder.append("Status: ").append(userTransaction.getStatus()).append("\n");
+        String stringBuilder = "Transaction Type: " +
+                userTransaction.getTransactionType() +
+                "\n" +
+                "From Account: " +
+                userTransaction.getFromAccount() +
+                "\n" +
+                "To Account: " +
+                userTransaction.getToAccount() +
+                "\n" +
+                "Amount: " +
+                userTransaction.getAmount() +
+                "\n" +
+                "Status: " +
+                userTransaction.getStatus() +
+                "\n";
 
-        return stringBuilder.toString();
+        return stringBuilder;
     }
 
 }

@@ -3,34 +3,33 @@ package com.example.demoapp.HttpRequest;
 import static com.example.demoapp.Utils.ApiConstant.BASE_URL;
 
 import com.example.demoapp.Activities.admin.user.User;
-import com.example.demoapp.Models.Dto.Requests.BranchRequest;
-import com.example.demoapp.Models.Dto.Requests.ChangePasswordRequest;
-import com.example.demoapp.Models.Dto.Requests.CreditDebitRequest;
-import com.example.demoapp.Models.Dto.Requests.EnquiryRequest;
-import com.example.demoapp.Models.Dto.Requests.LoanDetailRequest;
-import com.example.demoapp.Models.Dto.Requests.LoginRequestDTO;
-import com.example.demoapp.Models.Dto.Requests.PostCreationRequest;
-import com.example.demoapp.Models.Dto.Requests.ProvinceRequest;
-import com.example.demoapp.Models.Dto.Requests.SavingRequest;
-import com.example.demoapp.Models.Dto.Requests.TransferRequest;
-import com.example.demoapp.Models.Dto.Requests.UserCreationRequest;
-import com.example.demoapp.Models.Dto.Response.AccountInfoResponse;
-import com.example.demoapp.Models.Dto.Response.AuthenticationResponse;
-import com.example.demoapp.Models.Dto.Response.BaseResponse;
-import com.example.demoapp.Models.Dto.Response.BranchResponse;
-import com.example.demoapp.Models.Dto.Response.CurrencyExchangeResponse;
-import com.example.demoapp.Models.Dto.Response.InterestCalculationResponse;
-import com.example.demoapp.Models.Dto.Response.PageResponse;
-import com.example.demoapp.Models.Dto.Response.PostResponse;
-import com.example.demoapp.Models.Dto.Response.ProvinceResponse;
-import com.example.demoapp.Models.Dto.Response.UserResponse;
-import com.example.demoapp.Models.Dto.Response.UserTransaction;
-import com.example.demoapp.Models.Dto.entity.Comment;
-import com.example.demoapp.Models.Dto.entity.Enums;
-import com.example.demoapp.Models.Dto.entity.LoanDetail;
-import com.example.demoapp.Models.Dto.entity.LoanDisbursement;
-import com.example.demoapp.Models.Dto.entity.Post;
-import com.example.demoapp.Models.Dto.entity.Saving;
+import com.example.demoapp.Models.dto.requests.BranchRequest;
+import com.example.demoapp.Models.dto.requests.ChangePasswordRequest;
+import com.example.demoapp.Models.dto.requests.CreditDebitRequest;
+import com.example.demoapp.Models.dto.requests.EnquiryRequest;
+import com.example.demoapp.Models.dto.requests.LoanDetailRequest;
+import com.example.demoapp.Models.dto.requests.LoginRequestDTO;
+import com.example.demoapp.Models.dto.requests.PostCreationRequest;
+import com.example.demoapp.Models.dto.requests.ProvinceRequest;
+import com.example.demoapp.Models.dto.requests.SavingRequest;
+import com.example.demoapp.Models.dto.requests.TransferRequest;
+import com.example.demoapp.Models.dto.requests.UserCreationRequest;
+import com.example.demoapp.Models.dto.response.AccountInfoResponse;
+import com.example.demoapp.Models.dto.response.AuthenticationResponse;
+import com.example.demoapp.Models.dto.response.BaseResponse;
+import com.example.demoapp.Models.dto.response.BranchResponse;
+import com.example.demoapp.Models.dto.response.InterestCalculationResponse;
+import com.example.demoapp.Models.dto.response.PageResponse;
+import com.example.demoapp.Models.dto.response.PostResponse;
+import com.example.demoapp.Models.dto.response.ProvinceResponse;
+import com.example.demoapp.Models.dto.response.UserResponse;
+import com.example.demoapp.Models.dto.response.UserTransaction;
+import com.example.demoapp.Models.entity.Comment;
+import com.example.demoapp.Models.entity.Enums;
+import com.example.demoapp.Models.entity.LoanDetail;
+import com.example.demoapp.Models.entity.LoanDisbursement;
+import com.example.demoapp.Models.entity.Post;
+import com.example.demoapp.Models.entity.Saving;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -75,32 +74,65 @@ public interface ApiService {
     );
 
     @PUT("user/{id}")
-    Call<BaseResponse<UserResponse>> updateUser(@Path("id") int id, @Body UserCreationRequest userCreationRequest);
+    Call<BaseResponse<UserResponse>> updateUser(
+            @Path("id") int id,
+            @Body UserCreationRequest userCreationRequest
+    );
 
     @GET("user/myProfile")
-    Call<BaseResponse<UserResponse>> getMyProfile(@Header("Authorization") String token);
+    Call<BaseResponse<UserResponse>> getMyProfile(
+            @Header("Authorization") String token
+    );
 
     @GET("user/update-avatar")
-    Call<BaseResponse<UserResponse>> updateProfile(@Part("user_id") RequestBody userId, @Part MultipartBody.Part profilePicture);
+    Call<BaseResponse<UserResponse>> updateProfile(
+            @Part("user_id") RequestBody userId,
+            @Part MultipartBody.Part profilePicture
+    );
 
     @DELETE("user/{userId}")
-    Call<BaseResponse<UserResponse>> deleteUser(@Part("userId") RequestBody userId);
-
+    Call<BaseResponse<UserResponse>> deleteUser(
+            @Part("userId") RequestBody userId
+    );
 
     @GET("user/list1")
-    Call<BaseResponse<PageResponse<List<User>>>> getAllUsersWithSortBy1(@Query("pageNo") int pageNo, @Query("pageSize") int pageSize, @Query("sortBy") String sortBy);
+    Call<BaseResponse<PageResponse<List<User>>>> getAllUsersWithSortBy1(
+            @Query("pageNo") int pageNo,
+            @Query("pageSize") int pageSize,
+            @Query("sortBy") String sortBy
+    );
 
     @GET("user/list-with-sort-by-multiple-columns")
-    Call<BaseResponse<PageResponse<List<User>>>> getAllUsersWithSortByMultiColumns(@Query("pageNo") int pageNo, @Query("pageSize") int pageSize, @Query("sorts") String[] sorts);
+    Call<BaseResponse<PageResponse<List<User>>>> getAllUsersWithSortByMultiColumns(
+            @Query("pageNo") int pageNo,
+            @Query("pageSize") int pageSize,
+            @Query("sorts") String[] sorts
+    );
 
     @GET("user/list-user-and-search-with-paging-and-sorting")
-    Call<BaseResponse<PageResponse<List<User>>>> getAllUsersWithPagingAndSorting(@Query("pageNo") int pageNo, @Query("pageSize") int pageSize, @Query("search") String search, @Query("sortBy") String sortBy);
+    Call<BaseResponse<PageResponse<List<User>>>> getAllUsersWithPagingAndSorting(
+            @Query("pageNo") int pageNo,
+            @Query("pageSize") int pageSize,
+            @Query("search") String search,
+            @Query("sortBy") String sortBy
+    );
 
     @GET("user/advanced-search-with-criteria")
-    Call<BaseResponse<List<UserResponse>>> advancedSearchWithCriteria(@Query("pageNo") int pageNo, @Query("pageSize") int pageSize, @Query("sortBy") String sortBy, @Query("address") String address, @Query("search") String[] search);
+    Call<BaseResponse<List<UserResponse>>> advancedSearchWithCriteria(
+            @Query("pageNo") int pageNo,
+            @Query("pageSize") int pageSize,
+            @Query("sortBy") String sortBy,
+            @Query("address") String address,
+            @Query("search") String[] search
+    );
 
     @GET("user/advanced-search-with-specification")
-    Call<BaseResponse<List<UserResponse>>> advancedSearchWithSpecification(@Query("page") int page, @Query("size") int size, @Query("users") String[] users, @Query("search") String[] search);
+    Call<BaseResponse<List<UserResponse>>> advancedSearchWithSpecification(
+            @Query("page") int page,
+            @Query("size") int size,
+            @Query("users") String[] users,
+            @Query("search") String[] search
+    );
 
     @POST("post")
     Call<BaseResponse<PostResponse>> getPhoto(
@@ -134,12 +166,14 @@ public interface ApiService {
     Call<BaseResponse<List<UserTransaction>>> getTransactionWithAccountID(
             @Path("accountID") Integer accountID
     );
+
     @GET("transaction/export")
     Call<BaseResponse> exportTransactionBetweenStartDateAndEndDate(
             @Query("accountNumber") String accountNumber,
             @Query("startDate") String startDate,
             @Query("endDate") String endDate
     );
+
     @GET("transaction")
     Call<BaseResponse<List<UserTransaction>>> getTransactionBetweenStartDateAndEndDate(
             @Query("accountNumber") String accountNumber,
@@ -205,9 +239,10 @@ public interface ApiService {
 
     @GET("transaction/list-with-sort")
     Call<BaseResponse<PageResponse<List<UserTransaction>>>> getTransactionsWithSort(
-            @Query("pageNo") int pageNo, @Query("pageSize") int pageSize, @Query("sortBy") String sortBy
+            @Query("pageNo") int pageNo,
+            @Query("pageSize") int pageSize,
+            @Query("sortBy") String sortBy
     );
-
 
     //Upload image
     @Multipart
@@ -219,7 +254,7 @@ public interface ApiService {
 
     @Multipart
     @POST("post/create")
-    Call<BaseResponse<com.example.demoapp.Models.Dto.entity.Post>> createPost(
+    Call<BaseResponse<Post>> createPost(
             @Part("post") RequestBody post,
             @Part MultipartBody.Part file
     );
@@ -228,11 +263,11 @@ public interface ApiService {
     Call<BaseResponse<List<LoanDetail>>> getAllLoanDetails();
 
     @GET("loan-detail/{id}")
-    Call<BaseResponse<LoanDetail>> getLoanDetailById(@Path("id") int id);
-
+    Call<BaseResponse<LoanDetail>> getLoanDetailById(
+            @Path("id") int id
+    );
 
     //Saving
-
 
     @GET("user/{userId}")
     Call<BaseResponse<Void>> updatePhoneToken(
@@ -245,87 +280,137 @@ public interface ApiService {
             @Path("id") Integer id
     );
 
-
     // Province
     @POST("province/create")
-    Call<BaseResponse<ProvinceResponse>> createProvince(@Body ProvinceRequest provinceRequest);
+    Call<BaseResponse<ProvinceResponse>> createProvince(
+            @Body ProvinceRequest provinceRequest
+    );
 
     @GET("province/{id}")
-    Call<BaseResponse<ProvinceResponse>> getProvinceByID(@Path("id") int id);
+    Call<BaseResponse<ProvinceResponse>> getProvinceByID(
+            @Path("id") int id
+    );
 
     @PUT("province/{id}")
-    Call<BaseResponse<ProvinceResponse>> updateProvince(@Path("id") int id, @Body ProvinceRequest province);
-
+    Call<BaseResponse<ProvinceResponse>> updateProvince(
+            @Path("id") int id,
+            @Body ProvinceRequest province
+    );
 
     // Branch
     @POST("branch/create")
-    Call<BaseResponse<BranchResponse>> createBranch(@Body BranchRequest branchRequest);
+    Call<BaseResponse<BranchResponse>> createBranch(
+            @Body BranchRequest branchRequest
+    );
 
     @GET("branch/{id}")
-    Call<BaseResponse<BranchResponse>> getBranchById(@Path("id") int id);
+    Call<BaseResponse<BranchResponse>> getBranchById(
+            @Path("id") int id
+    );
 
     @PUT("branch/update/{id}")
-    Call<BaseResponse<BranchResponse>> updateBranchInfo(@Path("id") int id, @Body BranchRequest branchRequest);
-
+    Call<BaseResponse<BranchResponse>> updateBranchInfo(
+            @Path("id") int id,
+            @Body BranchRequest branchRequest
+    );
 
     @GET("branch/province")
-    Call<BaseResponse<List<BranchResponse>>> getBranchesByProvinceId(@Query("provinceId") int provinceId);
+    Call<BaseResponse<List<BranchResponse>>> getBranchesByProvinceId(
+            @Query("provinceId") int provinceId
+    );
 
     // Account
     @GET("account/create/{userId}/{branchInfoId}")
-    Call<BaseResponse<AccountInfoResponse>> createAccount(@Path("userId") int userId, @Path("branchInfoId") int branchInfoId);
+    Call<BaseResponse<AccountInfoResponse>> createAccount(
+            @Path("userId") int userId,
+            @Path("branchInfoId") int branchInfoId
+    );
 
     @GET("account/user/all")
     Call<BaseResponse<List<AccountInfoResponse>>> getAllAccounts();
 
     @GET("account/user/{id}")
-    Call<BaseResponse<AccountInfoResponse>> getAccountById(@Path("id") int id);
+    Call<BaseResponse<AccountInfoResponse>> getAccountById(
+            @Path("id") int id
+    );
 
     @DELETE("account/user/{id}")
-    Call<BaseResponse<AccountInfoResponse>> deleteAccounts(@Path("id") int id);
+    Call<BaseResponse<AccountInfoResponse>> deleteAccounts(
+            @Path("id") int id
+    );
 
     @GET("account/user/{userId}")
-    Call<BaseResponse<AccountInfoResponse>> getAccountByUserId(@Path("userId") int userId);
+    Call<BaseResponse<AccountInfoResponse>> getAccountByUserId(
+            @Path("userId") int userId
+    );
 
     @POST("account/balanceEnquiry")
-    Call<BaseResponse<AccountInfoResponse>> balanceEnquiry(@Body EnquiryRequest request);
+    Call<BaseResponse<AccountInfoResponse>> balanceEnquiry(
+            @Body EnquiryRequest request
+    );
 
     @POST("account/nameEnquiry")
-    Call<BaseResponse<String>> nameEnquiry(@Body EnquiryRequest request);
+    Call<BaseResponse<String>> nameEnquiry(
+            @Body EnquiryRequest request
+    );
 
     @POST("account/credit")
-    Call<BaseResponse<AccountInfoResponse>> creditRequest(@Body CreditDebitRequest request);
+    Call<BaseResponse<AccountInfoResponse>> creditRequest(
+            @Body CreditDebitRequest request
+    );
 
     @POST("account/debit")
-    Call<BaseResponse<AccountInfoResponse>> debit(@Body CreditDebitRequest request);
+    Call<BaseResponse<AccountInfoResponse>> debit(
+            @Body CreditDebitRequest request
+    );
 
     @POST("account/transfer")
-    Call<BaseResponse<AccountInfoResponse>> transfer(@Body TransferRequest request);
-
+    Call<BaseResponse<AccountInfoResponse>> transfer(
+            @Body TransferRequest request
+    );
 
     @POST("loan-detail")
-    Call<BaseResponse<LoanDetail>> saveLoanDetail(@Body LoanDetailRequest loanDetail);
+    Call<BaseResponse<LoanDetail>> saveLoanDetail(
+            @Body LoanDetailRequest loanDetail
+    );
 
     @DELETE("loan-detail/{id}")
-    Call<BaseResponse<Void>> deleteLoanDetailById(@Path("id") int id);
+    Call<BaseResponse<Void>> deleteLoanDetailById(
+            @Path("id") int id
+    );
 
     @GET("loan-detail/interest/{id}")
-    Call<BaseResponse<String>> interestCalculator(@Path("id") int id, @Query("type") Enums.InterestType type);
+    Call<BaseResponse<String>> interestCalculator(
+            @Path("id") int id,
+            @Query("type") Enums.InterestType type
+    );
 
     @PUT("loan-detail/{id}/approve")
-    Call<BaseResponse<Void>> approveLoanDetail(@Path("id") int id);
+    Call<BaseResponse<Void>> approveLoanDetail(
+            @Path("id") int id
+    );
 
     @PUT("loan-detail/{id}/deny")
-    Call<BaseResponse<Void>> denyLoanDetail(@Path("id") int id);
+    Call<BaseResponse<Void>> denyLoanDetail(
+            @Path("id") int id
+    );
 
     @PUT("loan-detail/{id}/status")
-    Call<BaseResponse<Void>> updateLoanDetailStatus(@Path("id") int id, @Query("status") Enums.LoanStatus status, @Query("paymentStatus") Enums.LoanPaymentStatus paymentStatus);
+    Call<BaseResponse<Void>> updateLoanDetailStatus(
+            @Path("id") int id,
+            @Query("status") Enums.LoanStatus status,
+            @Query("paymentStatus") Enums.LoanPaymentStatus paymentStatus
+    );
 
     @GET("loan-detail/interest/final/{id}")
-    Call<BaseResponse<InterestCalculationResponse>> finalMonthlyAmountIncludingInterest(@Path("id") int id);
+    Call<BaseResponse<InterestCalculationResponse>> finalMonthlyAmountIncludingInterest(
+            @Path("id") int id
+    );
 
     @GET("loan-detail/interest/decrease/{id}")
-    Call<BaseResponse<List<InterestCalculationResponse>>> decreaseInterestCalculation(@Path("id") int id);
+    Call<BaseResponse<List<InterestCalculationResponse>>> decreaseInterestCalculation(
+            @Path("id") int id
+    );
 
     //Comment
     @GET("comment/create")
@@ -368,11 +453,19 @@ public interface ApiService {
     Call<BaseResponse<List<LoanDisbursement>>> getLoanDisbursements();
 
     @GET("forgot-password/verify-email/{email}")
-    Call<BaseResponse<Void>> verifyEmail(@Path("email") String email);
+    Call<BaseResponse<Void>> verifyEmail(
+            @Path("email") String email
+    );
 
     @GET("forgot-password/verify-otp/{otp}/{email}")
-    Call<BaseResponse<Void>> verifyOTP(@Path("otp") int otp, @Path("email") String email);
+    Call<BaseResponse<Void>> verifyOTP(
+            @Path("otp") int otp,
+            @Path("email") String email
+    );
 
     @POST("forgot-password/reset-password/{email}")
-    Call<BaseResponse<Void>> resetPassword(@Path("email") String email, @Body ChangePasswordRequest changePasswordRequest);
+    Call<BaseResponse<Void>> resetPassword(
+            @Path("email") String email,
+            @Body ChangePasswordRequest changePasswordRequest
+    );
 }

@@ -1,40 +1,34 @@
 package com.example.demoapp.Activities.TienIch;
 
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demoapp.Activities.MainActivity;
 import com.example.demoapp.Adapters.BalanceAlertAdapter;
 import com.example.demoapp.HttpRequest.ApiService;
-import com.example.demoapp.Models.Dto.Response.AccountInfoResponse;
-import com.example.demoapp.Models.Dto.Response.BaseResponse;
-import com.example.demoapp.Models.Dto.Response.UserTransaction;
-import com.example.demoapp.Models.Dto.sharePreferences.SharePreferencesManager;
+import com.example.demoapp.Models.dto.response.AccountInfoResponse;
+import com.example.demoapp.Models.dto.response.BaseResponse;
+import com.example.demoapp.Models.dto.response.UserTransaction;
 import com.example.demoapp.R;
+import com.example.demoapp.Utils.sharePreferences.SharePreferencesManager;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
 import java.io.IOException;
@@ -48,17 +42,16 @@ import retrofit2.Response;
 
 public class LapYeuCauTraSoat extends AppCompatActivity {
 
+    private final ArrayList<String> notificationList = new ArrayList<>();
+    private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private RecyclerView recyclerView;
     private BalanceAlertAdapter adapter;
     private MaterialSearchBar searchBar;
-    private ArrayList<String> notificationList = new ArrayList<>();
-
     private Button btnTraCuu;
     private ImageButton btnTim;
     private String stk;
     private Calendar calendar;
     private EditText tvNgay1, tvNgay2;
-    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private int userId;
 
     private String ngay1 = "2024-05-15", ngay2 = "2024-05-17";
@@ -108,7 +101,6 @@ public class LapYeuCauTraSoat extends AppCompatActivity {
                 Ngay2();
             }
         });
-
 
     }
 
@@ -163,44 +155,51 @@ public class LapYeuCauTraSoat extends AppCompatActivity {
                 date
         );
         dialog.show();
-        ngay1 = tvNgay1.getText().toString();
-        ngay2 = tvNgay2.getText().toString();
+        ngay1 = tvNgay1.getText()
+                       .toString();
+        ngay2 = tvNgay2.getText()
+                       .toString();
         ApiService.apiService.getTransactionBetweenStartDateAndEndDate(stk, ngay1, ngay2)
-                .enqueue(new Callback<BaseResponse<List<UserTransaction>>>() {
-                    @Override
-                    public void onResponse(Call<BaseResponse<List<UserTransaction>>> call, Response<BaseResponse<List<UserTransaction>>> response) {
-                        if (response.isSuccessful()) {
-                            Log.d(
-                                    "SUCCESS",
-                                    response.message()
-                                            .toString()
-                            );
-                            List<UserTransaction> userTransactions = response.body()
-                                    .getData();
-                            for (UserTransaction user : userTransactions) {
-                                notificationList.add(convertUserTransactionToString(
-                                        user));
-                                Log.d("okeeeeee", user.getToAccount());
-                                adapter.notifyDataSetChanged();
-                            }
-                        } else {
-                            try {
-                                Log.e(
-                                        "ok",
-                                        response.errorBody()
-                                                .toString()
-                                );
-                            } catch (Exception e) {
-                                Log.e("E", e.getMessage());
-                            }
-                        }
-                    }
+                             .enqueue(new Callback<BaseResponse<List<UserTransaction>>>() {
+                                 @Override
+                                 public void onResponse(
+                                         Call<BaseResponse<List<UserTransaction>>> call,
+                                         Response<BaseResponse<List<UserTransaction>>> response
+                                 ) {
+                                     if (response.isSuccessful()) {
+                                         Log.d(
+                                                 "SUCCESS",
+                                                 response.message()
+                                         );
+                                         List<UserTransaction> userTransactions = response.body()
+                                                                                          .getData();
+                                         for (UserTransaction user : userTransactions) {
+                                             notificationList.add(convertUserTransactionToString(
+                                                     user));
+                                             Log.d("okeeeeee", user.getToAccount());
+                                             adapter.notifyDataSetChanged();
+                                         }
+                                     } else {
+                                         try {
+                                             Log.e(
+                                                     "ok",
+                                                     response.errorBody()
+                                                             .toString()
+                                             );
+                                         } catch (Exception e) {
+                                             Log.e("E", e.getMessage());
+                                         }
+                                     }
+                                 }
 
-                    @Override
-                    public void onFailure(Call<BaseResponse<List<UserTransaction>>> call, Throwable throwable) {
-                        Log.e("E:", throwable.getMessage());
-                    }
-                });
+                                 @Override
+                                 public void onFailure(
+                                         Call<BaseResponse<List<UserTransaction>>> call,
+                                         Throwable throwable
+                                 ) {
+                                     Log.e("E:", throwable.getMessage());
+                                 }
+                             });
     }
 
     private void showDepositConfirmationDialog() {
@@ -246,147 +245,197 @@ public class LapYeuCauTraSoat extends AppCompatActivity {
     }
 
     private void ApiFullLSGD() {
-        ApiService.apiService.getTransactionWithAccountID(userId).enqueue(new Callback<BaseResponse<List<UserTransaction>>>() {
-            @Override
-            public void onResponse(Call<BaseResponse<List<UserTransaction>>> call, Response<BaseResponse<List<UserTransaction>>> response) {
-                if (response.isSuccessful()) {
-                    Log.d(
-                            "SUCCESS",
-                            response.message()
-                                    .toString()
-                    );
-                    List<UserTransaction> userTransactions = response.body()
-                            .getData();
-                    for (UserTransaction user : userTransactions) {
-                        notificationList.add(convertUserTransactionToString(
-                                user));
-                        Log.d("okeeeeee", user.getToAccount());
-                        adapter.notifyDataSetChanged();
-                    }
-                } else {
-                    try {
-                        Log.e(
-                                "okeeeee1",
-                                response.errorBody()
-                                        .toString()
-                        );
-                    } catch (Exception e) {
-                        Log.e("Eeeee", e.getMessage());
-                    }
-                }
-            }
+        ApiService.apiService.getTransactionWithAccountID(userId)
+                             .enqueue(new Callback<BaseResponse<List<UserTransaction>>>() {
+                                 @Override
+                                 public void onResponse(
+                                         Call<BaseResponse<List<UserTransaction>>> call,
+                                         Response<BaseResponse<List<UserTransaction>>> response
+                                 ) {
+                                     if (response.isSuccessful()) {
+                                         Log.d(
+                                                 "SUCCESS",
+                                                 response.message()
+                                         );
+                                         List<UserTransaction> userTransactions = response.body()
+                                                                                          .getData();
+                                         for (UserTransaction user : userTransactions) {
+                                             notificationList.add(convertUserTransactionToString(
+                                                     user));
+                                             Log.d("okeeeeee", user.getToAccount());
+                                             adapter.notifyDataSetChanged();
+                                         }
+                                     } else {
+                                         try {
+                                             Log.e(
+                                                     "okeeeee1",
+                                                     response.errorBody()
+                                                             .toString()
+                                             );
+                                         } catch (Exception e) {
+                                             Log.e("Eeeee", e.getMessage());
+                                         }
+                                     }
+                                 }
 
-            @Override
-            public void onFailure(Call<BaseResponse<List<UserTransaction>>> call, Throwable throwable) {
-                Log.e("E:", throwable.getMessage());
-            }
-        });
+                                 @Override
+                                 public void onFailure(
+                                         Call<BaseResponse<List<UserTransaction>>> call,
+                                         Throwable throwable
+                                 ) {
+                                     Log.e("E:", throwable.getMessage());
+                                 }
+                             });
     }
 
     private void ApiFile() {
-        ngay1 = tvNgay1.getText().toString();
-        ngay2 = tvNgay2.getText().toString();
-        ApiService.apiService.exportTransactionBetweenStartDateAndEndDate(stk, ngay1, ngay2).enqueue(new Callback<BaseResponse>() {
-            @Override
-            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
-                if (response.isSuccessful()) {
-                    Log.d("SUCCESS", "File: " + response.body().toString());
-                } else {
-                    try {
-                        Log.d("TAG", "File: " + response.errorBody().string());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+        ngay1 = tvNgay1.getText()
+                       .toString();
+        ngay2 = tvNgay2.getText()
+                       .toString();
+        ApiService.apiService.exportTransactionBetweenStartDateAndEndDate(stk, ngay1, ngay2)
+                             .enqueue(new Callback<BaseResponse>() {
+                                 @Override
+                                 public void onResponse(
+                                         Call<BaseResponse> call, Response<BaseResponse> response
+                                 ) {
+                                     if (response.isSuccessful()) {
+                                         Log.d(
+                                                 "SUCCESS",
+                                                 "File: " + response.body()
+                                                                    .toString()
+                                         );
+                                     } else {
+                                         try {
+                                             Log.d(
+                                                     "TAG",
+                                                     "File: " + response.errorBody()
+                                                                        .string()
+                                             );
+                                         } catch (IOException e) {
+                                             e.printStackTrace();
+                                         }
+                                     }
+                                 }
 
-            @Override
-            public void onFailure(Call<BaseResponse> call, Throwable throwable) {
-                Log.e("E:", throwable.getMessage());
-            }
-        });
+                                 @Override
+                                 public void onFailure(
+                                         Call<BaseResponse> call, Throwable throwable
+                                 ) {
+                                     Log.e("E:", throwable.getMessage());
+                                 }
+                             });
     }
 
     private void ApiKSGD() {
-        ngay1 = tvNgay1.getText().toString();
-        ngay2 = tvNgay2.getText().toString();
+        ngay1 = tvNgay1.getText()
+                       .toString();
+        ngay2 = tvNgay2.getText()
+                       .toString();
         ApiService.apiService.getTransactionBetweenStartDateAndEndDate(stk, ngay1, ngay2)
-                .enqueue(new Callback<BaseResponse<List<UserTransaction>>>() {
-                    @Override
-                    public void onResponse(Call<BaseResponse<List<UserTransaction>>> call, Response<BaseResponse<List<UserTransaction>>> response) {
-                        if (response.isSuccessful()) {
-                            Log.d(
-                                    "SUCCESS",
-                                    response.message()
-                                            .toString()
-                            );
-                            List<UserTransaction> userTransactions = response.body()
-                                    .getData();
-                            for (UserTransaction user : userTransactions) {
-                                notificationList.add(convertUserTransactionToString(
-                                        user));
-                                Log.d("okeeeeee", user.getToAccount());
-                                adapter.notifyDataSetChanged();
-                            }
-                        } else {
-                            try {
-                                Log.e(
-                                        "ok",
-                                        response.errorBody()
-                                                .toString()
-                                );
-                            } catch (Exception e) {
-                                Log.e("E", e.getMessage());
-                            }
-                        }
-                    }
+                             .enqueue(new Callback<BaseResponse<List<UserTransaction>>>() {
+                                 @Override
+                                 public void onResponse(
+                                         Call<BaseResponse<List<UserTransaction>>> call,
+                                         Response<BaseResponse<List<UserTransaction>>> response
+                                 ) {
+                                     if (response.isSuccessful()) {
+                                         Log.d(
+                                                 "SUCCESS",
+                                                 response.message()
+                                         );
+                                         List<UserTransaction> userTransactions = response.body()
+                                                                                          .getData();
+                                         for (UserTransaction user : userTransactions) {
+                                             notificationList.add(convertUserTransactionToString(
+                                                     user));
+                                             Log.d("okeeeeee", user.getToAccount());
+                                             adapter.notifyDataSetChanged();
+                                         }
+                                     } else {
+                                         try {
+                                             Log.e(
+                                                     "ok",
+                                                     response.errorBody()
+                                                             .toString()
+                                             );
+                                         } catch (Exception e) {
+                                             Log.e("E", e.getMessage());
+                                         }
+                                     }
+                                 }
 
-                    @Override
-                    public void onFailure(Call<BaseResponse<List<UserTransaction>>> call, Throwable throwable) {
-                        Log.e("E:", throwable.getMessage());
-                    }
-                });
+                                 @Override
+                                 public void onFailure(
+                                         Call<BaseResponse<List<UserTransaction>>> call,
+                                         Throwable throwable
+                                 ) {
+                                     Log.e("E:", throwable.getMessage());
+                                 }
+                             });
     }
 
     private void ApiSTKAccount() {
-        ApiService.apiService.getAccountByUserId(userId).enqueue(new Callback<BaseResponse<AccountInfoResponse>>() {
-            @Override
-            public void onResponse(Call<BaseResponse<AccountInfoResponse>> call, Response<BaseResponse<AccountInfoResponse>> response) {
-                if (response.isSuccessful()) {
-                    BaseResponse<AccountInfoResponse> baseResponse = response.body();
-                    if (baseResponse != null && baseResponse.getData() != null) {
-                        AccountInfoResponse accountInfoResponse = baseResponse.getData();
-                        String accountNumber = accountInfoResponse.getAccountNumber();
-                        Log.d("SUCCESS", "ACCOUNT: " + accountNumber);
-                        stk = accountNumber;
-                    } else {
-                        Log.e("ERROR", "Response body or data is null");
-                    }
-                } else {
-                    try {
-                        Log.d("TAG", "onResponse: " + response.errorBody().string());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+        ApiService.apiService.getAccountByUserId(userId)
+                             .enqueue(new Callback<BaseResponse<AccountInfoResponse>>() {
+                                 @Override
+                                 public void onResponse(
+                                         Call<BaseResponse<AccountInfoResponse>> call,
+                                         Response<BaseResponse<AccountInfoResponse>> response
+                                 ) {
+                                     if (response.isSuccessful()) {
+                                         BaseResponse<AccountInfoResponse> baseResponse =
+                                                 response.body();
+                                         if (baseResponse != null && baseResponse.getData() != null) {
+                                             AccountInfoResponse accountInfoResponse =
+                                                     baseResponse.getData();
+                                             String accountNumber =
+                                                     accountInfoResponse.getAccountNumber();
+                                             Log.d("SUCCESS", "ACCOUNT: " + accountNumber);
+                                             stk = accountNumber;
+                                         } else {
+                                             Log.e("ERROR", "Response body or data is null");
+                                         }
+                                     } else {
+                                         try {
+                                             Log.d(
+                                                     "TAG",
+                                                     "onResponse: " + response.errorBody()
+                                                                              .string()
+                                             );
+                                         } catch (IOException e) {
+                                             e.printStackTrace();
+                                         }
+                                     }
+                                 }
 
-            @Override
-            public void onFailure(Call<BaseResponse<AccountInfoResponse>> call, Throwable throwable) {
-                Log.e("E:", throwable.getMessage());
-            }
-        });
+                                 @Override
+                                 public void onFailure(
+                                         Call<BaseResponse<AccountInfoResponse>> call,
+                                         Throwable throwable
+                                 ) {
+                                     Log.e("E:", throwable.getMessage());
+                                 }
+                             });
     }
 
-
     private String convertUserTransactionToString(UserTransaction userTransaction) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Transaction Type: ").append(userTransaction.getTransactionType()).append("\n");
-        stringBuilder.append("From Account: ").append(userTransaction.getFromAccount()).append("\n");
-        stringBuilder.append("To Account: ").append(userTransaction.getToAccount()).append("\n");
-        stringBuilder.append("Amount: ").append(userTransaction.getAmount()).append("\n");
-        stringBuilder.append("Status: ").append(userTransaction.getStatus()).append("\n");
+        String stringBuilder = "Transaction Type: " +
+                userTransaction.getTransactionType() +
+                "\n" +
+                "From Account: " +
+                userTransaction.getFromAccount() +
+                "\n" +
+                "To Account: " +
+                userTransaction.getToAccount() +
+                "\n" +
+                "Amount: " +
+                userTransaction.getAmount() +
+                "\n" +
+                "Status: " +
+                userTransaction.getStatus() +
+                "\n";
 
-        return stringBuilder.toString();
+        return stringBuilder;
     }
 }

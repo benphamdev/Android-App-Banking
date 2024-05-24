@@ -1,7 +1,5 @@
 package com.example.demoapp.Activities.admin.user;
 
-import com.example.demoapp.Models.Dto.Response.UserResponse;
-
 public class User {
     private int id;
     private String firstname;
@@ -13,7 +11,10 @@ public class User {
     private String email;
     private String phoneNumber;
 
-    public User(int id, String firstname, String lastName, String otherName, String dob, String gender, String address, String email, String phoneNumber) {
+    public User(
+            int id, String firstname, String lastName, String otherName, String dob, String gender,
+            String address, String email, String phoneNumber
+    ) {
         this.id = id;
         this.firstname = firstname;
         this.lastName = lastName;

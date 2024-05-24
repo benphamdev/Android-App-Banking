@@ -9,13 +9,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demoapp.HttpRequest.ApiService;
-import com.example.demoapp.Models.Dto.Requests.UserCreationRequest;
-import com.example.demoapp.Models.Dto.Response.BaseResponse;
-import com.example.demoapp.Models.Dto.Response.UserResponse;
+import com.example.demoapp.Models.dto.response.BaseResponse;
 import com.example.demoapp.R;
 
 import java.util.List;
@@ -32,6 +29,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     public UserAdapter(List<User> userList) {
         this.userList = userList;
     }
+
     public void setUsers(List<User> userList) {
         this.userList = userList;
         notifyDataSetChanged();
@@ -43,7 +41,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             @NonNull ViewGroup parent, int viewType
     ) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.user_admin, parent, false);
+                                  .inflate(R.layout.user_admin, parent, false);
         context = parent.getContext();
         return new ViewHolder(view);
     }
@@ -71,35 +69,39 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         new AlertDialog.Builder(context)
                 .setTitle("Confirm Delete")
                 .setMessage("Are you sure you want to delete this item?")
-                .setPositiveButton(android.R.string.yes, (dialog, which) -> deleteTextViews(position))
+                .setPositiveButton(
+                        android.R.string.yes,
+                        (dialog, which) -> deleteTextViews(position)
+                )
                 .setNegativeButton(android.R.string.no, null)
                 .show();
     }
 
     public void deleteTextViews(int position) {
-        int userId = userList.get(position).getId();
+        int userId = userList.get(position)
+                             .getId();
         ApiService.apiService.deleteUser(userId)
-                .enqueue(new Callback<BaseResponse<Void>>() {
-                    @Override
-                    public void onResponse(
-                            Call<BaseResponse<Void>> call,
-                            Response<BaseResponse<Void>> response
-                    ) {
-                        if (response.isSuccessful()) {
+                             .enqueue(new Callback<BaseResponse<Void>>() {
+                                 @Override
+                                 public void onResponse(
+                                         Call<BaseResponse<Void>> call,
+                                         Response<BaseResponse<Void>> response
+                                 ) {
+                                     if (response.isSuccessful()) {
 
-                            userList.remove(position);
-                            notifyItemRemoved(position);
-                            notifyItemRangeChanged(position, userList.size());
-                        } else {
+                                         userList.remove(position);
+                                         notifyItemRemoved(position);
+                                         notifyItemRangeChanged(position, userList.size());
+                                     } else {
 
-                        }
-                    }
+                                     }
+                                 }
 
-                    @Override
-                    public void onFailure(Call<BaseResponse<Void>> call, Throwable t) {
+                                 @Override
+                                 public void onFailure(Call<BaseResponse<Void>> call, Throwable t) {
 
-                    }
-                });
+                                 }
+                             });
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

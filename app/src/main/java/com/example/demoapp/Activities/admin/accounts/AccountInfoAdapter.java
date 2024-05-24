@@ -12,8 +12,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demoapp.HttpRequest.ApiService;
-import com.example.demoapp.Models.Dto.Response.AccountInfoResponse;
-import com.example.demoapp.Models.Dto.Response.BaseResponse;
+import com.example.demoapp.Models.dto.response.AccountInfoResponse;
+import com.example.demoapp.Models.dto.response.BaseResponse;
 import com.example.demoapp.R;
 
 import java.util.List;
@@ -23,7 +23,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AccountInfoAdapter extends RecyclerView.Adapter<AccountInfoAdapter.AccountInfoViewHolder> {
-    private List<AccountInfoResponse> accountInfoList;
+    private final List<AccountInfoResponse> accountInfoList;
     private Context context;
 
     public AccountInfoAdapter(List<AccountInfoResponse> accountInfoList) {
@@ -68,9 +68,11 @@ public class AccountInfoAdapter extends RecyclerView.Adapter<AccountInfoAdapter.
                 .setNegativeButton(android.R.string.no, null)
                 .show();
     }
+
     public void deleteAccount(int position) {
         // Lấy ID của tài khoản cần xóa
-        int accountId = Integer.parseInt(accountInfoList.get(position).getId());
+        int accountId = Integer.parseInt(accountInfoList.get(position)
+                                                        .getId());
 
         // Gọi API để xóa tài khoản
         ApiService.apiService.deleteAccount(accountId)
@@ -78,7 +80,7 @@ public class AccountInfoAdapter extends RecyclerView.Adapter<AccountInfoAdapter.
                                  @Override
                                  public void onResponse(
                                          Call<BaseResponse<Void>> call,
-                                          Response<BaseResponse<Void>> response
+                                         Response<BaseResponse<Void>> response
                                  ) {
                                      if (response.isSuccessful()) {
                                          // Nếu xóa thành công từ hệ thống, thực hiện xóa tài khoản khỏi danh sách và cập nhật giao diện
@@ -99,12 +101,12 @@ public class AccountInfoAdapter extends RecyclerView.Adapter<AccountInfoAdapter.
     }
 
     public class AccountInfoViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvId;
-        private TextView tvAccountName;
-        private TextView tvAccountBalance;
-        private TextView tvAccountNumber;
-        private TextView tvBranchName;
-        private ImageView imgDelete;
+        private final TextView tvId;
+        private final TextView tvAccountName;
+        private final TextView tvAccountBalance;
+        private final TextView tvAccountNumber;
+        private final TextView tvBranchName;
+        private final ImageView imgDelete;
 
         public AccountInfoViewHolder(
                 @NonNull View itemView

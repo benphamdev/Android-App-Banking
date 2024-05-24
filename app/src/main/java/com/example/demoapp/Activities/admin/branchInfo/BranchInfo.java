@@ -1,7 +1,7 @@
 package com.example.demoapp.Activities.admin.branchInfo;
 
-import com.example.demoapp.Models.Dto.Response.AccountInfoResponse;
-import com.example.demoapp.Models.Dto.Response.ProvinceResponse;
+import com.example.demoapp.Models.dto.response.AccountInfoResponse;
+import com.example.demoapp.Models.dto.response.ProvinceResponse;
 
 import java.util.List;
 

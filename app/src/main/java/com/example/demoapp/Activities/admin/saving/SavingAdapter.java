@@ -7,13 +7,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.demoapp.Models.Dto.entity.Saving;
-import com.example.demoapp.Models.Dto.sharePreferences.SharePreferencesManager;
+import com.example.demoapp.Models.entity.Saving;
+import com.example.demoapp.Utils.sharePreferences.SharePreferencesManager;
 import com.example.demoapp.R;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 public class SavingAdapter extends RecyclerView.Adapter<SavingAdapter.SavingViewHolder> {
 

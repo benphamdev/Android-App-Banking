@@ -1,7 +1,5 @@
 package com.example.demoapp.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,10 +11,12 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.demoapp.HttpRequest.ApiService;
-import com.example.demoapp.Models.Dto.Response.BaseResponse;
-import com.example.demoapp.Models.Dto.sharePreferences.SharePreferencesManager;
+import com.example.demoapp.Models.dto.response.BaseResponse;
 import com.example.demoapp.R;
+import com.example.demoapp.Utils.sharePreferences.SharePreferencesManager;
 
 import java.io.IOException;
 import java.util.Timer;
@@ -69,16 +69,16 @@ public class VerifyOTPActivity extends AppCompatActivity {
             @Override
             public void run() {
                 timeoutSeconds--;
-                resendOtpTextView.setText("Resend OTP in "+ timeoutSeconds +" seconds");
-                if(timeoutSeconds<=0){
-                    timeoutSeconds =60L;
+                resendOtpTextView.setText("Resend OTP in " + timeoutSeconds + " seconds");
+                if (timeoutSeconds <= 0) {
+                    timeoutSeconds = 60L;
                     timer.cancel();
                     runOnUiThread(() -> {
                         resendOtpTextView.setEnabled(true);
                     });
                 }
             }
-        },0,1000);
+        }, 0, 1000);
     }
 
     private void startResendTimer() {
@@ -87,82 +87,117 @@ public class VerifyOTPActivity extends AppCompatActivity {
             @Override
             public void run() {
                 timeoutSeconds--;
-                resendOtpTextView.setText("Resend OTP in "+ timeoutSeconds +" seconds");
-                if(timeoutSeconds<=0){
-                    timeoutSeconds =60L;
+                resendOtpTextView.setText("Resend OTP in " + timeoutSeconds + " seconds");
+                if (timeoutSeconds <= 0) {
+                    timeoutSeconds = 60L;
                     timer.cancel();
                     runOnUiThread(() -> {
                         resendOtpTextView.setEnabled(true);
                     });
                 }
             }
-        },0,1000);
+        }, 0, 1000);
     }
 
-
     private void setInProgress(boolean inProgress) {
-        if(inProgress){
+        if (inProgress) {
             progressBar.setVisibility(View.VISIBLE);
             verifyButton.setVisibility(View.GONE);
-        }else{
+        } else {
             progressBar.setVisibility(View.GONE);
             verifyButton.setVisibility(View.VISIBLE);
         }
     }
 
     private void processResendOPT() {
-        ApiService.apiService.verifyEmail(email).enqueue(new Callback<BaseResponse<Void>>() {
-            @Override
-            public void onResponse(Call<BaseResponse<Void>> call, Response<BaseResponse<Void>> response) {
-                if(response.isSuccessful()) {
-                    Log.d("SUCCESS", "Comment : " + response.body().toString());
-                    startActivity(new Intent(VerifyOTPActivity.this, DatLaiMatKhau.class));
-                    setInProgress(false);
-                } else {
-                    try {
-                        Log.d("TAG", "Comment : " + response.errorBody()
-                                .string());
+        ApiService.apiService.verifyEmail(email)
+                             .enqueue(new Callback<BaseResponse<Void>>() {
+                                 @Override
+                                 public void onResponse(
+                                         Call<BaseResponse<Void>> call,
+                                         Response<BaseResponse<Void>> response
+                                 ) {
+                                     if (response.isSuccessful()) {
+                                         Log.d(
+                                                 "SUCCESS",
+                                                 "Comment : " + response.body()
+                                                                        .toString()
+                                         );
+                                         startActivity(new Intent(
+                                                 VerifyOTPActivity.this,
+                                                 DatLaiMatKhau.class
+                                         ));
+                                         setInProgress(false);
+                                     } else {
+                                         try {
+                                             Log.d("TAG", "Comment : " + response.errorBody()
+                                                                                 .string());
 
-                    } catch(IOException e) {
-                        Log.d("Catch", e.getMessage());
-                    }
-                }
-            }
+                                         } catch (IOException e) {
+                                             Log.d("Catch", e.getMessage());
+                                         }
+                                     }
+                                 }
 
-            @Override
-            public void onFailure(Call<BaseResponse<Void>> call, Throwable throwable) {
-                Log.e("E:", throwable.getMessage());
-            }
-        });
+                                 @Override
+                                 public void onFailure(
+                                         Call<BaseResponse<Void>> call, Throwable throwable
+                                 ) {
+                                     Log.e("E:", throwable.getMessage());
+                                 }
+                             });
     }
 
     private void processVerifyOTP() {
-        String mobile = inputCode1.getText().toString() + inputCode2.getText().toString()
-                + inputCode3.getText().toString() + inputCode4.getText().toString()
-                + inputCode5.getText().toString() + inputCode6.getText().toString();
+        String mobile = inputCode1.getText()
+                                  .toString() + inputCode2.getText()
+                                                          .toString()
+                + inputCode3.getText()
+                            .toString() + inputCode4.getText()
+                                                    .toString()
+                + inputCode5.getText()
+                            .toString() + inputCode6.getText()
+                                                    .toString();
         int codeOTP = Integer.parseInt(mobile);
         Log.d("VerifyOTP", mobile + " " + email + " " + codeOTP);
 
-        ApiService.apiService.verifyOTP(codeOTP, email).enqueue(new Callback<BaseResponse<Void>>() {
-            @Override
-            public void onResponse(Call<BaseResponse<Void>> call, Response<BaseResponse<Void>> response) {
-                if(response.isSuccessful()) {
-                    Log.d("SUCCESS", "Comment : " + response.body().toString());
-                    startActivity(new Intent(VerifyOTPActivity.this, DatLaiMatKhau.class));
-                } else {
-                    try {
-                        Log.d("TAG", "Comment : " + response.errorBody().string());
-                    } catch(IOException e) {
-                        Log.d("Catch", e.getMessage());
-                    }
-                }
-            }
+        ApiService.apiService.verifyOTP(codeOTP, email)
+                             .enqueue(new Callback<BaseResponse<Void>>() {
+                                 @Override
+                                 public void onResponse(
+                                         Call<BaseResponse<Void>> call,
+                                         Response<BaseResponse<Void>> response
+                                 ) {
+                                     if (response.isSuccessful()) {
+                                         Log.d(
+                                                 "SUCCESS",
+                                                 "Comment : " + response.body()
+                                                                        .toString()
+                                         );
+                                         startActivity(new Intent(
+                                                 VerifyOTPActivity.this,
+                                                 DatLaiMatKhau.class
+                                         ));
+                                     } else {
+                                         try {
+                                             Log.d(
+                                                     "TAG",
+                                                     "Comment : " + response.errorBody()
+                                                                            .string()
+                                             );
+                                         } catch (IOException e) {
+                                             Log.d("Catch", e.getMessage());
+                                         }
+                                     }
+                                 }
 
-            @Override
-            public void onFailure(Call<BaseResponse<Void>> call, Throwable throwable) {
-                Log.e("Error:", throwable.getMessage());
-            }
-        });
+                                 @Override
+                                 public void onFailure(
+                                         Call<BaseResponse<Void>> call, Throwable throwable
+                                 ) {
+                                     Log.e("Error:", throwable.getMessage());
+                                 }
+                             });
     }
 
     private void setUpOTPInput() {
@@ -174,7 +209,9 @@ public class VerifyOTPActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (!s.toString().trim().isEmpty()) {
+                if (!s.toString()
+                      .trim()
+                      .isEmpty()) {
                     inputCode2.requestFocus();
                 }
             }
@@ -192,7 +229,9 @@ public class VerifyOTPActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (!s.toString().trim().isEmpty()) {
+                if (!s.toString()
+                      .trim()
+                      .isEmpty()) {
                     inputCode3.requestFocus();
                 }
             }
@@ -210,7 +249,9 @@ public class VerifyOTPActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (!s.toString().trim().isEmpty()) {
+                if (!s.toString()
+                      .trim()
+                      .isEmpty()) {
                     inputCode4.requestFocus();
                 }
             }
@@ -228,7 +269,9 @@ public class VerifyOTPActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (!s.toString().trim().isEmpty()) {
+                if (!s.toString()
+                      .trim()
+                      .isEmpty()) {
                     inputCode5.requestFocus();
                 }
             }
@@ -246,7 +289,9 @@ public class VerifyOTPActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (!s.toString().trim().isEmpty()) {
+                if (!s.toString()
+                      .trim()
+                      .isEmpty()) {
                     inputCode6.requestFocus();
                 }
             }
@@ -260,14 +305,14 @@ public class VerifyOTPActivity extends AppCompatActivity {
 
     private void setUpUI() {
         inputCode1 = findViewById(R.id.inputCode1);
-        inputCode2 =  findViewById(R.id.inputCode2);
-        inputCode3 =  findViewById(R.id.inputCode3);
-        inputCode4 =  findViewById(R.id.inputCode4);
-        inputCode5 =  findViewById(R.id.inputCode5);
-        inputCode6 =  findViewById(R.id.inputCode6);
-        textMobile =  findViewById(R.id.textMobile);
-        textResendOTP =  findViewById(R.id.tv_resend_OTP);
-        resendOtpTextView =  findViewById(R.id.resend_otp_textview);
-        verifyButton =  findViewById(R.id.verifyButton);
+        inputCode2 = findViewById(R.id.inputCode2);
+        inputCode3 = findViewById(R.id.inputCode3);
+        inputCode4 = findViewById(R.id.inputCode4);
+        inputCode5 = findViewById(R.id.inputCode5);
+        inputCode6 = findViewById(R.id.inputCode6);
+        textMobile = findViewById(R.id.textMobile);
+        textResendOTP = findViewById(R.id.tv_resend_OTP);
+        resendOtpTextView = findViewById(R.id.resend_otp_textview);
+        verifyButton = findViewById(R.id.verifyButton);
     }
 }

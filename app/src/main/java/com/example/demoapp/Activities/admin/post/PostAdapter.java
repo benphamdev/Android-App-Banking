@@ -1,20 +1,22 @@
 package com.example.demoapp.Activities.admin.post;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.demoapp.Models.Dto.Response.PostResponse;
+
+import com.example.demoapp.Models.dto.response.PostResponse;
 import com.example.demoapp.R;
 import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
-    private List<PostResponse> postList;
+    private final List<PostResponse> postList;
 
     public PostAdapter(List<PostResponse> postList) {
         this.postList = postList;
@@ -22,13 +24,18 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
 
     @NonNull
     @Override
-    public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_post, parent, false);
+    public PostViewHolder onCreateViewHolder(
+            @NonNull ViewGroup parent, int viewType
+    ) {
+        View view = LayoutInflater.from(parent.getContext())
+                                  .inflate(R.layout.layout_post, parent, false);
         return new PostViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
+    public void onBindViewHolder(
+            @NonNull PostViewHolder holder, int position
+    ) {
         PostResponse post = postList.get(position);
         holder.bind(post);
     }
@@ -39,14 +46,17 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     }
 
     public class PostViewHolder extends RecyclerView.ViewHolder {
-        private ImageView thumbnailImageView;
-        private TextView nameTextView;
-        private TextView contentTextView;
-        private TextView likeCountTextView;
-        private TextView viewCountTextView;
-        private TextView tvID, tvTag;
+        private final ImageView thumbnailImageView;
+        private final TextView nameTextView;
+        private final TextView contentTextView;
+        private final TextView likeCountTextView;
+        private final TextView viewCountTextView;
+        private final TextView tvID;
+        private final TextView tvTag;
 
-        public PostViewHolder(@NonNull View itemView) {
+        public PostViewHolder(
+                @NonNull View itemView
+        ) {
             super(itemView);
             thumbnailImageView = itemView.findViewById(R.id.tv_post_thumbnail);
             nameTextView = itemView.findViewById(R.id.tv_post_name);
@@ -64,8 +74,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
             contentTextView.setText(post.getContent());
             likeCountTextView.setText("Likes: " + post.getLikeCount());
             viewCountTextView.setText("Views: " + post.getViewCount());
-            Picasso.get().load(post.getThumbnail()).into(thumbnailImageView);
-            tvTag.setText(post.getTags().size());
+            Picasso.get()
+                   .load(post.getThumbnail())
+                   .into(thumbnailImageView);
+            tvTag.setText(post.getTags()
+                              .size());
         }
     }
 }

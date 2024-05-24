@@ -14,7 +14,7 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.demoapp.Activities.Photo;
+import com.example.demoapp.Models.entity.Thumbnail;
 import com.example.demoapp.R;
 
 import java.util.List;
@@ -22,14 +22,14 @@ import java.util.List;
 public class PhotpViewPager2Adapter extends RecyclerView.Adapter<PhotpViewPager2Adapter.PhotoViewHolder> {
 
     private static Context context;
-    private List<Photo> photoList;
+    private List<Thumbnail> thumbnailList;
 
-    public PhotpViewPager2Adapter(List<Photo> photoList) {
-        this.photoList = photoList;
+    public PhotpViewPager2Adapter(List<Thumbnail> thumbnailList) {
+        this.thumbnailList = thumbnailList;
     }
 
-    public void setItem(List<Photo> photos) {
-        this.photoList = photos;
+    public void setItem(List<Thumbnail> thumbnails) {
+        this.thumbnailList = thumbnails;
     }
 
     @NonNull
@@ -47,14 +47,14 @@ public class PhotpViewPager2Adapter extends RecyclerView.Adapter<PhotpViewPager2
     public void onBindViewHolder(
             @NonNull PhotoViewHolder holder, int position
     ) {
-        holder.setImageView(photoList.get(position));
+        holder.setImageView(thumbnailList.get(position));
 
     }
 
     @Override
     public int getItemCount() {
-        if (photoList != null) {
-            return photoList.size();
+        if (thumbnailList != null) {
+            return thumbnailList.size();
         }
         return 0;
     }
@@ -70,7 +70,7 @@ public class PhotpViewPager2Adapter extends RecyclerView.Adapter<PhotpViewPager2
             imgViewPager2 = itemView.findViewById(R.id.img_slider);
         }
 
-        void setImageView(Photo photo) {
+        void setImageView(Thumbnail thumbnail) {
             //custom settings for fast loading image
             RequestOptions options = new RequestOptions()
                     .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
@@ -80,7 +80,7 @@ public class PhotpViewPager2Adapter extends RecyclerView.Adapter<PhotpViewPager2
 
             Glide.with(context)
                  .applyDefaultRequestOptions(options)
-                 .load(photo.getUrl())
+                 .load(thumbnail.getUrl())
                  .thumbnail(0.4f)
                  .into(imgViewPager2);
         }

@@ -1,19 +1,5 @@
 package com.example.demoapp.Activities.admin.user;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.PopupMenu;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -30,18 +16,28 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.demoapp.Activities.admin.AdminsActivity;
 import com.example.demoapp.Activities.admin.OnDeleteClickListener;
 import com.example.demoapp.HttpRequest.ApiService;
-import com.example.demoapp.Models.Dto.Response.BaseResponse;
-import com.example.demoapp.Models.Dto.Response.PageResponse;
-import com.example.demoapp.Models.Dto.Response.UserResponse;
+import com.example.demoapp.Models.dto.response.BaseResponse;
+import com.example.demoapp.Models.dto.response.PageResponse;
 import com.example.demoapp.R;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import retrofit2.Call;
@@ -76,7 +72,8 @@ public class UserActivity extends AppCompatActivity implements OnDeleteClickList
                 micIcon.setVisibility(View.VISIBLE);
                 searchView.setIconified(false);
                 searchView.requestFocus();
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm =
+                        (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
                 searchIcon.setVisibility(View.GONE);
             }
@@ -105,32 +102,34 @@ public class UserActivity extends AppCompatActivity implements OnDeleteClickList
         toolbars();
         userList();
         searchView.clearFocus();
-       searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-           @Override
-           public boolean onQueryTextSubmit(String query) {
-               return false;
-           }
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
 
-           @Override
-           public boolean onQueryTextChange(String newText) {
-               search(newText);
-               return true;
-           }
-       });
-       btnFilter.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               showPopupMenu(v);
-           }
-       });
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                search(newText);
+                return true;
+            }
+        });
+        btnFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopupMenu(v);
+            }
+        });
         speechResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         // Handle the returned data here
-                        String speechText = result.getData().getStringArrayListExtra(
-                                RecognizerIntent.EXTRA_RESULTS
-                        ).get(0);
+                        String speechText = result.getData()
+                                                  .getStringArrayListExtra(
+                                                          RecognizerIntent.EXTRA_RESULTS
+                                                  )
+                                                  .get(0);
                         searchView.setQuery(speechText, true);
                     }
                 }
@@ -151,6 +150,7 @@ public class UserActivity extends AppCompatActivity implements OnDeleteClickList
             }
         });
     }
+
     private void speakNow() {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(
@@ -177,6 +177,7 @@ public class UserActivity extends AppCompatActivity implements OnDeleteClickList
             }
         }
     }
+
     public void showPopupMenu(View view) {
         PopupMenu popupMenu = new PopupMenu(this, view);
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -184,11 +185,11 @@ public class UserActivity extends AppCompatActivity implements OnDeleteClickList
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 int id = item.getItemId();
-                if(id == R.id.menu_item1){
+                if (id == R.id.menu_item1) {
                     getUserWithSort("lastName:desc");
                 } else if (id == R.id.menu_item2) {
-                    getAllUsersWithSortByMultiColumn(new String[]{"lastName:desc","otherName:desc"});
-                }else {
+                    getAllUsersWithSortByMultiColumn(new String[]{"lastName:desc", "otherName:desc"});
+                } else {
                     getAllUsersWithPagingAndSorting(0, 10, "f", "id:desc");
                 }
                 return true;
@@ -197,104 +198,150 @@ public class UserActivity extends AppCompatActivity implements OnDeleteClickList
         popupMenu.inflate(R.menu.menu_filter);
         popupMenu.show();
     }
-    private void search(String string){
+
+    private void search(String string) {
         List<User> users = new ArrayList<>();
-        for(User user : userList){
+        for (User user : userList) {
             String lastName = user.getLastName();
             String otherName = user.getOtherName();
-            if(lastName != null && otherName != null) {
-                if(lastName.toLowerCase().contains(string.toLowerCase()) || otherName.toLowerCase().contains(string.toLowerCase())) {
+            if (lastName != null && otherName != null) {
+                if (lastName.toLowerCase()
+                            .contains(string.toLowerCase()) || otherName.toLowerCase()
+                                                                        .contains(string.toLowerCase())) {
                     users.add(user);
                 }
             }
         }
-        if(users.isEmpty()){
-            Toast.makeText(this, "No data found", Toast.LENGTH_SHORT).show();
+        if (users.isEmpty()) {
+            Toast.makeText(this, "No data found", Toast.LENGTH_SHORT)
+                 .show();
         } else {
             userAdapter.setUsers(users);
         }
     }
 
-    private void getUserWithSort(String sortBy){
-        ApiService.apiService.getAllUsersWithSortBy1(0, 10, sortBy).enqueue(new Callback<BaseResponse<PageResponse<List<User>>>>() {
-            @Override
-            public void onResponse(Call<BaseResponse<PageResponse<List<User>>>> call, Response<BaseResponse<PageResponse<List<User>>>> response) {
-                if(response.isSuccessful() && response.body() != null){
-                    userList = response.body().getData().getContent();
-                    updateRecyclerView(userList);
-                }else {
-                    try {
-                        Log.e("TAG", response.errorBody().toString());
-                    }catch (Exception e){
-                        e.getMessage();
-                    }
-                }
-            }
+    private void getUserWithSort(String sortBy) {
+        ApiService.apiService.getAllUsersWithSortBy1(0, 10, sortBy)
+                             .enqueue(new Callback<BaseResponse<PageResponse<List<User>>>>() {
+                                 @Override
+                                 public void onResponse(
+                                         Call<BaseResponse<PageResponse<List<User>>>> call,
+                                         Response<BaseResponse<PageResponse<List<User>>>> response
+                                 ) {
+                                     if (response.isSuccessful() && response.body() != null) {
+                                         userList = response.body()
+                                                            .getData()
+                                                            .getContent();
+                                         updateRecyclerView(userList);
+                                     } else {
+                                         try {
+                                             Log.e(
+                                                     "TAG",
+                                                     response.errorBody()
+                                                             .toString()
+                                             );
+                                         } catch (Exception e) {
+                                             e.getMessage();
+                                         }
+                                     }
+                                 }
 
-            @Override
-            public void onFailure(Call<BaseResponse<PageResponse<List<User>>>> call, Throwable t) {
-                    Log.e("EEE", t.getMessage());
-            }
-        });
+                                 @Override
+                                 public void onFailure(
+                                         Call<BaseResponse<PageResponse<List<User>>>> call,
+                                         Throwable t
+                                 ) {
+                                     Log.e("EEE", t.getMessage());
+                                 }
+                             });
     }
+
     private void getAllUsersWithSortByMultiColumn(String[] sorts) {
-        ApiService.apiService.getAllUsersWithSortByMultiColumns(0, 10, sorts).enqueue(new Callback<BaseResponse<PageResponse<List<User>>>>() {
-            @Override
-            public void onResponse(Call<BaseResponse<PageResponse<List<User>>>> call, Response<BaseResponse<PageResponse<List<User>>>> response) {
-                if (response.isSuccessful()) {
-                    BaseResponse<PageResponse<List<User>>> baseResponse = response.body();
-                    if (baseResponse != null && baseResponse.getData() != null) {
-                        PageResponse<List<User>> pageResponse = baseResponse.getData();
-                        List<User> users = pageResponse.getContent();
-                        updateRecyclerView(users);
-                    } else {
-                        Log.e("TAG1", "Response body or data is null");
-                    }
-                } else {
-                    try {
-                        Log.e("TAG1", "Error: " + response.errorBody().string());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+        ApiService.apiService.getAllUsersWithSortByMultiColumns(0, 10, sorts)
+                             .enqueue(new Callback<BaseResponse<PageResponse<List<User>>>>() {
+                                 @Override
+                                 public void onResponse(
+                                         Call<BaseResponse<PageResponse<List<User>>>> call,
+                                         Response<BaseResponse<PageResponse<List<User>>>> response
+                                 ) {
+                                     if (response.isSuccessful()) {
+                                         BaseResponse<PageResponse<List<User>>> baseResponse =
+                                                 response.body();
+                                         if (baseResponse != null && baseResponse.getData() != null) {
+                                             PageResponse<List<User>> pageResponse =
+                                                     baseResponse.getData();
+                                             List<User> users = pageResponse.getContent();
+                                             updateRecyclerView(users);
+                                         } else {
+                                             Log.e("TAG1", "Response body or data is null");
+                                         }
+                                     } else {
+                                         try {
+                                             Log.e(
+                                                     "TAG1",
+                                                     "Error: " + response.errorBody()
+                                                                         .string()
+                                             );
+                                         } catch (IOException e) {
+                                             e.printStackTrace();
+                                         }
+                                     }
+                                 }
 
-            @Override
-            public void onFailure(Call<BaseResponse<PageResponse<List<User>>>> call, Throwable t) {
-                Log.e("E", t.getMessage());
-            }
-        });
+                                 @Override
+                                 public void onFailure(
+                                         Call<BaseResponse<PageResponse<List<User>>>> call,
+                                         Throwable t
+                                 ) {
+                                     Log.e("E", t.getMessage());
+                                 }
+                             });
     }
 
-    private void getAllUsersWithPagingAndSorting(int pageNo, int pageSize, String search, String sortBy) {
+    private void getAllUsersWithPagingAndSorting(
+            int pageNo, int pageSize, String search, String sortBy
+    ) {
         ApiService.apiService.getAllUsersWithPagingAndSorting(pageNo, pageSize, search, sortBy)
-                .enqueue(new Callback<BaseResponse<PageResponse<List<User>>>>() {
-                    @Override
-                    public void onResponse(Call<BaseResponse<PageResponse<List<User>>>> call, Response<BaseResponse<PageResponse<List<User>>>> response) {
-                        if (response.isSuccessful()) {
-                            BaseResponse<PageResponse<List<User>>> baseResponse = response.body();
-                            if (baseResponse != null && baseResponse.getData() != null) {
-                                PageResponse<List<User>> pageResponse = baseResponse.getData();
-                                List<User> users = pageResponse.getContent();
-                                updateRecyclerView(users);
-                            } else {
-                                Log.e("TAG", "Response body or data is null");
-                            }
-                        } else {
-                            try {
-                                Log.e("TAG", "Error: " + response.errorBody().string());
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
+                             .enqueue(new Callback<BaseResponse<PageResponse<List<User>>>>() {
+                                 @Override
+                                 public void onResponse(
+                                         Call<BaseResponse<PageResponse<List<User>>>> call,
+                                         Response<BaseResponse<PageResponse<List<User>>>> response
+                                 ) {
+                                     if (response.isSuccessful()) {
+                                         BaseResponse<PageResponse<List<User>>> baseResponse =
+                                                 response.body();
+                                         if (baseResponse != null && baseResponse.getData() != null) {
+                                             PageResponse<List<User>> pageResponse =
+                                                     baseResponse.getData();
+                                             List<User> users = pageResponse.getContent();
+                                             updateRecyclerView(users);
+                                         } else {
+                                             Log.e("TAG", "Response body or data is null");
+                                         }
+                                     } else {
+                                         try {
+                                             Log.e(
+                                                     "TAG",
+                                                     "Error: " + response.errorBody()
+                                                                         .string()
+                                             );
+                                         } catch (IOException e) {
+                                             e.printStackTrace();
+                                         }
+                                     }
+                                 }
 
-                    @Override
-                    public void onFailure(Call<BaseResponse<PageResponse<List<User>>>> call, Throwable t) {
-                        Log.e("TAG", "onFailure: " + t.getMessage(), t);
-                    }
-                });
+                                 @Override
+                                 public void onFailure(
+                                         Call<BaseResponse<PageResponse<List<User>>>> call,
+                                         Throwable t
+                                 ) {
+                                     Log.e("TAG", "onFailure: " + t.getMessage(), t);
+                                 }
+                             });
     }
+
     private void updateRecyclerView(List<User> userList) {
         if (userAdapter == null) {
             userAdapter = new UserAdapter(userList);
@@ -304,7 +351,8 @@ public class UserActivity extends AppCompatActivity implements OnDeleteClickList
             userAdapter.notifyDataSetChanged();
         }
     }
-    private void toolbars(){
+
+    private void toolbars() {
         Toolbar toolbar = findViewById(R.id.tool_bar_admin_user);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
@@ -325,57 +373,58 @@ public class UserActivity extends AppCompatActivity implements OnDeleteClickList
             }
         });
     }
+
     private void userList() {
         ApiService.apiService.getAllUsersWithSortBy(0, 10)
-                .enqueue(new Callback<BaseResponse<PageResponse<List<User>>>>() {
-                    @Override
-                    public void onResponse(
-                            Call<BaseResponse<PageResponse<List<User>>>> call,
-                            Response<BaseResponse<PageResponse<List<User>>>> response
-                    ) {
-                        if (response.isSuccessful()) {
-                            PageResponse<List<User>> pageResponse =
-                                    response.body()
-                                            .getData();
-                            if (pageResponse != null) {
-                                userList =
-                                        pageResponse.getContent();
-                                if (userList != null) {
-                                    for (User userResponse : userList) {
-                                        Log.d(
-                                                "User Info",
-                                                "First Name: " + userResponse.getFirstname() +
-                                                        ", Last Name: " + userResponse.getLastName() +
-                                                        ", Other Name: " + userResponse.getOtherName() +
-                                                        ", Email: " + userResponse.getEmail()
-                                        );
-                                    }
-                                    userAdapter = new UserAdapter(userList);
-                                    rcvUser.setAdapter(userAdapter);
-                                    userAdapter.notifyDataSetChanged();
-                                }
-                            }
-                        } else {
-                            try {
-                                Log.d(
-                                        "TAG",
-                                        response.errorBody()
-                                                .toString()
-                                );
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
+                             .enqueue(new Callback<BaseResponse<PageResponse<List<User>>>>() {
+                                 @Override
+                                 public void onResponse(
+                                         Call<BaseResponse<PageResponse<List<User>>>> call,
+                                         Response<BaseResponse<PageResponse<List<User>>>> response
+                                 ) {
+                                     if (response.isSuccessful()) {
+                                         PageResponse<List<User>> pageResponse =
+                                                 response.body()
+                                                         .getData();
+                                         if (pageResponse != null) {
+                                             userList =
+                                                     pageResponse.getContent();
+                                             if (userList != null) {
+                                                 for (User userResponse : userList) {
+                                                     Log.d(
+                                                             "User Info",
+                                                             "First Name: " + userResponse.getFirstname() +
+                                                                     ", Last Name: " + userResponse.getLastName() +
+                                                                     ", Other Name: " + userResponse.getOtherName() +
+                                                                     ", Email: " + userResponse.getEmail()
+                                                     );
+                                                 }
+                                                 userAdapter = new UserAdapter(userList);
+                                                 rcvUser.setAdapter(userAdapter);
+                                                 userAdapter.notifyDataSetChanged();
+                                             }
+                                         }
+                                     } else {
+                                         try {
+                                             Log.d(
+                                                     "TAG",
+                                                     response.errorBody()
+                                                             .toString()
+                                             );
+                                         } catch (Exception e) {
+                                             e.printStackTrace();
+                                         }
+                                     }
+                                 }
 
-                    @Override
-                    public void onFailure(
-                            Call<BaseResponse<PageResponse<List<User>>>> call,
-                            Throwable t
-                    ) {
-                        Log.e("E", t.getMessage());
-                    }
-                });
+                                 @Override
+                                 public void onFailure(
+                                         Call<BaseResponse<PageResponse<List<User>>>> call,
+                                         Throwable t
+                                 ) {
+                                     Log.e("E", t.getMessage());
+                                 }
+                             });
     }
 
 //    private void getAllUsersWithSortBy(String sortBy, String sortOrder) {
@@ -411,8 +460,6 @@ public class UserActivity extends AppCompatActivity implements OnDeleteClickList
 //            userAdapter.notifyDataSetChanged();
 //        }
 //    }
-
-
 
     @Override
     public void onDeleteClick(int position) {
