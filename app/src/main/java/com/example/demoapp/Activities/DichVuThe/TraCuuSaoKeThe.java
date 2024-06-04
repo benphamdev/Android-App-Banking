@@ -18,11 +18,11 @@ import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.example.demoapp.Activities.MainActivity;
 import com.example.demoapp.HttpRequest.ApiService;
-import com.example.demoapp.Models.Dto.Response.AccountInfoResponse;
-import com.example.demoapp.Models.Dto.Response.BaseResponse;
-import com.example.demoapp.Models.Dto.entity.Saving;
-import com.example.demoapp.Models.Dto.sharePreferences.SharePreferencesManager;
+import com.example.demoapp.Models.dto.response.AccountInfoResponse;
+import com.example.demoapp.Models.dto.response.BaseResponse;
+import com.example.demoapp.Models.entity.Saving;
 import com.example.demoapp.R;
+import com.example.demoapp.Utils.sharePreferences.SharePreferencesManager;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
@@ -33,7 +33,6 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -68,53 +67,83 @@ public class TraCuuSaoKeThe extends AppCompatActivity {
 
     private void process() {
 
-        ApiService.apiService.getAccountByUserId(userId).enqueue(new Callback<BaseResponse<AccountInfoResponse>>() {
-            @Override
-            public void onResponse(Call<BaseResponse<AccountInfoResponse>> call, Response<BaseResponse<AccountInfoResponse>> response) {
-                if(response.isSuccessful()) {
-                    assert response.body() != null;
-                    Log.d("SUCCESS", "so du: " + response.body().getData().getAccountBalance());
-                    labels.add("Tài khoản thanh toán \n" + response.body().getData().getAccountBalance() + "VND");
-                } else {
-                    try {
-                        Log.d("TAG", "so du: " + response.errorBody()
-                                .string());
+        ApiService.apiService.getAccountByUserId(userId)
+                             .enqueue(new Callback<BaseResponse<AccountInfoResponse>>() {
+                                 @Override
+                                 public void onResponse(
+                                         Call<BaseResponse<AccountInfoResponse>> call,
+                                         Response<BaseResponse<AccountInfoResponse>> response
+                                 ) {
+                                     if (response.isSuccessful()) {
+                                         assert response.body() != null;
+                                         Log.d(
+                                                 "SUCCESS",
+                                                 "so du: " + response.body()
+                                                                     .getData()
+                                                                     .getAccountBalance()
+                                         );
+                                         labels.add("Tài khoản thanh toán \n" + response.body()
+                                                                                        .getData()
+                                                                                        .getAccountBalance() + "VND");
+                                     } else {
+                                         try {
+                                             Log.d("TAG", "so du: " + response.errorBody()
+                                                                              .string());
 
-                    } catch(IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+                                         } catch (IOException e) {
+                                             e.printStackTrace();
+                                         }
+                                     }
+                                 }
 
-            @Override
-            public void onFailure(Call<BaseResponse<AccountInfoResponse>> call, Throwable throwable) {
-                Log.d("EEE", throwable.getMessage());
-            }
-        });
+                                 @Override
+                                 public void onFailure(
+                                         Call<BaseResponse<AccountInfoResponse>> call,
+                                         Throwable throwable
+                                 ) {
+                                     Log.d("EEE", throwable.getMessage());
+                                 }
+                             });
 
-        ApiService.apiService.getSaving(userId).enqueue(new Callback<BaseResponse<Saving>>() {
-            @Override
-            public void onResponse(@NonNull Call<BaseResponse<Saving>> call, @NonNull Response<BaseResponse<Saving>> response) {
-                if (response.isSuccessful()) {
-                    Log.d("SUCCESS", "ID_SAVING" + response.body().toString());
-                    Saving savingList = response.body().getData();
-                    amount = String.valueOf(savingList.getBaseAmount());
-                    refund = String.valueOf(savingList.getRefundAmount());
-                } else {
-                    try {
-                        String errorBodyString = response.errorBody().string();
-                        Log.e("TAGGGGGGGGG", errorBodyString);
-                    } catch (IOException e) {
-                        Log.e("TAGGGGGGFFFF", "Error parsing error response: " + e.getMessage());
-                    }
-                }
-            }
+        ApiService.apiService.getSaving(userId)
+                             .enqueue(new Callback<BaseResponse<Saving>>() {
+                                 @Override
+                                 public void onResponse(
+                                         @NonNull Call<BaseResponse<Saving>> call,
+                                         @NonNull Response<BaseResponse<Saving>> response
+                                 ) {
+                                     if (response.isSuccessful()) {
+                                         Log.d(
+                                                 "SUCCESS",
+                                                 "ID_SAVING" + response.body()
+                                                                       .toString()
+                                         );
+                                         Saving savingList = response.body()
+                                                                     .getData();
+                                         amount = String.valueOf(savingList.getBaseAmount());
+                                         refund = String.valueOf(savingList.getRefundAmount());
+                                     } else {
+                                         try {
+                                             String errorBodyString = response.errorBody()
+                                                                              .string();
+                                             Log.e("TAGGGGGGGGG", errorBodyString);
+                                         } catch (IOException e) {
+                                             Log.e(
+                                                     "TAGGGGGGFFFF",
+                                                     "Error parsing error response: " + e.getMessage()
+                                             );
+                                         }
+                                     }
+                                 }
 
-            @Override
-            public void onFailure(@NonNull Call<BaseResponse<Saving>> call, @NonNull Throwable t) {
-                Log.e("EEEEE", t.getMessage());
-            }
-        });
+                                 @Override
+                                 public void onFailure(
+                                         @NonNull Call<BaseResponse<Saving>> call,
+                                         @NonNull Throwable t
+                                 ) {
+                                     Log.e("EEEEE", t.getMessage());
+                                 }
+                             });
 
         toolbar = findViewById(R.id.tool_bar_tra_cuu_tai_khoan);
         setSupportActionBar(toolbar);

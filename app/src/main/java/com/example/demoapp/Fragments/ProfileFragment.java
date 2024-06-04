@@ -34,14 +34,14 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.demoapp.Activities.DatLaiMatKhau;
-import com.example.demoapp.Activities.SignIn;
+import com.example.demoapp.Activities.authen.SignIn;
 import com.example.demoapp.HttpRequest.ApiService;
 import com.example.demoapp.HttpRequest.RetrofitClient;
-import com.example.demoapp.Models.Dto.Response.BaseResponse;
-import com.example.demoapp.Models.Dto.Response.UserResponse;
-import com.example.demoapp.Models.Dto.sharePreferences.SharePreferencesManager;
+import com.example.demoapp.Models.dto.response.BaseResponse;
+import com.example.demoapp.Models.dto.response.UserResponse;
 import com.example.demoapp.R;
 import com.example.demoapp.Utils.RealPathUtil;
+import com.example.demoapp.Utils.sharePreferences.SharePreferencesManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -109,7 +109,7 @@ public class ProfileFragment extends Fragment {
                         Intent data = result.getData();
                         if (data == null) {
                             Toast.makeText(getActivity(), "Don't choose image", Toast.LENGTH_SHORT)
-                                    .show();
+                                 .show();
                             return;
                         }
                         imageUri = data.getData();
@@ -155,7 +155,7 @@ public class ProfileFragment extends Fragment {
         // Create a RequestBody instance from the file
         RequestBody requestFile = RequestBody.create(
                 MediaType.parse(getActivity().getContentResolver()
-                        .getType(imageUri)),
+                                             .getType(imageUri)),
                 file
         );
 
@@ -168,46 +168,46 @@ public class ProfileFragment extends Fragment {
 
         // Get the API interface
         apiService = RetrofitClient.getRetrofit()
-                .create(ApiService.class);
+                                   .create(ApiService.class);
 
         // Call the API
         apiService.uploadImage(userIdBody, body)
-                .enqueue(new Callback<BaseResponse<UserResponse>>() {
-                    @Override
-                    public void onResponse(
-                            Call<BaseResponse<UserResponse>> call,
-                            Response<BaseResponse<UserResponse>> response
-                    ) {
-                        if (response.isSuccessful()) {
-                            // Handle the response
-                            Toast.makeText(
-                                            getActivity(),
-                                            "Upload success",
-                                            Toast.LENGTH_SHORT
-                                    )
-                                    .show();
-                        } else {
-                            // Handle the error
-                            Toast.makeText(
-                                            getActivity(),
-                                            "Upload failed",
-                                            Toast.LENGTH_SHORT
-                                    )
-                                    .show();
-                            Log.e("Error2", response.message());
-                        }
-                    }
+                  .enqueue(new Callback<BaseResponse<UserResponse>>() {
+                      @Override
+                      public void onResponse(
+                              Call<BaseResponse<UserResponse>> call,
+                              Response<BaseResponse<UserResponse>> response
+                      ) {
+                          if (response.isSuccessful()) {
+                              // Handle the response
+                              Toast.makeText(
+                                           getActivity(),
+                                           "Upload success",
+                                           Toast.LENGTH_SHORT
+                                   )
+                                   .show();
+                          } else {
+                              // Handle the error
+                              Toast.makeText(
+                                           getActivity(),
+                                           "Upload failed",
+                                           Toast.LENGTH_SHORT
+                                   )
+                                   .show();
+                              Log.e("Error2", response.message());
+                          }
+                      }
 
-                    @Override
-                    public void onFailure(
-                            Call<BaseResponse<UserResponse>> call, Throwable t
-                    ) {
-                        // Handle the error
-                        Toast.makeText(getActivity(), "Upload failed", Toast.LENGTH_SHORT)
-                                .show();
-                        Log.e("Error1", t.getMessage());
-                    }
-                });
+                      @Override
+                      public void onFailure(
+                              Call<BaseResponse<UserResponse>> call, Throwable t
+                      ) {
+                          // Handle the error
+                          Toast.makeText(getActivity(), "Upload failed", Toast.LENGTH_SHORT)
+                               .show();
+                          Log.e("Error1", t.getMessage());
+                      }
+                  });
     }
 
     private void dispatchTakePhotoGallery() {
@@ -245,7 +245,7 @@ public class ProfileFragment extends Fragment {
             } else {
                 // Permission denied, show a message or handle accordingly
                 Toast.makeText(getActivity(), "Permission deny", Toast.LENGTH_SHORT)
-                        .show();
+                     .show();
             }
         }
 
@@ -256,7 +256,7 @@ public class ProfileFragment extends Fragment {
             } else {
                 // Permission denied, show a message or handle accordingly
                 Toast.makeText(getActivity(), "Permission deny", Toast.LENGTH_SHORT)
-                        .show();
+                     .show();
             }
         }
     }
@@ -277,10 +277,10 @@ public class ProfileFragment extends Fragment {
             values.put(MediaStore.Images.Media.TITLE, "New Picture");
             values.put(MediaStore.Images.Media.DESCRIPTION, "From the Camera");
             imageUri = getActivity().getContentResolver()
-                    .insert(
-                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                            values
-                    );
+                                    .insert(
+                                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                                            values
+                                    );
             cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
             cameraLauncher.launch(cameraIntent);
         }
@@ -299,13 +299,13 @@ public class ProfileFragment extends Fragment {
         chonAvatar.setOnClickListener(v -> dispatchTakePhotoGallery());
         dialog.show();
         dialog.getWindow()
-                .setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+              .setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow()
-                .setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+              .setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.getWindow()
-                .getAttributes().windowAnimations = R.style.DialogAnimation;
+              .getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.getWindow()
-                .setGravity(Gravity.BOTTOM);
+              .setGravity(Gravity.BOTTOM);
     }
 
     public void getMyProfile() {
@@ -322,97 +322,97 @@ public class ProfileFragment extends Fragment {
         Log.d("TOKENNNNNN", tokenApp);
 
         ApiService.apiService.updatePhoneToken(id, tokenApp)
-                .enqueue(new Callback<BaseResponse<Void>>() {
-                    @Override
-                    public void onResponse(
-                            Call<BaseResponse<Void>> call,
-                            Response<BaseResponse<Void>> response
-                    ) {
-                        if (response.isSuccessful()) {
-                            Log.d(
-                                    "SUCCESS",
-                                    "tokenApp: " + response.body()
-                                            .toString()
-                            );
-                        } else {
-                            try {
-                                Log.d("TAG", "tokenApp: " + response.errorBody()
-                                        .string());
+                             .enqueue(new Callback<BaseResponse<Void>>() {
+                                 @Override
+                                 public void onResponse(
+                                         Call<BaseResponse<Void>> call,
+                                         Response<BaseResponse<Void>> response
+                                 ) {
+                                     if (response.isSuccessful()) {
+                                         Log.d(
+                                                 "SUCCESS",
+                                                 "tokenApp: " + response.body()
+                                                                        .toString()
+                                         );
+                                     } else {
+                                         try {
+                                             Log.d("TAG", "tokenApp: " + response.errorBody()
+                                                                                 .string());
 
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
+                                         } catch (IOException e) {
+                                             e.printStackTrace();
+                                         }
+                                     }
+                                 }
 
-                    @Override
-                    public void onFailure(
-                            Call<BaseResponse<Void>> call, Throwable throwable
-                    ) {
-                        Log.e("E:", throwable.getMessage());
-                    }
-                });
+                                 @Override
+                                 public void onFailure(
+                                         Call<BaseResponse<Void>> call, Throwable throwable
+                                 ) {
+                                     Log.e("E:", throwable.getMessage());
+                                 }
+                             });
 
         ApiService.apiService.getMyProfile("Bearer " + tokenApi)
-                .enqueue(new Callback<BaseResponse<UserResponse>>() {
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void onResponse(
-                            @NonNull Call<BaseResponse<UserResponse>> call,
-                            @NonNull Response<BaseResponse<UserResponse>> response
-                    ) {
-                        if (response.isSuccessful()) {
-                            Log.d(
-                                    "SUCCESS",
-                                    "onResponse: " + response.body()
-                                            .toString()
-                            );
-                            UserResponse userResponse = response.body()
-                                    .getData();
+                             .enqueue(new Callback<BaseResponse<UserResponse>>() {
+                                 @SuppressLint("SetTextI18n")
+                                 @Override
+                                 public void onResponse(
+                                         @NonNull Call<BaseResponse<UserResponse>> call,
+                                         @NonNull Response<BaseResponse<UserResponse>> response
+                                 ) {
+                                     if (response.isSuccessful()) {
+                                         Log.d(
+                                                 "SUCCESS",
+                                                 "onResponse: " + response.body()
+                                                                          .toString()
+                                         );
+                                         UserResponse userResponse = response.body()
+                                                                             .getData();
 
-                            // set full name for user
-                            textViewInfo.setText(userResponse.getFirstName() + " " +
-                                    userResponse.getLastName() + " " +
-                                    userResponse.getOtherName());
+                                         // set full name for user
+                                         textViewInfo.setText(userResponse.getFirstName() + " " +
+                                                                      userResponse.getLastName() + " " +
+                                                                      userResponse.getOtherName());
 
-                            //  set image avatar for user
-                            if (userResponse.getProfilePicture() != null) {
-                                String avatar = userResponse.getProfilePicture();
-                                Glide.with(ProfileFragment.this)
-                                        .load(avatar)
-                                        .into(imgProfile);
-                            }
+                                         //  set image avatar for user
+                                         if (userResponse.getProfilePicture() != null) {
+                                             String avatar = userResponse.getProfilePicture();
+                                             Glide.with(ProfileFragment.this)
+                                                  .load(avatar)
+                                                  .into(imgProfile);
+                                         }
 
-                            // save userid in SharePreferencesManager
-                            SharePreferencesManager userId =
-                                    new SharePreferencesManager(context);
+                                         // save userid in SharePreferencesManager
+                                         SharePreferencesManager userId =
+                                                 new SharePreferencesManager(context);
 
-                            userId.saveUserId(response.body()
-                                    .getData()
-                                    .getId());
+                                         userId.saveUserId(response.body()
+                                                                   .getData()
+                                                                   .getId());
 
-                            idUser = String.valueOf(response.body()
-                                    .getData()
-                                    .getId());
+                                         idUser = String.valueOf(response.body()
+                                                                         .getData()
+                                                                         .getId());
 
-                        } else {
-                            try {
-                                Log.d("TAG", "onResponse: " + response.errorBody()
-                                        .string());
+                                     } else {
+                                         try {
+                                             Log.d("TAG", "onResponse: " + response.errorBody()
+                                                                                   .string());
 
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
+                                         } catch (IOException e) {
+                                             e.printStackTrace();
+                                         }
+                                     }
+                                 }
 
-                    @Override
-                    public void onFailure(
-                            @NonNull Call<BaseResponse<UserResponse>> call,
-                            @NonNull Throwable throwable
-                    ) {
-                        Log.e("E:", Objects.requireNonNull(throwable.getMessage()));
-                    }
-                });
+                                 @Override
+                                 public void onFailure(
+                                         @NonNull Call<BaseResponse<UserResponse>> call,
+                                         @NonNull Throwable throwable
+                                 ) {
+                                     Log.e("E:", Objects.requireNonNull(throwable.getMessage()));
+                                 }
+                             });
     }
 }

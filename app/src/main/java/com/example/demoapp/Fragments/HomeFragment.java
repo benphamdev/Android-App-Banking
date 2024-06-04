@@ -62,8 +62,6 @@ import com.example.demoapp.Activities.NapTien.NapTienDaiLy;
 import com.example.demoapp.Activities.NapTien.NapTienDienThoai;
 import com.example.demoapp.Activities.NapTien.NapTienTKGiaoThong;
 import com.example.demoapp.Activities.NapTien.NapTienViDienTu;
-import com.example.demoapp.Activities.Photo;
-import com.example.demoapp.Activities.SignIn;
 import com.example.demoapp.Activities.ThanhToanHoaDon.CaiDatHinhThucThanhToanSaoKe;
 import com.example.demoapp.Activities.ThanhToanHoaDon.CuocDiDongTraSau;
 import com.example.demoapp.Activities.ThanhToanHoaDon.CuocDienThoaiCoDinh;
@@ -109,15 +107,16 @@ import com.example.demoapp.Activities.TinDung.TatToanVayKhac;
 import com.example.demoapp.Activities.TinDung.ThanhToanKhoanVay;
 import com.example.demoapp.Activities.TinDung.VayThauChiTatToan;
 import com.example.demoapp.Activities.TinDung.VayTrucTuyenCamCoTienGui;
-import com.example.demoapp.Activities.admin.AdminsActivity;
+import com.example.demoapp.Activities.authen.SignIn;
 import com.example.demoapp.Adapters.PhotpViewPager2Adapter;
 import com.example.demoapp.HttpRequest.ApiService;
-import com.example.demoapp.Models.Dto.Response.AccountInfoResponse;
-import com.example.demoapp.Models.Dto.Response.BaseResponse;
-import com.example.demoapp.Models.Dto.Response.PostResponse;
-import com.example.demoapp.Models.Dto.Response.UserResponse;
-import com.example.demoapp.Models.Dto.sharePreferences.SharePreferencesManager;
+import com.example.demoapp.Models.dto.response.AccountInfoResponse;
+import com.example.demoapp.Models.dto.response.BaseResponse;
+import com.example.demoapp.Models.dto.response.PostResponse;
+import com.example.demoapp.Models.dto.response.UserResponse;
+import com.example.demoapp.Models.entity.Thumbnail;
 import com.example.demoapp.R;
+import com.example.demoapp.Utils.sharePreferences.SharePreferencesManager;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -317,95 +316,95 @@ public class HomeFragment extends Fragment {
         Log.d("TOKENNNNNN", tokenApp);
 
         ApiService.apiService.updatePhoneToken(id, tokenApp)
-                .enqueue(new Callback<BaseResponse<Void>>() {
-                    @Override
-                    public void onResponse(
-                            Call<BaseResponse<Void>> call,
-                            Response<BaseResponse<Void>> response
-                    ) {
-                        if (response.isSuccessful()) {
-                            Log.d(
-                                    "SUCCESS",
-                                    "tokenApp: " + response.body()
-                                            .toString()
-                            );
-                        } else {
-                            try {
-                                Log.d("TAG", "tokenApp: " + response.errorBody()
-                                        .string());
+                             .enqueue(new Callback<BaseResponse<Void>>() {
+                                 @Override
+                                 public void onResponse(
+                                         Call<BaseResponse<Void>> call,
+                                         Response<BaseResponse<Void>> response
+                                 ) {
+                                     if (response.isSuccessful()) {
+                                         Log.d(
+                                                 "SUCCESS",
+                                                 "tokenApp: " + response.body()
+                                                                        .toString()
+                                         );
+                                     } else {
+                                         try {
+                                             Log.d("TAG", "tokenApp: " + response.errorBody()
+                                                                                 .string());
 
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
+                                         } catch (IOException e) {
+                                             e.printStackTrace();
+                                         }
+                                     }
+                                 }
 
-                    @Override
-                    public void onFailure(
-                            Call<BaseResponse<Void>> call, Throwable throwable
-                    ) {
-                        Log.e("E:", throwable.getMessage());
-                    }
-                });
+                                 @Override
+                                 public void onFailure(
+                                         Call<BaseResponse<Void>> call, Throwable throwable
+                                 ) {
+                                     Log.e("E:", throwable.getMessage());
+                                 }
+                             });
 
         ApiService.apiService.getMyProfile("Bearer " + tokenApi)
-                .enqueue(new Callback<BaseResponse<UserResponse>>() {
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void onResponse(
-                            @NonNull Call<BaseResponse<UserResponse>> call,
-                            @NonNull Response<BaseResponse<UserResponse>> response
-                    ) {
-                        if (response.isSuccessful()) {
-                            Log.d(
-                                    "SUCCESS",
-                                    "onResponse: " + response.body()
-                                            .toString()
-                            );
-                            UserResponse userResponse = response.body()
-                                    .getData();
+                             .enqueue(new Callback<BaseResponse<UserResponse>>() {
+                                 @SuppressLint("SetTextI18n")
+                                 @Override
+                                 public void onResponse(
+                                         @NonNull Call<BaseResponse<UserResponse>> call,
+                                         @NonNull Response<BaseResponse<UserResponse>> response
+                                 ) {
+                                     if (response.isSuccessful()) {
+                                         Log.d(
+                                                 "SUCCESS",
+                                                 "onResponse: " + response.body()
+                                                                          .toString()
+                                         );
+                                         UserResponse userResponse = response.body()
+                                                                             .getData();
 
-                            // set full name for user
-                            tvXinChao.setText("Xin Chào " +
-                                    userResponse.getFirstName() + " " +
-                                    userResponse.getLastName() + " " +
-                                    userResponse.getOtherName());
+                                         // set full name for user
+                                         tvXinChao.setText("Xin Chào " +
+                                                                   userResponse.getFirstName() + " " +
+                                                                   userResponse.getLastName() + " " +
+                                                                   userResponse.getOtherName());
 
-                            //  set image avatar for user
-                            if (userResponse.getProfilePicture() != null) {
-                                String avatar = userResponse.getProfilePicture();
-                                Glide.with(HomeFragment.this)
-                                        .load(avatar)
-                                        .into(imgCircleProfile);
-                            }
+                                         //  set image avatar for user
+                                         if (userResponse.getProfilePicture() != null) {
+                                             String avatar = userResponse.getProfilePicture();
+                                             Glide.with(HomeFragment.this)
+                                                  .load(avatar)
+                                                  .into(imgCircleProfile);
+                                         }
 
-                            // save userid in SharePreferencesManager
-                            SharePreferencesManager userId =
-                                    new SharePreferencesManager(context);
+                                         // save userid in SharePreferencesManager
+                                         SharePreferencesManager userId =
+                                                 new SharePreferencesManager(context);
 
-                            userId.saveUserId(response.body()
-                                    .getData()
-                                    .getId());
+                                         userId.saveUserId(response.body()
+                                                                   .getData()
+                                                                   .getId());
 
-                        } else {
-                            try {
-                                Log.d("TAG", "onResponse: " + response.errorBody()
-                                        .string());
+                                     } else {
+                                         try {
+                                             Log.d("TAG", "onResponse: " + response.errorBody()
+                                                                                   .string());
 
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
+                                         } catch (IOException e) {
+                                             e.printStackTrace();
+                                         }
+                                     }
+                                 }
 
-                    @Override
-                    public void onFailure(
-                            @NonNull Call<BaseResponse<UserResponse>> call,
-                            @NonNull Throwable throwable
-                    ) {
-                        Log.e("E:", Objects.requireNonNull(throwable.getMessage()));
-                    }
-                });
+                                 @Override
+                                 public void onFailure(
+                                         @NonNull Call<BaseResponse<UserResponse>> call,
+                                         @NonNull Throwable throwable
+                                 ) {
+                                     Log.e("E:", Objects.requireNonNull(throwable.getMessage()));
+                                 }
+                             });
 
 //        Account
         TextView tv_so_tai_khoan = view.findViewById(R.id.tv_so_tai_khoan);
@@ -413,59 +412,59 @@ public class HomeFragment extends Fragment {
         ImageView imv_on_off = view.findViewById(R.id.imv_on_off);
 
         ApiService.apiService.getAccountByUserId(id)
-                .enqueue(new Callback<BaseResponse<AccountInfoResponse>>() {
-                    @Override
-                    public void onResponse(
-                            Call<BaseResponse<AccountInfoResponse>> call,
-                            Response<BaseResponse<AccountInfoResponse>> response
-                    ) {
-                        if (response.isSuccessful()) {
-                            Log.d(
-                                    "SUCCESS",
-                                    "ACCOUNT: " + response.body()
-                                            .toString()
-                            );
-                            BaseResponse<AccountInfoResponse> baseResponse =
-                                    response.body();
-                            if (baseResponse != null && baseResponse.getData() != null) {
-                                Log.d(
-                                        "SUCCESS",
-                                        "onResponse: " + baseResponse
-                                );
-                                AccountInfoResponse data = baseResponse.getData();
-                                SharePreferencesManager stk =
-                                        new SharePreferencesManager(context);
-                                stk.saveStk(data.getAccountNumber());
-                                SharePreferencesManager manager2 =
-                                        new SharePreferencesManager(context);
-                                int s = Integer.parseInt(response.body()
-                                                                 .getData()
-                                                                 .getId());
-                                manager2.saveAccountId(s);
-                                tv_so_tai_khoan.setText(data.getAccountNumber());
-                                tv_tien_tai_khoan.setText(String.valueOf(data.getAccountBalance()));
-                                tv_tien_tai_khoan.setVisibility(View.GONE);
-                            }
+                             .enqueue(new Callback<BaseResponse<AccountInfoResponse>>() {
+                                 @Override
+                                 public void onResponse(
+                                         Call<BaseResponse<AccountInfoResponse>> call,
+                                         Response<BaseResponse<AccountInfoResponse>> response
+                                 ) {
+                                     if (response.isSuccessful()) {
+                                         Log.d(
+                                                 "SUCCESS",
+                                                 "ACCOUNT: " + response.body()
+                                                                       .toString()
+                                         );
+                                         BaseResponse<AccountInfoResponse> baseResponse =
+                                                 response.body();
+                                         if (baseResponse != null && baseResponse.getData() != null) {
+                                             Log.d(
+                                                     "SUCCESS",
+                                                     "onResponse: " + baseResponse
+                                             );
+                                             AccountInfoResponse data = baseResponse.getData();
+                                             SharePreferencesManager stk =
+                                                     new SharePreferencesManager(context);
+                                             stk.saveStk(data.getAccountNumber());
+                                             SharePreferencesManager manager2 =
+                                                     new SharePreferencesManager(context);
+                                             int s = Integer.parseInt(response.body()
+                                                                              .getData()
+                                                                              .getId());
+                                             manager2.saveAccountId(s);
+                                             tv_so_tai_khoan.setText(data.getAccountNumber());
+                                             tv_tien_tai_khoan.setText(String.valueOf(data.getAccountBalance()));
+                                             tv_tien_tai_khoan.setVisibility(View.GONE);
+                                         }
 
-                        } else {
-                            try {
-                                Log.d("TAG", "onResponse: " + response.errorBody()
-                                        .string());
+                                     } else {
+                                         try {
+                                             Log.d("TAG", "onResponse: " + response.errorBody()
+                                                                                   .string());
 
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
+                                         } catch (IOException e) {
+                                             e.printStackTrace();
+                                         }
+                                     }
+                                 }
 
-                    @Override
-                    public void onFailure(
-                            Call<BaseResponse<AccountInfoResponse>> call,
-                            Throwable throwable
-                    ) {
-                        Log.e("E:", throwable.getMessage());
-                    }
-                });
+                                 @Override
+                                 public void onFailure(
+                                         Call<BaseResponse<AccountInfoResponse>> call,
+                                         Throwable throwable
+                                 ) {
+                                     Log.e("E:", throwable.getMessage());
+                                 }
+                             });
 
         // Thiết lập lắng nghe sự kiện cho ImageView
         imv_on_off.setOnClickListener(v -> {
@@ -674,9 +673,9 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 ProfileFragment profileFragment = new ProfileFragment();
                 getParentFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, profileFragment)
-                        .addToBackStack(null)
-                        .commit();
+                                          .replace(R.id.fragment_container, profileFragment)
+                                          .addToBackStack(null)
+                                          .commit();
             }
         });
     }
@@ -771,59 +770,59 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String textToCopy = tvCopy.getText()
-                        .toString();
+                                          .toString();
                 ClipboardManager clipboardManager =
                         (ClipboardManager) requireContext().getSystemService(Context.CLIPBOARD_SERVICE);
                 ClipData clipData = ClipData.newPlainText("text", textToCopy);
                 clipboardManager.setPrimaryClip(clipData);
                 Toast.makeText(requireContext(), "Đã sao chép", Toast.LENGTH_SHORT)
-                        .show();
+                     .show();
             }
         });
     }
 
     private void getPhoto() {
         ApiService.apiService.getPosts()
-                .enqueue(new Callback<BaseResponse<List<PostResponse>>>() {
-                    @Override
-                    public void onResponse(
-                            Call<BaseResponse<List<PostResponse>>> call,
-                            Response<BaseResponse<List<PostResponse>>> response
-                    ) {
-                        if (response.isSuccessful() && response.body() != null) {
-                            List<PostResponse> postResponses = response.body()
-                                    .getData();
-                            List<Photo> photos = new ArrayList<>();
-                            for (PostResponse postResponse : postResponses) {
-                                photos.add(new Photo(postResponse.getThumbnail()));
-                                Log.d(
-                                        "size",
-                                        String.valueOf(postResponse.getThumbnail())
-                                );
-                            }
-                            Log.d("size", String.valueOf(photos.size()));
-                            setupViewPager(photos);
-                        } else {
-                        }
-                    }
+                             .enqueue(new Callback<BaseResponse<List<PostResponse>>>() {
+                                 @Override
+                                 public void onResponse(
+                                         Call<BaseResponse<List<PostResponse>>> call,
+                                         Response<BaseResponse<List<PostResponse>>> response
+                                 ) {
+                                     if (response.isSuccessful() && response.body() != null) {
+                                         List<PostResponse> postResponses = response.body()
+                                                                                    .getData();
+                                         List<Thumbnail> thumbnails = new ArrayList<>();
+                                         for (PostResponse postResponse : postResponses) {
+                                             thumbnails.add(new Thumbnail(postResponse.getThumbnail()));
+                                             Log.d(
+                                                     "size",
+                                                     String.valueOf(postResponse.getThumbnail())
+                                             );
+                                         }
+                                         Log.d("size", String.valueOf(thumbnails.size()));
+                                         setupViewPager(thumbnails);
+                                     } else {
+                                     }
+                                 }
 
-                    @Override
-                    public void onFailure(
-                            Call<BaseResponse<List<PostResponse>>> call, Throwable t
-                    ) {
-                        Log.e("E", t.getMessage());
-                    }
-                });
+                                 @Override
+                                 public void onFailure(
+                                         Call<BaseResponse<List<PostResponse>>> call, Throwable t
+                                 ) {
+                                     Log.e("E", t.getMessage());
+                                 }
+                             });
     }
 
-    private void setupViewPager(List<Photo> photos) {
+    private void setupViewPager(List<Thumbnail> thumbnails) {
         ViewPager2 viewPager2 = requireView().findViewById(R.id.view_pager2);
         viewPager2.setClipToPadding(false);
         viewPager2.setClipChildren(false);
         viewPager2.setOffscreenPageLimit(3);
         viewPager2.getChildAt(0)
-                .setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
-        PhotpViewPager2Adapter adapter = new PhotpViewPager2Adapter(photos);
+                  .setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+        PhotpViewPager2Adapter adapter = new PhotpViewPager2Adapter(thumbnails);
         viewPager2.setAdapter(adapter);
 
         final int autoScrollSpeed = 3000;

@@ -10,18 +10,18 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.bumptech.glide.Glide;
-import com.example.demoapp.Activities.Photo;
+import com.example.demoapp.Models.entity.Thumbnail;
 import com.example.demoapp.R;
 
 import java.util.List;
 
 public class PhotoAdapter extends PagerAdapter {
-    private Context context;
-    private List<Photo> photos;
+    private final Context context;
+    private final List<Thumbnail> thumbnails;
 
-    public PhotoAdapter(Context context, List<Photo> photos) {
+    public PhotoAdapter(Context context, List<Thumbnail> thumbnails) {
         this.context = context;
-        this.photos = photos;
+        this.thumbnails = thumbnails;
     }
 
     @NonNull
@@ -32,11 +32,11 @@ public class PhotoAdapter extends PagerAdapter {
         View view = LayoutInflater.from(container.getContext())
                                   .inflate(R.layout.layout_image_view_pager, container, false);
         ImageView imgPhoto = view.findViewById(R.id.img_slider);
-        Photo photo = photos.get(position);
+        Thumbnail thumbnail = thumbnails.get(position);
 
-        if (photo != null) {
+        if (thumbnail != null) {
             Glide.with(context)
-                 .load(photo.getUrl())
+                 .load(thumbnail.getUrl())
                  .into(imgPhoto);
 
         }
@@ -46,8 +46,8 @@ public class PhotoAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        if (photos != null) {
-            return photos.size();
+        if (thumbnails != null) {
+            return thumbnails.size();
         }
         return 0;
     }

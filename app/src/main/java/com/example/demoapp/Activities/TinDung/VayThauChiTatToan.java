@@ -1,7 +1,5 @@
 package com.example.demoapp.Activities.TinDung;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,22 +11,26 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.example.demoapp.Activities.MainActivity;
-import com.example.demoapp.Activities.TietKiem.MoTietKiem;
-import com.example.demoapp.Fragments.HomeFragment;
-import com.example.demoapp.HttpRequest.ApiService;
-import com.example.demoapp.Models.Dto.Requests.LoanDetailRequest;
-import com.example.demoapp.Models.Dto.Response.AccountInfoResponse;
-import com.example.demoapp.Models.Dto.Response.BaseResponse;
-import com.example.demoapp.Models.Dto.entity.LoanDetail;
-import com.example.demoapp.Models.Dto.entity.LoanInfo;
-import com.example.demoapp.Models.Dto.sharePreferences.SharePreferencesManager;
-import com.example.demoapp.R;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
+
+import com.example.demoapp.Activities.MainActivity;
+import com.example.demoapp.Fragments.HomeFragment;
+import com.example.demoapp.HttpRequest.ApiService;
+import com.example.demoapp.Models.dto.requests.LoanDetailRequest;
+import com.example.demoapp.Models.dto.response.AccountInfoResponse;
+import com.example.demoapp.Models.dto.response.BaseResponse;
+import com.example.demoapp.Models.entity.LoanDetail;
+import com.example.demoapp.Models.entity.LoanInfo;
+import com.example.demoapp.R;
+import com.example.demoapp.Utils.sharePreferences.SharePreferencesManager;
+
 import java.io.IOException;
 import java.util.Random;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -83,6 +85,7 @@ public class VayThauChiTatToan extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
     private void showLoanApprovalSuccessDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Kết quả vay tiền");
@@ -101,34 +104,49 @@ public class VayThauChiTatToan extends AppCompatActivity {
     }
 
     private void loanApi() {
-        int month = Integer.parseInt(edtThoiGianVay.getText().toString());
-        Long loanAmount = Long.valueOf(edtSoTienVay.getText().toString());
+        int month = Integer.parseInt(edtThoiGianVay.getText()
+                                                   .toString());
+        Long loanAmount = Long.valueOf(edtSoTienVay.getText()
+                                                   .toString());
 
         double interestRate = 5.5;
-        LoanInfo loanInfo = new LoanInfo(loanAmount, userId , interestRate);
-        Log.d("TAGGGGGGGGGG", randomNumber + " " + userId + " " + interestRate + " " + month + " " + loanAmount);
-        LoanDetailRequest loanDetail = new LoanDetailRequest((long) randomNumber,month ,loanInfo);
-        ApiService.apiService.saveLoanDetail(loanDetail).enqueue(new Callback<BaseResponse<LoanDetail>>() {
-            @Override
-            public void onResponse(Call<BaseResponse<LoanDetail>> call, Response<BaseResponse<LoanDetail>> response) {
-                if(response.isSuccessful()) {
-                    Log.d("SUCCESS", "TK : " + response.body().toString());
-                } else {
-                    try {
-                        Log.d("TAG", "TK : " + response.errorBody()
-                                .string());
+        LoanInfo loanInfo = new LoanInfo(loanAmount, userId, interestRate);
+        Log.d(
+                "TAGGGGGGGGGG",
+                randomNumber + " " + userId + " " + interestRate + " " + month + " " + loanAmount
+        );
+        LoanDetailRequest loanDetail = new LoanDetailRequest((long) randomNumber, month, loanInfo);
+        ApiService.apiService.saveLoanDetail(loanDetail)
+                             .enqueue(new Callback<BaseResponse<LoanDetail>>() {
+                                 @Override
+                                 public void onResponse(
+                                         Call<BaseResponse<LoanDetail>> call,
+                                         Response<BaseResponse<LoanDetail>> response
+                                 ) {
+                                     if (response.isSuccessful()) {
+                                         Log.d(
+                                                 "SUCCESS",
+                                                 "TK : " + response.body()
+                                                                   .toString()
+                                         );
+                                     } else {
+                                         try {
+                                             Log.d("TAG", "TK : " + response.errorBody()
+                                                                            .string());
 
-                    } catch(IOException e) {
-                        Log.e("EE", e.getMessage());
-                    }
-                }
-            }
+                                         } catch (IOException e) {
+                                             Log.e("EE", e.getMessage());
+                                         }
+                                     }
+                                 }
 
-            @Override
-            public void onFailure(Call<BaseResponse<LoanDetail>> call, Throwable throwable) {
-                Log.e("EEEE", throwable.getMessage());
-            }
-        });
+                                 @Override
+                                 public void onFailure(
+                                         Call<BaseResponse<LoanDetail>> call, Throwable throwable
+                                 ) {
+                                     Log.e("EEEE", throwable.getMessage());
+                                 }
+                             });
     }
 
     private void process() {
@@ -147,37 +165,54 @@ public class VayThauChiTatToan extends AppCompatActivity {
         // Thiết lập màu sắc cho icon
         if (drawable != null) {
             drawable = DrawableCompat.wrap(drawable);
-            DrawableCompat.setTint(drawable, ContextCompat.getColor(this, R.color.white)); // Thay đổi your_color thành màu sắc bạn muốn
+            DrawableCompat.setTint(
+                    drawable,
+                    ContextCompat.getColor(this, R.color.white)
+            ); // Thay đổi your_color thành màu sắc bạn muốn
         }
 
         SharePreferencesManager manager = new SharePreferencesManager(VayThauChiTatToan.this);
         userId = manager.getUserId();
-        ApiService.apiService.getAccountById(userId).enqueue(new Callback<BaseResponse<AccountInfoResponse>>() {
-            @Override
-            public void onResponse(Call<BaseResponse<AccountInfoResponse>> call, Response<BaseResponse<AccountInfoResponse>> response) {
-                if(response.isSuccessful()) {
-                    Log.d("SUCCESS", "onResponse: " + response.body().toString());
-                    AccountInfoResponse data = response.body().getData();
-                    String sodu = data.getAccountBalance().toString();
-                    fromAccountNumber = data.getAccountNumber().toString();
+        ApiService.apiService.getAccountById(userId)
+                             .enqueue(new Callback<BaseResponse<AccountInfoResponse>>() {
+                                 @Override
+                                 public void onResponse(
+                                         Call<BaseResponse<AccountInfoResponse>> call,
+                                         Response<BaseResponse<AccountInfoResponse>> response
+                                 ) {
+                                     if (response.isSuccessful()) {
+                                         Log.d(
+                                                 "SUCCESS",
+                                                 "onResponse: " + response.body()
+                                                                          .toString()
+                                         );
+                                         AccountInfoResponse data = response.body()
+                                                                            .getData();
+                                         String sodu = data.getAccountBalance()
+                                                           .toString();
+                                         fromAccountNumber = data.getAccountNumber();
 
-                    txtSodu.setText(sodu);
-                    txtStk.setText(data.getAccountNumber());
-                } else {
-                    try {
-                        Log.d("TAG", "onResponse: " + response.errorBody()
-                                .string());
+                                         txtSodu.setText(sodu);
+                                         txtStk.setText(data.getAccountNumber());
+                                     } else {
+                                         try {
+                                             Log.d("TAG", "onResponse: " + response.errorBody()
+                                                                                   .string());
 
-                    } catch(IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-            @Override
-            public void onFailure(Call<BaseResponse<AccountInfoResponse>> call, Throwable throwable) {
+                                         } catch (IOException e) {
+                                             e.printStackTrace();
+                                         }
+                                     }
+                                 }
 
-            }
-        });
+                                 @Override
+                                 public void onFailure(
+                                         Call<BaseResponse<AccountInfoResponse>> call,
+                                         Throwable throwable
+                                 ) {
+
+                                 }
+                             });
 
         // Đặt hình ảnh đã được thiết lập màu sắc làm biểu tượng trở lại trên ImageView
         backButton.setImageDrawable(drawable);

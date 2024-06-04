@@ -8,10 +8,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,10 +21,10 @@ import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
 import com.example.demoapp.Activities.MainActivity;
-import com.example.demoapp.Models.Dto.dao.ExchangeRate;
+import com.example.demoapp.Models.dao.ExchangeRate;
 import com.example.demoapp.R;
 import com.example.demoapp.Utils.worker.UpdateExchangeRateWorker;
-import com.example.demoapp.database.AppDatabase;
+import com.example.demoapp.LocalDatabase.AppDatabase;
 import com.hbb20.CountryCodePicker;
 
 import java.util.concurrent.ExecutorService;

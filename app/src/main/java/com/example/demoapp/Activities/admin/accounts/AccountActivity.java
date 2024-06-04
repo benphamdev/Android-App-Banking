@@ -1,12 +1,5 @@
 package com.example.demoapp.Activities.admin.accounts;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -14,12 +7,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.demoapp.Activities.admin.AdminsActivity;
 import com.example.demoapp.Activities.admin.OnDeleteClickListener;
-import com.example.demoapp.Activities.admin.branchInfo.BranchInfoActivity;
 import com.example.demoapp.HttpRequest.ApiService;
-import com.example.demoapp.Models.Dto.Response.AccountInfoResponse;
-import com.example.demoapp.Models.Dto.Response.BaseResponse;
+import com.example.demoapp.Models.dto.response.AccountInfoResponse;
+import com.example.demoapp.Models.dto.response.BaseResponse;
 import com.example.demoapp.R;
 
 import java.util.ArrayList;
@@ -31,9 +30,9 @@ import retrofit2.Response;
 
 public class AccountActivity extends AppCompatActivity implements OnDeleteClickListener {
 
+    private final List<AccountInfoResponse> accountInfoResponses = new ArrayList<>();
     private RecyclerView rcvAccount;
     private AccountInfoAdapter accountInfoAdapter;
-    private List<AccountInfoResponse> accountInfoResponses = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +45,7 @@ public class AccountActivity extends AppCompatActivity implements OnDeleteClickL
         toolbars();
         getAccounts();
     }
+
     private void toolbars() {
         Toolbar toolbar = findViewById(R.id.tool_bar_admin_account);
         setSupportActionBar(toolbar);
@@ -67,45 +67,46 @@ public class AccountActivity extends AppCompatActivity implements OnDeleteClickL
             }
         });
     }
+
     private void getAccounts() {
         ApiService.apiService.getAccount()
-                .enqueue(new Callback<BaseResponse<List<AccountInfoResponse>>>() {
-                    @Override
-                    public void onResponse(
-                            Call<BaseResponse<List<AccountInfoResponse>>> call,
-                            Response<BaseResponse<List<AccountInfoResponse>>> response
-                    ) {
-                        if (response.isSuccessful()) {
-                            List<AccountInfoResponse> accountInfoList = response.body()
-                                    .getData();
-                            if (accountInfoList != null && !accountInfoList.isEmpty()) {
-                                // Initialize the adapter with the account info list
-                                AccountInfoAdapter accountInfoAdapter =
-                                        new AccountInfoAdapter(accountInfoList);
-                                // Set adapter to RecyclerView
-                                rcvAccount.setAdapter(accountInfoAdapter);
-                            }
-                        } else {
-                            try {
-                                Log.e(
-                                        "TagAccount",
-                                        response.errorBody()
-                                                .toString()
-                                );
-                            } catch (Exception e) {
-                                e.getMessage();
-                            }
-                        }
-                    }
+                             .enqueue(new Callback<BaseResponse<List<AccountInfoResponse>>>() {
+                                 @Override
+                                 public void onResponse(
+                                         Call<BaseResponse<List<AccountInfoResponse>>> call,
+                                         Response<BaseResponse<List<AccountInfoResponse>>> response
+                                 ) {
+                                     if (response.isSuccessful()) {
+                                         List<AccountInfoResponse> accountInfoList = response.body()
+                                                                                             .getData();
+                                         if (accountInfoList != null && !accountInfoList.isEmpty()) {
+                                             // Initialize the adapter with the account info list
+                                             AccountInfoAdapter accountInfoAdapter =
+                                                     new AccountInfoAdapter(accountInfoList);
+                                             // Set adapter to RecyclerView
+                                             rcvAccount.setAdapter(accountInfoAdapter);
+                                         }
+                                     } else {
+                                         try {
+                                             Log.e(
+                                                     "TagAccount",
+                                                     response.errorBody()
+                                                             .toString()
+                                             );
+                                         } catch (Exception e) {
+                                             e.getMessage();
+                                         }
+                                     }
+                                 }
 
-                    @Override
-                    public void onFailure(
-                            Call<BaseResponse<List<AccountInfoResponse>>> call,
-                            Throwable t
-                    ) {
-                        Log.e("E:", t.getMessage());
-                    }
-                });
+                                 @Override
+                                 public void onFailure(
+                                         Call<BaseResponse<List<AccountInfoResponse>>> call,
+                                         Throwable t
+                                 ) {
+                                     Log.e("E:", t.getMessage());
+                                 }
+                             });
     }
 
     @Override

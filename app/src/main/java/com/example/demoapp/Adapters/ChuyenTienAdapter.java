@@ -9,16 +9,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.demoapp.Activities.UngDung;
+import com.example.demoapp.Models.entity.Application;
 import com.example.demoapp.R;
 
 import java.util.List;
 
 public class ChuyenTienAdapter extends RecyclerView.Adapter<ChuyenTienAdapter.ChuyenTienViewHolder> {
 
-    private List<UngDung> chuyenTienList;
+    private List<Application> chuyenTienList;
 
-    public void setData(List<UngDung> list) {
+    public void setData(List<Application> list) {
         this.chuyenTienList = list;
         notifyDataSetChanged();
     }
@@ -38,12 +38,12 @@ public class ChuyenTienAdapter extends RecyclerView.Adapter<ChuyenTienAdapter.Ch
     public void onBindViewHolder(
             @NonNull ChuyenTienViewHolder holder, int position
     ) {
-        UngDung ungDung = chuyenTienList.get(position);
-        if (ungDung == null) {
+        Application application = chuyenTienList.get(position);
+        if (application == null) {
             return;
         }
-        holder.tvChuyenTien.setText(ungDung.getName());
-        holder.imgChuyenTien.setImageResource(ungDung.getResourceID());
+        holder.tvChuyenTien.setText(application.getName());
+        holder.imgChuyenTien.setImageResource(application.getResourceID());
 
     }
 

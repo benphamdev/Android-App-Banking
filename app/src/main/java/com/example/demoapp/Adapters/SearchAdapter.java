@@ -8,14 +8,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.demoapp.Activities.SearchResult;
+import com.example.demoapp.Models.entity.SearchResult;
 import com.example.demoapp.R;
 
 import java.util.List;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
 
-    private List<SearchResult> searchResults;
+    private final List<SearchResult> searchResults;
 
     public SearchAdapter(List<SearchResult> searchResults) {
         this.searchResults = searchResults;

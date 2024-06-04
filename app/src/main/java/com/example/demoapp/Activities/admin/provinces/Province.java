@@ -1,7 +1,5 @@
 package com.example.demoapp.Activities.admin.provinces;
 
-import com.example.demoapp.Models.Dto.Response.ProvinceResponse;
-
 public class Province {
     private int id;
     private String name;

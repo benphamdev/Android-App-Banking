@@ -10,10 +10,10 @@ import androidx.work.WorkerParameters;
 
 import com.example.demoapp.HttpRequest.ApiServiceConvertCurrency;
 import com.example.demoapp.HttpRequest.RetrofitClientCV;
-import com.example.demoapp.Models.Dto.Response.CurrencyExchangeResponse;
-import com.example.demoapp.Models.Dto.Response.RealtimeCurrencyExchangeRate;
-import com.example.demoapp.Models.Dto.dao.ExchangeRate;
-import com.example.demoapp.database.AppDatabase;
+import com.example.demoapp.LocalDatabase.AppDatabase;
+import com.example.demoapp.Models.dao.ExchangeRate;
+import com.example.demoapp.Models.dto.response.CurrencyExchangeResponse;
+import com.example.demoapp.Models.dto.response.RealtimeCurrencyExchangeRate;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -25,11 +25,14 @@ import retrofit2.Response;
 public class UpdateExchangeRateWorker extends Worker {
     //    String [] fromCurrencies = {"USD", "EUR", "JPY", "GBP", "AUD", "CAD", "CHF", "CNY", "SEK", "NZD", "SGD", "HKD", "KRW", "THB"};
 
-    String [] fromCurrencies = {"JPY", "GBP"};
+    String[] fromCurrencies = {"JPY", "GBP"};
     ExecutorService executorService = Executors.newSingleThreadExecutor();
     AppDatabase appDatabase;
 
-    public UpdateExchangeRateWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
+    public UpdateExchangeRateWorker(
+            @NonNull Context context,
+            @NonNull WorkerParameters workerParams
+    ) {
         super(context, workerParams);
     }
 
@@ -38,41 +41,66 @@ public class UpdateExchangeRateWorker extends Worker {
     public Result doWork() {
         // Fetch the exchange rate and update the database
         // This is similar to the code in your MainActivity
-        appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "exchange_rate_db").build();
+        appDatabase = Room.databaseBuilder(
+                                  getApplicationContext(),
+                                  AppDatabase.class,
+                                  "exchange_rate_db"
+                          )
+                          .build();
 
         RetrofitClientCV retrofitClient = new RetrofitClientCV();
-        ApiServiceConvertCurrency apiService = retrofitClient.getRetrofit().create(ApiServiceConvertCurrency.class);
+        ApiServiceConvertCurrency apiService = RetrofitClientCV.getRetrofit()
+                                                               .create(ApiServiceConvertCurrency.class);
         for (String fromCurrency : fromCurrencies) {
-            apiService.getExchangeRate("CURRENCY_EXCHANGE_RATE", fromCurrency, "VND", "P4T3K99FVT6ZG7KT")
+            apiService.getExchangeRate(
+                              "CURRENCY_EXCHANGE_RATE",
+                              fromCurrency,
+                              "VND",
+                              "P4T3K99FVT6ZG7KT"
+                      )
                       .enqueue(new Callback<CurrencyExchangeResponse>() {
                           @Override
                           public void onResponse(
-                                  Call<CurrencyExchangeResponse> call, @NonNull Response<CurrencyExchangeResponse> response) {
+                                  Call<CurrencyExchangeResponse> call,
+                                  @NonNull Response<CurrencyExchangeResponse> response
+                          ) {
                               if (response.isSuccessful()) {
-                                  CurrencyExchangeResponse currencyExchangeResponse = response.body();
-                                  RealtimeCurrencyExchangeRate realtimeCurrencyExchangeRate = currencyExchangeResponse.getRealtimeCurrencyExchangeRate();
-                                  Log.d("UpdateExchangeRateWorker", realtimeCurrencyExchangeRate.getFromCurrencyCode() + "onResponse: " + realtimeCurrencyExchangeRate.getExchangeRate());
+                                  CurrencyExchangeResponse currencyExchangeResponse =
+                                          response.body();
+                                  RealtimeCurrencyExchangeRate realtimeCurrencyExchangeRate =
+                                          currencyExchangeResponse.getRealtimeCurrencyExchangeRate();
+                                  Log.d(
+                                          "UpdateExchangeRateWorker",
+                                          realtimeCurrencyExchangeRate.getFromCurrencyCode() + "onResponse: " + realtimeCurrencyExchangeRate.getExchangeRate()
+                                  );
 
                                   executorService.execute(new Runnable() {
                                       @Override
                                       public void run() {
-                                          appDatabase.exchangeRateDao().insert(new ExchangeRate(
-                                                  realtimeCurrencyExchangeRate.getFromCurrencyCode(),
-                                                  realtimeCurrencyExchangeRate.getFromCurrencyName(),
-                                                  realtimeCurrencyExchangeRate.getToCurrencyCode(),
-                                                  realtimeCurrencyExchangeRate.getToCurrencyName(),
-                                                  realtimeCurrencyExchangeRate.getExchangeRate(),
-                                                  realtimeCurrencyExchangeRate.getLastRefreshed(),
-                                                  realtimeCurrencyExchangeRate.getTimeZone(),
-                                                  realtimeCurrencyExchangeRate.getBidPrice(),
-                                                  realtimeCurrencyExchangeRate.getAskPrice()
-                                          ));
+                                          appDatabase.exchangeRateDao()
+                                                     .insert(new ExchangeRate(
+                                                             realtimeCurrencyExchangeRate.getFromCurrencyCode(),
+                                                             realtimeCurrencyExchangeRate.getFromCurrencyName(),
+                                                             realtimeCurrencyExchangeRate.getToCurrencyCode(),
+                                                             realtimeCurrencyExchangeRate.getToCurrencyName(),
+                                                             realtimeCurrencyExchangeRate.getExchangeRate(),
+                                                             realtimeCurrencyExchangeRate.getLastRefreshed(),
+                                                             realtimeCurrencyExchangeRate.getTimeZone(),
+                                                             realtimeCurrencyExchangeRate.getBidPrice(),
+                                                             realtimeCurrencyExchangeRate.getAskPrice()
+                                                     ));
                                       }
                                   });
 
-                                  Log.d("UpdateExchangeRateWorker", "onResponse: Exchange rate saved to the database" );
+                                  Log.d(
+                                          "UpdateExchangeRateWorker",
+                                          "onResponse: Exchange rate saved to the database"
+                                  );
                               } else {
-                                  Log.d("UpdateExchangeRateWorker", "onResponse: " + response.message());
+                                  Log.d(
+                                          "UpdateExchangeRateWorker",
+                                          "onResponse: " + response.message()
+                                  );
                               }
                           }
 

@@ -1,13 +1,5 @@
 package com.example.demoapp.Activities.admin.provinces;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -19,12 +11,20 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.demoapp.Activities.admin.AdminsActivity;
 import com.example.demoapp.Activities.admin.OnDeleteClickListener;
 import com.example.demoapp.HttpRequest.ApiService;
-import com.example.demoapp.Models.Dto.Requests.ProvinceRequest;
-import com.example.demoapp.Models.Dto.Response.BaseResponse;
-import com.example.demoapp.Models.Dto.Response.ProvinceResponse;
+import com.example.demoapp.Models.dto.requests.ProvinceRequest;
+import com.example.demoapp.Models.dto.response.BaseResponse;
+import com.example.demoapp.Models.dto.response.ProvinceResponse;
 import com.example.demoapp.R;
 
 import java.io.IOException;
@@ -84,47 +84,50 @@ public class ProvinceActivity extends AppCompatActivity implements OnDeleteClick
 
     private void getProvince() {
         ApiService.apiService.getAllProvinces()
-                .enqueue(new Callback<BaseResponse<List<ProvinceResponse>>>() {
-                    @Override
-                    public void onResponse(
-                            Call<BaseResponse<List<ProvinceResponse>>> call,
-                            Response<BaseResponse<List<ProvinceResponse>>> response
-                    ) {
-                        if (response.isSuccessful()) {
-                            List<ProvinceResponse> provinceResponseList =
-                                    response.body()
-                                            .getData();
-                            if (provinceResponseList != null) {
-                                provinces = new ArrayList<>();
-                                for (ProvinceResponse provinceResponse : provinceResponseList) {
-                                    provinces.add(new Province(provinceResponse.getId(),
-                                            provinceResponse.getName()));
-                                }
-                                provinceAdapter.setProvinces(provinces);
-                            }
-                        } else {
-                            try {
-                                Log.e(
-                                        "TAGprovince",
-                                        response.errorBody()
-                                                .toString()
-                                );
-                            } catch (Exception e) {
-                                e.getMessage();
-                            }
-                        }
-                    }
+                             .enqueue(new Callback<BaseResponse<List<ProvinceResponse>>>() {
+                                 @Override
+                                 public void onResponse(
+                                         Call<BaseResponse<List<ProvinceResponse>>> call,
+                                         Response<BaseResponse<List<ProvinceResponse>>> response
+                                 ) {
+                                     if (response.isSuccessful()) {
+                                         List<ProvinceResponse> provinceResponseList =
+                                                 response.body()
+                                                         .getData();
+                                         if (provinceResponseList != null) {
+                                             provinces = new ArrayList<>();
+                                             for (ProvinceResponse provinceResponse : provinceResponseList) {
+                                                 provinces.add(new Province(
+                                                         provinceResponse.getId(),
+                                                         provinceResponse.getName()
+                                                 ));
+                                             }
+                                             provinceAdapter.setProvinces(provinces);
+                                         }
+                                     } else {
+                                         try {
+                                             Log.e(
+                                                     "TAGprovince",
+                                                     response.errorBody()
+                                                             .toString()
+                                             );
+                                         } catch (Exception e) {
+                                             e.getMessage();
+                                         }
+                                     }
+                                 }
 
-                    @Override
-                    public void onFailure(
-                            Call<BaseResponse<List<ProvinceResponse>>> call,
-                            Throwable t
-                    ) {
+                                 @Override
+                                 public void onFailure(
+                                         Call<BaseResponse<List<ProvinceResponse>>> call,
+                                         Throwable t
+                                 ) {
 
-                        Log.e("E", t.getMessage());
-                    }
-                });
+                                     Log.e("E", t.getMessage());
+                                 }
+                             });
     }
+
     public void showCreateProvinceDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(ProvinceActivity.this);
         builder.setTitle("Enter Province Name");
@@ -134,11 +137,18 @@ public class ProvinceActivity extends AppCompatActivity implements OnDeleteClick
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String newName = input.getText().toString().trim();
+                String newName = input.getText()
+                                      .toString()
+                                      .trim();
                 if (!newName.isEmpty()) {
                     createProvince(newName);
                 } else {
-                    Toast.makeText(ProvinceActivity.this, "Please enter a province name", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(
+                                 ProvinceActivity.this,
+                                 "Please enter a province name",
+                                 Toast.LENGTH_SHORT
+                         )
+                         .show();
                 }
             }
         });
@@ -151,32 +161,52 @@ public class ProvinceActivity extends AppCompatActivity implements OnDeleteClick
 
         builder.show();
     }
+
     public void createProvince(String name) {
         ProvinceRequest provinceRequest = new ProvinceRequest(name);
 
-        ApiService.apiService.createProvince(provinceRequest).enqueue(new Callback<BaseResponse<ProvinceResponse>>() {
-            @Override
-            public void onResponse(Call<BaseResponse<ProvinceResponse>> call, Response<BaseResponse<ProvinceResponse>> response) {
-                if (response.isSuccessful()) {
-                    ProvinceResponse provinceResponse = response.body().getData();
-                    Province newProvince = new Province(provinceResponse.getId(), provinceResponse.getName());
-                    provinces.add(newProvince);
-                    provinceAdapter.notifyDataSetChanged();
-                    Toast.makeText(ProvinceActivity.this, "Province created successfully", Toast.LENGTH_SHORT).show();
-                } else {
-                    try {
-                        Log.e("TAG1", response.errorBody().string());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+        ApiService.apiService.createProvince(provinceRequest)
+                             .enqueue(new Callback<BaseResponse<ProvinceResponse>>() {
+                                 @Override
+                                 public void onResponse(
+                                         Call<BaseResponse<ProvinceResponse>> call,
+                                         Response<BaseResponse<ProvinceResponse>> response
+                                 ) {
+                                     if (response.isSuccessful()) {
+                                         ProvinceResponse provinceResponse = response.body()
+                                                                                     .getData();
+                                         Province newProvince = new Province(
+                                                 provinceResponse.getId(),
+                                                 provinceResponse.getName()
+                                         );
+                                         provinces.add(newProvince);
+                                         provinceAdapter.notifyDataSetChanged();
+                                         Toast.makeText(
+                                                      ProvinceActivity.this,
+                                                      "Province created successfully",
+                                                      Toast.LENGTH_SHORT
+                                              )
+                                              .show();
+                                     } else {
+                                         try {
+                                             Log.e(
+                                                     "TAG1",
+                                                     response.errorBody()
+                                                             .string()
+                                             );
+                                         } catch (IOException e) {
+                                             e.printStackTrace();
+                                         }
+                                     }
+                                 }
 
-            @Override
-            public void onFailure(Call<BaseResponse<ProvinceResponse>> call, Throwable t) {
-                Log.e("Error", t.getMessage());
-            }
-        });
+                                 @Override
+                                 public void onFailure(
+                                         Call<BaseResponse<ProvinceResponse>> call, Throwable t
+                                 ) {
+                                     Log.e("Error", t.getMessage());
+                                 }
+                             });
     }
 
     @Override

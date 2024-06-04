@@ -10,9 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.demoapp.HttpRequest.ApiService;
-import com.example.demoapp.Models.Dto.Response.AccountInfoResponse;
-import com.example.demoapp.Models.Dto.Response.BaseResponse;
+import com.example.demoapp.Models.dto.response.AccountInfoResponse;
+import com.example.demoapp.Models.dto.response.BaseResponse;
 import com.example.demoapp.R;
 
 import java.util.List;
@@ -22,7 +23,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class BranchInfoAdapter extends RecyclerView.Adapter<BranchInfoAdapter.BranchInfoViewHolder> {
-    private List<BranchInfo> branchInfoList;
+    private final List<BranchInfo> branchInfoList;
     private Context context;
 
     public BranchInfoAdapter(List<BranchInfo> branchInfoList) {
@@ -61,6 +62,7 @@ public class BranchInfoAdapter extends RecyclerView.Adapter<BranchInfoAdapter.Br
     public int getItemCount() {
         return branchInfoList != null ? branchInfoList.size() : 0;
     }
+
     private void showDeleteConfirmationDialog(int position) {
         new AlertDialog.Builder(context)
                 .setTitle("Confirm Delete")
@@ -69,6 +71,7 @@ public class BranchInfoAdapter extends RecyclerView.Adapter<BranchInfoAdapter.Br
                 .setNegativeButton(android.R.string.no, null)
                 .show();
     }
+
     public void deleteBranch(int position) {
         int userId = Integer.parseInt(branchInfoList.get(position)
                                                     .getId());
@@ -100,14 +103,15 @@ public class BranchInfoAdapter extends RecyclerView.Adapter<BranchInfoAdapter.Br
                              });
     }
 
-
     public class BranchInfoViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvId;
-        private TextView tvBranchName;
-        private TextView tvAddress;
-        private TextView tvProvince;
-        private TextView tvAccountName, tvAccountBalance, tvAccountNumber;
-        private ImageView imgDelete;
+        private final TextView tvId;
+        private final TextView tvBranchName;
+        private final TextView tvAddress;
+        private final TextView tvProvince;
+        private final TextView tvAccountName;
+        private final TextView tvAccountBalance;
+        private final TextView tvAccountNumber;
+        private final ImageView imgDelete;
 
         public BranchInfoViewHolder(
                 @NonNull View itemView

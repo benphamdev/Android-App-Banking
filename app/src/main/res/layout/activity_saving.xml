@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Models.Dto.entity.Saving">
+    tools:context=".Models.entity.Saving">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tool_bar_admin_saving"
         android:layout_width="match_parent"

@@ -1,12 +1,5 @@
 package com.example.demoapp.Activities.admin.loanDisburts;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -15,14 +8,18 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.demoapp.Activities.admin.AdminsActivity;
 import com.example.demoapp.Activities.admin.OnDeleteClickListener;
-import com.example.demoapp.Activities.admin.loan.LoanDetailActivity;
-import com.example.demoapp.Activities.admin.loan.LoanDetailAdapter;
 import com.example.demoapp.HttpRequest.ApiService;
-import com.example.demoapp.Models.Dto.Response.BaseResponse;
-import com.example.demoapp.Models.Dto.entity.LoanDetail;
-import com.example.demoapp.Models.Dto.entity.LoanDisbursement;
+import com.example.demoapp.Models.dto.response.BaseResponse;
+import com.example.demoapp.Models.entity.LoanDisbursement;
 import com.example.demoapp.R;
 
 import java.util.ArrayList;
@@ -47,6 +44,7 @@ public class LoanDisbursementActivity extends AppCompatActivity implements OnDel
         loadDataFromApi();
 
     }
+
     private void toolbars() {
         Toolbar toolbar = findViewById(R.id.tool_bar_admin_loanburse);
         setSupportActionBar(toolbar);
@@ -68,31 +66,46 @@ public class LoanDisbursementActivity extends AppCompatActivity implements OnDel
             }
         });
     }
-    private void loadDataFromApi() {
-        ApiService.apiService.getLoanDisbursements().enqueue(new Callback<BaseResponse<List<LoanDisbursement>>>() {
-            @Override
-            public void onResponse(Call<BaseResponse<List<LoanDisbursement>>> call, Response<BaseResponse<List<LoanDisbursement>>> response) {
-                if (response.isSuccessful()) {
-                    loanDisbursementList = response.body().getData();
-                    if (loanDisbursementList != null) {
-                        showDataOnRecyclerView(loanDisbursementList);
-                    }
-                } else {
-                    try {
-                        String responseBodyString = response.errorBody().string();
-                        Log.e("TAG", responseBodyString);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
 
-            @Override
-            public void onFailure(Call<BaseResponse<List<LoanDisbursement>>> call, Throwable t) {
-                Log.e("Error", t.getMessage());
-                Toast.makeText(LoanDisbursementActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+    private void loadDataFromApi() {
+        ApiService.apiService.getLoanDisbursements()
+                             .enqueue(new Callback<BaseResponse<List<LoanDisbursement>>>() {
+                                 @Override
+                                 public void onResponse(
+                                         Call<BaseResponse<List<LoanDisbursement>>> call,
+                                         Response<BaseResponse<List<LoanDisbursement>>> response
+                                 ) {
+                                     if (response.isSuccessful()) {
+                                         loanDisbursementList = response.body()
+                                                                        .getData();
+                                         if (loanDisbursementList != null) {
+                                             showDataOnRecyclerView(loanDisbursementList);
+                                         }
+                                     } else {
+                                         try {
+                                             String responseBodyString = response.errorBody()
+                                                                                 .string();
+                                             Log.e("TAG", responseBodyString);
+                                         } catch (Exception e) {
+                                             e.printStackTrace();
+                                         }
+                                     }
+                                 }
+
+                                 @Override
+                                 public void onFailure(
+                                         Call<BaseResponse<List<LoanDisbursement>>> call,
+                                         Throwable t
+                                 ) {
+                                     Log.e("Error", t.getMessage());
+                                     Toast.makeText(
+                                                  LoanDisbursementActivity.this,
+                                                  "Error: " + t.getMessage(),
+                                                  Toast.LENGTH_SHORT
+                                          )
+                                          .show();
+                                 }
+                             });
     }
 
     private void showDataOnRecyclerView(List<LoanDisbursement> loanBurse) {
@@ -107,7 +120,7 @@ public class LoanDisbursementActivity extends AppCompatActivity implements OnDel
 
     @Override
     public void onDeleteClick(int position) {
-        if(loanDisbursementAdapter != null){
+        if (loanDisbursementAdapter != null) {
             loanDisbursementAdapter.deleteLoanBurse(position);
         }
     }

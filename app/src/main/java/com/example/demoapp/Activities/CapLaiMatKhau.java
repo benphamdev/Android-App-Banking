@@ -15,10 +15,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 
+import com.example.demoapp.Activities.authen.SignIn;
 import com.example.demoapp.HttpRequest.ApiService;
-import com.example.demoapp.Models.Dto.Response.BaseResponse;
-import com.example.demoapp.Models.Dto.sharePreferences.SharePreferencesManager;
+import com.example.demoapp.Models.dto.response.BaseResponse;
 import com.example.demoapp.R;
+import com.example.demoapp.Utils.sharePreferences.SharePreferencesManager;
 
 import java.io.IOException;
 
@@ -52,28 +53,44 @@ public class CapLaiMatKhau extends AppCompatActivity {
     }
 
     private void apiForgotPassword() {
-        String email = tvEmail.getText().toString().trim();
+        String email = tvEmail.getText()
+                              .toString()
+                              .trim();
         SharePreferencesManager manager = new SharePreferencesManager(CapLaiMatKhau.this);
         manager.saveEmal(email);
-        ApiService.apiService.verifyEmail(email).enqueue(new Callback<BaseResponse<Void>>() {
-            @Override
-            public void onResponse(Call<BaseResponse<Void>> call, Response<BaseResponse<Void>> response) {
-                if(response.isSuccessful()) {
-                    Log.d("SUCCESS", "Comment : " + response.body().toString());
-                } else {
-                    try {
-                        Log.d("TAG", "Comment : " + response.errorBody().string());
-                    } catch(IOException e) {
-                        Log.d("Catch", e.getMessage());
-                    }
-                }
-            }
+        ApiService.apiService.verifyEmail(email)
+                             .enqueue(new Callback<BaseResponse<Void>>() {
+                                 @Override
+                                 public void onResponse(
+                                         Call<BaseResponse<Void>> call,
+                                         Response<BaseResponse<Void>> response
+                                 ) {
+                                     if (response.isSuccessful()) {
+                                         Log.d(
+                                                 "SUCCESS",
+                                                 "Comment : " + response.body()
+                                                                        .toString()
+                                         );
+                                     } else {
+                                         try {
+                                             Log.d(
+                                                     "TAG",
+                                                     "Comment : " + response.errorBody()
+                                                                            .string()
+                                             );
+                                         } catch (IOException e) {
+                                             Log.d("Catch", e.getMessage());
+                                         }
+                                     }
+                                 }
 
-            @Override
-            public void onFailure(Call<BaseResponse<Void>> call, Throwable throwable) {
-                Log.e("E:", throwable.getMessage());
-            }
-        });
+                                 @Override
+                                 public void onFailure(
+                                         Call<BaseResponse<Void>> call, Throwable throwable
+                                 ) {
+                                     Log.e("E:", throwable.getMessage());
+                                 }
+                             });
         startActivity(new Intent(CapLaiMatKhau.this, VerifyOTPActivity.class));
     }
 
