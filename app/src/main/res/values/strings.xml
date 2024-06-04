@@ -1,4 +1,5 @@
 <resources>
+<<<<<<< HEAD
     <string name="app_name">demoApp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -9,4 +10,7 @@
     <string name="resend_OTP">RESEND OTP</string>
     <string name="we_will_send">We will send you an One Times Password on this mpbile number</string>
     <string name="enter_mobile_number">Enter mobile number</string>
+=======
+    <string name="app_name">activity</string>
+>>>>>>> 143666cbf5f3861bf0ca8eafce72e0622a2ec3a4
 </resources>
